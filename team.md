@@ -17,7 +17,7 @@ Hello! My name is Srujana, and I am a first-year MSCS student at Boston Universi
 *(and have some basic knowledge about Unix shell scripting, Git, and Prolog.)*
 
 **Yuanbin Man** - Requirement Leader \
-I'm Yuanbin, a CS major from Hangzhou, China. I worked as an AI engineer at Alibaba's AI Lab (DAMO Academy) and have been involved in multi-modal research both at BU and beyond. In my free time, I enjoy swimming and cooking.
+I'm Yuanbin, a CS major from Hangzhou, China. I worked as an AI engineer at Alibaba's AI Lab ([DAMO Academy](https://damo.alibaba.com/?language=en)) and have been involved in multi-modal research both at BU and beyond. In my free time, I enjoy swimming and cooking.
 
 I worked as a Software Development Engineer-1 for 2 years before coming to BU.
 I generally play adventure RPG video games in my free time. My favorite saying/quote is:
