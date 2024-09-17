@@ -22,3 +22,9 @@ I'm Yuanbin, a CS major from Hangzhou, China. I worked as an AI engineer at Alib
 I worked as a Software Development Engineer-1 for 2 years before coming to BU.
 I generally play adventure RPG video games in my free time. My favorite saying/quote is:
 > What our eyes see ought to be our fate but now, close your eyes and feel. For with our blood... we will forge our true fate.
+
+*AngLi** - Design and Implementation Leader
+i'm AngLi, I Proficient in coding, familiar with mainstream development languages such as Java, Python, Shell, etc.; - Familiar with Java Virtual Machine (JVM) Garbage Collection (GC), and the ability to continuously optimize JVM
+according to real-time business situations; - Through the years of work, I acquired actual development experience with all the above programming languages. - Familiar with the indexing execution principles of mainstream databases, capable of writing high-performance SQL
+queries, as well as optimizing inefficient SQL queries; - Familiar with the use of mainstream open source software, including but not limited to NGINX, Tomcat, MySQL, K8s, Docker, JavaSpring Framework, etc.; - Familiar with common network protocols, with a deep understanding of TCP connection mechanisms, able to use
+Wireshark or TCPDump to analyze TCP packets and accurately locate network problems.
