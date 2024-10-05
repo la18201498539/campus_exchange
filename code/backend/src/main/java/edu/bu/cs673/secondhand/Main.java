@@ -4,12 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RestController;
-/***
- Name:  Yuanbin Man, ex-IBM, ex-Alibaba, AI Engineer in CV/DL/MLSys
- Email: ybinman@bu.edu
- DateTime: ${DATE}-${TIME}
- Publications:  https://arxiv.org/abs/2312.16385; https://ieeexplore.ieee.org/document/10379821;
- *****/
+
 
 @SpringBootApplication
 @RestController
