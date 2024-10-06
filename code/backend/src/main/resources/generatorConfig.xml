@@ -32,5 +32,6 @@
         <!-- Table Configurations: Specify which tables to generate -->
         <table tableName="sh_user" domainObjectName="User"/>
         <table tableName="sh_order" domainObjectName="Order"/>
+        <table tableName="sh_idle_item" domainObjectName="Item"/>
     </context>
 </generatorConfiguration>
