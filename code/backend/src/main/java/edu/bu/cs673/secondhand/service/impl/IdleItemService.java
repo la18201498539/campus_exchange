@@ -1,16 +1,21 @@
-package edu.bu.cs673.secondhand.service;
+package edu.bu.cs673.secondhand.service.impl;
 
 import java.util.List;
 
 import edu.bu.cs673.secondhand.domain.IdleItem;
+import edu.bu.cs673.secondhand.domain.IdleItemExample;
 import edu.bu.cs673.secondhand.mapper.IdleItemMapper;
-import edu.bu.cs673.secondhand.serviceInterface.IdleItemServiceInterface;
+import edu.bu.cs673.secondhand.service.IdleItemServiceInterface;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * A class for service provide by idle item
  */
-public class IdleItemService implements IdleItemServiceInterface{
+@Service
+public class IdleItemService implements IdleItemServiceInterface {
 
+    @Autowired
     private IdleItemMapper itemMapper;
 
     @Override
@@ -25,8 +30,10 @@ public class IdleItemService implements IdleItemServiceInterface{
 
     @Override
     public List<IdleItem> getAllItemByUser(Long userId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllItemByUser'");
+        IdleItemExample example = new IdleItemExample();
+        IdleItemExample.Criteria criteria = example.createCriteria();
+        criteria.andUserIdEqualTo(userId);
+        return itemMapper.selectByExample(example);
     }
 
     @Override

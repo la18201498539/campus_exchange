@@ -1,4 +1,4 @@
-package edu.bu.cs673.secondhand.serviceInterface;
+package edu.bu.cs673.secondhand.service;
 
 import java.util.List;
 

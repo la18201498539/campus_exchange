@@ -3,8 +3,11 @@ package edu.bu.cs673.secondhand.mapper;
 import edu.bu.cs673.secondhand.domain.IdleItem;
 import edu.bu.cs673.secondhand.domain.IdleItemExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface IdleItemMapper {
     long countByExample(IdleItemExample example);
 

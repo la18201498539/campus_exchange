@@ -1,6 +1,7 @@
 package edu.bu.cs673.secondhand.controller;
 
-import edu.bu.cs673.secondhand.service.ItemService;
+import edu.bu.cs673.secondhand.service.IdleItemServiceInterface;
+//import edu.bu.cs673.secondhand.service.ItemService;
 import edu.bu.cs673.secondhand.vo.ResultVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,11 +19,11 @@ import javax.annotation.Resource;
 public class ItemController {
 
     @Autowired
-    ItemService itemService;
+    IdleItemServiceInterface itemService;
 
     @RequestMapping("/list")
     public ResultVo getItemsByUserId(@RequestParam(value = "user_id", required = true) Long userId){
-        return ResultVo.success(itemService.getItemListByUserId(userId));
+        return ResultVo.success(itemService.getAllItemByUser(userId));
     }
 
 }
