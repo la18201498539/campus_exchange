@@ -40,5 +40,10 @@ public class IdleItemService implements IdleItemServiceInterface {
     public boolean updateItem(IdleItem item) {
         return itemMapper.updateByPrimaryKey(item) == 1;
     }
+
+    @Override
+    public boolean removeItem(Long id) {
+        return itemMapper.deleteByPrimaryKey(id) == 1;
+    }
     
 }

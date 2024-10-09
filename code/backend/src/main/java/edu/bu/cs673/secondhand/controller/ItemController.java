@@ -1,19 +1,23 @@
 package edu.bu.cs673.secondhand.controller;
 
+import edu.bu.cs673.secondhand.domain.IdleItem;
+import edu.bu.cs673.secondhand.enums.ErrorMsg;
 import edu.bu.cs673.secondhand.service.IdleItemServiceInterface;
-//import edu.bu.cs673.secondhand.service.ItemService;
 import edu.bu.cs673.secondhand.vo.ResultVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
+import java.util.Date;
 
-/***
- Email: ybinman@bu.edu
- DateTime: 10/6/24-13:50
- *****/
+/**
+ * Item Controller
+ * Route: /item
+ */
 @RestController
 @RequestMapping("/item")
 public class ItemController {
@@ -21,9 +25,85 @@ public class ItemController {
     @Autowired
     IdleItemServiceInterface itemService;
 
+    /**
+     * Get all items that belongs to a user.
+     * Route: /item/list
+     * 
+     * @param userId
+     * @return
+     */
     @RequestMapping("/list")
     public ResultVo getItemsByUserId(@RequestParam(value = "user_id", required = true) Long userId){
         return ResultVo.success(itemService.getAllItemByUser(userId));
+    }
+
+    /**
+     * Get an item by id.
+     * Route: /item
+     * 
+     * @param id
+     * @return
+     */
+    @RequestMapping("")
+    public ResultVo getItem(@RequestParam(value = "id", required = true)Long id) {
+        return ResultVo.success(itemService.getItem(id));
+    }
+
+    /**
+     * Create a new item.
+     * Route: /item
+     */
+    @RequestMapping(method=RequestMethod.POST)
+    public ResultVo addItem(@CookieValue("userId") String userId,
+                            @RequestBody(required = true) IdleItem item) {
+        // TODO: add authorization
+        item.setUserId(Long.valueOf(userId));
+        item.setIdleStatus((byte) 1);
+        item.setReleaseTime(new Date());
+        if(itemService.addNewItem(item)){
+            return ResultVo.success(item);
+        }
+        return ResultVo.fail(ErrorMsg.SYSTEM_ERROR);
+    }
+
+    /**
+     * Remove an item by item id,
+     * not allowing user other than the creater to remove the item.
+     * Route: /item
+     * 
+     * @param userId 
+     * @param id 
+     * @return
+     */
+    @RequestMapping(method=RequestMethod.DELETE)
+    public ResultVo removeItem(@CookieValue("userId") String userId,
+                                @RequestParam(value="id", required = true)Long id) {
+        IdleItem item = itemService.getItem(id);
+        // TODO: also allow admin to delete item
+        if (item.getUserId().toString().equals(userId)) {
+            return ResultVo.success(itemService.removeItem(id));
+        }
+        return ResultVo.fail(ErrorMsg.PARAM_ERROR);
+    }
+
+    /**
+     * Update an exist item. Allow only the user who post the item to update.
+     * 
+     * @param userId
+     * @param item
+     * @return
+     */
+    @RequestMapping(method=RequestMethod.PUT)
+    public ResultVo updateItem(@CookieValue("userId") String userId,
+                                @RequestBody(required = true) IdleItem item) {
+        // TODO: allow admin to update item
+        if (item.getUserId().toString().equals(userId)) {
+            if(itemService.updateItem(item)) {
+                return ResultVo.success(item);
+            }
+            return ResultVo.fail(ErrorMsg.SYSTEM_ERROR);
+        }
+        return ResultVo.fail(ErrorMsg.PARAM_ERROR);
     }
 
 }

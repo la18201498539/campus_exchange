@@ -40,4 +40,12 @@ public interface IdleItemServiceInterface {
      * @return true if success
      */
     boolean updateItem(IdleItem item);
+
+    /**
+     * Remove an item by id
+     * 
+     * @param id item id
+     * @return true if success
+     */
+    boolean removeItem(Long id);
 }
