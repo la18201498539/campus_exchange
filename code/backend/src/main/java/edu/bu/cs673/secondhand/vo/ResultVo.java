@@ -3,52 +3,90 @@ package edu.bu.cs673.secondhand.vo;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import edu.bu.cs673.secondhand.enums.ErrorMsg;
 
-/***
- Email: ybinman@bu.edu
- DateTime: 10/6/24-13:53
- *****/
-@JsonInclude(value = JsonInclude.Include.NON_NULL)
+/**
+ * ResultVo is a value object that encapsulates the response structure
+ * for API calls, including status code, message, and data.
+ * Author: YQ
+ */
+@JsonInclude(value = JsonInclude.Include.NON_NULL)  // Exclude null fields from JSON serialization
 public class ResultVo<T> {
 
-    private Integer status_code;
-    private String msg;
-    private T data;
+    private Integer statusCode;  // Status code of the response
+    private String msg;  // Message providing additional information
+    private T data;  // Data returned in the response
 
-    public static ResultVo success(){
-        ResultVo resultVo=new ResultVo();
-        resultVo.setStatus_code(1);
-        return resultVo;
+    // Private constructor to enforce the use of static factory methods
+    public ResultVo(Integer statusCode, String msg, T data) {
+        this.statusCode = statusCode;
+        this.msg = msg;
+        this.data = data;
     }
 
-    public static <T>ResultVo success(T data){
-        ResultVo<T> resultVo=new ResultVo<>();
-        resultVo.setStatus_code(1);
-        resultVo.setData(data);
-        return resultVo;
+    public ResultVo() {
     }
 
-    public static ResultVo fail(ErrorMsg errorMsg){
-        ResultVo resultVo=new ResultVo();
-        resultVo.setStatus_code(0);
-        resultVo.setMsg(errorMsg.getMsg());
-        return resultVo;
+    /**
+     * Creates a success response without data.
+     * @return A ResultVo representing a successful response.
+     */
+    public static <T> ResultVo<T> success() {
+        return new ResultVo<>(1, "Success", null);  // Default success message
     }
 
-    public static <T>ResultVo fail(ErrorMsg errorMsg,T data){
-        ResultVo<T> resultVo=new ResultVo<>();
-        resultVo.setStatus_code(0);
-        resultVo.setMsg(errorMsg.getMsg());
-        resultVo.setData(data);
-        return resultVo;
+    /**
+     * Creates a success response with data.
+     * @param data The data to include in the response.
+     * @return A ResultVo representing a successful response with data.
+     */
+    public static <T> ResultVo<T> success(T data) {
+        return new ResultVo<>(1, "Success", data);  // Default success message
     }
 
-
-    public Integer getStatus_code() {
-        return status_code;
+    /**
+     * Creates a success response with a custom message and data.
+     * @param message The success message.
+     * @param data The data to include in the response.
+     * @return A ResultVo representing a successful response with a message and data.
+     */
+    public static <T> ResultVo<T> success(String message, T data) {
+        return new ResultVo<>(1, message, data);  // Default success message
     }
 
-    public void setStatus_code(Integer status_code) {
-        this.status_code = status_code;
+    /**
+     * Creates a failure response based on an ErrorMsg.
+     * @param errorMsg The error message to include in the response.
+     * @return A ResultVo representing a failed response.
+     */
+    public static <T> ResultVo<T> fail(ErrorMsg errorMsg) {
+        return new ResultVo<>(0, errorMsg.getMsg(), null);  // Default failure message
+    }
+
+    /**
+     * Creates a failure response with a custom message.
+     * @param message The failure message to include in the response.
+     * @return A ResultVo representing a failed response.
+     */
+    public static <T> ResultVo<T> fail(String message) {
+        return new ResultVo<>(0, message, null);  // Default failure message
+    }
+
+    /**
+     * Creates a failure response with additional data.
+     * @param errorMsg The error message to include in the response.
+     * @param data The data to include in the response.
+     * @return A ResultVo representing a failed response with data.
+     */
+    public static <T> ResultVo<T> fail(ErrorMsg errorMsg, T data) {
+        return new ResultVo<>(0, errorMsg.getMsg(), data);  // Default failure message
+    }
+
+    // Getters and setters
+    public Integer getStatusCode() {
+        return statusCode;
+    }
+
+    public void setStatusCode(Integer statusCode) {
+        this.statusCode = statusCode;
     }
 
     public String getMsg() {
@@ -65,14 +103,5 @@ public class ResultVo<T> {
 
     public void setData(T data) {
         this.data = data;
-    }
-
-    public ResultVo(Integer status_code, String msg, T data) {
-        this.status_code = status_code;
-        this.msg = msg;
-        this.data = data;
-    }
-
-    public ResultVo() {
     }
 }

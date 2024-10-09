@@ -25,12 +25,9 @@ public class Main {
         logger.info("Application started successfully!");  // Log application start
     }
 
-    /**
-     * Welcome endpoint that returns a welcome message.
-     * @return A welcome message.
-     */
-    @GetMapping("/")
-    public String index() {
-        return "Welcome to BU Second hand Trading!";  // Return welcome message
-    }
+    // Remove this method if it's not needed
+    // @GetMapping("/")
+    // public String index() {
+    //     return "Welcome to BU Second hand Trading!";  // Return welcome message
+    // }
 }

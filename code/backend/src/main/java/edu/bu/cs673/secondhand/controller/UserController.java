@@ -17,7 +17,7 @@ import edu.bu.cs673.secondhand.utils.JwtUtil;
  * Author: YQ
  */
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/user")  // Change the base path for user-related endpoints
 public class UserController {
 
     @Autowired
