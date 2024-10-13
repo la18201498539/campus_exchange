@@ -2,7 +2,7 @@ package edu.bu.cs673.secondhand.controller;
 
 import edu.bu.cs673.secondhand.domain.IdleItem;
 import edu.bu.cs673.secondhand.enums.ErrorMsg;
-import edu.bu.cs673.secondhand.service.IdleItemServiceInterface;
+import edu.bu.cs673.secondhand.service.IdleItemService;
 import edu.bu.cs673.secondhand.vo.ResultVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -23,7 +23,7 @@ import java.util.Date;
 public class ItemController {
 
     @Autowired
-    IdleItemServiceInterface itemService;
+    IdleItemService itemService;
 
     /**
      * Get all items that belongs to a user.

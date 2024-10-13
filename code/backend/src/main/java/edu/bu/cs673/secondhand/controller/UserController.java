@@ -1,9 +1,8 @@
 package edu.bu.cs673.secondhand.controller;
 
 import edu.bu.cs673.secondhand.model.UserModel;
+import edu.bu.cs673.secondhand.service.UserService;
 import edu.bu.cs673.secondhand.vo.ResultVo;
-import edu.bu.cs673.secondhand.serviceInterface.UserServiceInterface;
-import org.antlr.v4.runtime.misc.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
@@ -21,7 +20,7 @@ import edu.bu.cs673.secondhand.utils.JwtUtil;
 public class UserController {
 
     @Autowired
-    private UserServiceInterface userServiceInterface;
+    private UserService userServiceInterface;
 
     @Autowired
     private JwtUtil jwtUtil;
@@ -112,6 +111,8 @@ public class UserController {
      */
     @PostMapping("/logout")
     public ResponseEntity<ResultVo> logout(@RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
+        // TODO
+        // Release token when logout. @Yihan
         if (token != null && token.startsWith("Bearer ")) {
             token = token.substring(7);
             try {

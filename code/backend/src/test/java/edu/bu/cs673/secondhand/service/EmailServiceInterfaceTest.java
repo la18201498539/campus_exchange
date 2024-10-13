@@ -1,6 +1,5 @@
 package edu.bu.cs673.secondhand.service;
 
-import edu.bu.cs673.secondhand.serviceInterface.EmailServiceInterface;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class EmailServiceInterfaceTest {
 
     @Autowired
-    private EmailServiceInterface emailServiceInterface;  // Injecting the EmailServiceInterface
+    private EmailService emailServiceInterface;  // Injecting the EmailServiceInterface
 
     /**
      * Test the sending of a simple email message.

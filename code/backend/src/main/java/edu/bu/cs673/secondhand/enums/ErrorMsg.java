@@ -7,8 +7,12 @@ package edu.bu.cs673.secondhand.enums;
 public enum ErrorMsg {
 
     PARAM_ERROR("Invalid Parameters"),
+    MISSING_PARAMETER("Missing parameters"),
     SYSTEM_ERROR("System Error"),
+    COOKIE_ERROR("Invalid Cookie"),
     UNKNOWN_ERROR("Unknown Error");
+
+
 
     private String msg;
 

@@ -7,7 +7,7 @@ import edu.bu.cs673.secondhand.domain.IdleItem;
 /**
  * An interface for service provide by idle item
  */
-public interface IdleItemServiceInterface {
+public interface IdleItemService {
 
     /**
      * Add new item

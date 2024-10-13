@@ -3,7 +3,7 @@ package edu.bu.cs673.secondhand.service;
 import edu.bu.cs673.secondhand.domain.User;
 import edu.bu.cs673.secondhand.mapper.UserMapper;
 import edu.bu.cs673.secondhand.model.UserModel;
-import edu.bu.cs673.secondhand.serviceInterface.EmailServiceInterface;
+import edu.bu.cs673.secondhand.service.impl.UserServiceImpl;
 import edu.bu.cs673.secondhand.utils.SecurityUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,14 +25,14 @@ class UserServiceInterfaceTest {
     @Mock
     private SecurityUtil securityUtil;  // Mocking the SecurityUtil
     @Mock
-    private EmailServiceInterface emailServiceInterface;  // Mocking the EmailServiceInterface
+    private EmailService emailServiceInterface;  // Mocking the EmailServiceInterface
 
-    private UserService userService;  // Instance of UserService to be tested
+    private UserServiceImpl userService;  // Instance of UserService to be tested
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);  // Initialize mocks
-        userService = new UserService(userMapper, securityUtil, emailServiceInterface);  // Create UserService instance
+        userService = new UserServiceImpl(userMapper, securityUtil, emailServiceInterface);  // Create UserService instance
     }
 
     /**

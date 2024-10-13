@@ -5,7 +5,7 @@ import java.util.List;
 import edu.bu.cs673.secondhand.domain.IdleItem;
 import edu.bu.cs673.secondhand.domain.IdleItemExample;
 import edu.bu.cs673.secondhand.mapper.IdleItemMapper;
-import edu.bu.cs673.secondhand.service.IdleItemServiceInterface;
+import edu.bu.cs673.secondhand.service.IdleItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
  * A class for service provide by idle item
  */
 @Service
-public class IdleItemService implements IdleItemServiceInterface {
+public class IdleItemServiceImpl implements IdleItemService {
 
     @Autowired
     private IdleItemMapper itemMapper;
