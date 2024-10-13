@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 /**
  * Item Controller
  * Route: /item
@@ -54,7 +57,10 @@ public class ItemController {
      * Route: /item
      */
     @RequestMapping(method=RequestMethod.POST)
-    public ResultVo addItem(@CookieValue("userId") String userId,
+    public ResultVo addItem(@CookieValue("shUserId") 
+                                @NotNull(message = "Login fail, try again!")
+                                @NotEmpty(message = "Login fail, try again!")
+                                String userId,
                             @RequestBody(required = true) IdleItem item) {
         // TODO: add authorization
         item.setUserId(Long.valueOf(userId));
@@ -76,7 +82,10 @@ public class ItemController {
      * @return
      */
     @RequestMapping(method=RequestMethod.DELETE)
-    public ResultVo removeItem(@CookieValue("userId") String userId,
+    public ResultVo removeItem(@CookieValue("shUserId") 
+                                @NotNull(message = "Login fail, try again!")
+                                @NotEmpty(message = "Login fail, try again!")
+                                String userId,
                                 @RequestParam(value="id", required = true)Long id) {
         IdleItem item = itemService.getItem(id);
         // TODO: also allow admin to delete item
@@ -94,7 +103,10 @@ public class ItemController {
      * @return
      */
     @RequestMapping(method=RequestMethod.PUT)
-    public ResultVo updateItem(@CookieValue("userId") String userId,
+    public ResultVo updateItem(@CookieValue("shUserId") 
+                                @NotNull(message = "Login fail, try again!")
+                                @NotEmpty(message = "Login fail, try again!")
+                                String userId,
                                 @RequestBody(required = true) IdleItem item) {
         // TODO: allow admin to update item
         if (item.getUserId().toString().equals(userId)) {

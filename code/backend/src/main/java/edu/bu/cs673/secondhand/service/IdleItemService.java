@@ -3,6 +3,7 @@ package edu.bu.cs673.secondhand.service;
 import java.util.List;
 
 import edu.bu.cs673.secondhand.domain.IdleItem;
+import edu.bu.cs673.secondhand.model.ItemModel;
 
 /**
  * An interface for service provide by idle item
@@ -23,7 +24,7 @@ public interface IdleItemService {
      * @param id item id
      * @return an item
      */
-    IdleItem getItem(Long id);
+    ItemModel getItem(Long id);
 
     /**
      * Get all items that belongs to a user
