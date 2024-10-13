@@ -15,9 +15,9 @@
         </commentGenerator>
         <!-- Database connection -->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/sec_hand"
+                        connectionURL="jdbc:mysql://47.253.223.42:3306/sec_hand?serverTimezone=UTC&amp;characterEncoding=UTF-8&amp;useSSL=false&amp;serverTimezone=GMT"
                         userId="root"
-                        password=""/>
+                        password="haBshjbwei23432*&amp;"/>
 
         <javaModelGenerator targetPackage="edu.bu.cs673.secondhand.domain" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
