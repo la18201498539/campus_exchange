@@ -37,4 +37,6 @@ public interface UserMapper {
 
     boolean existsByAccountNumber(String accountNumber);
 
+    List<User> findUserByList(List<Long> idList);
+
 }
