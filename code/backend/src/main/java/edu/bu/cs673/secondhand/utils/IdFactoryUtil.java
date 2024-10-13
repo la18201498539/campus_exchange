@@ -1,7 +1,34 @@
-package edu.bu.cs673.secondhand.utils;/***
-Name:  Yuanbin(Stan) Man, ex-IBM, ex-Alibaba, AI Engineer in CV/DL/MLSys
-Email: ybinman@bu.edu         
-DateTime: 10/13/24-13:16           
-Publications:  https://arxiv.org/abs/2312.16385; https://ieeexplore.ieee.org/document/10379821;                 
-*****/public class IdFactoryUtil {
+package edu.bu.cs673.secondhand.utils;
+
+import java.util.concurrent.atomic.AtomicInteger;
+
+/***
+ Email: ybinman@bu.edu
+ DateTime: 10/13/24-13:16
+ *****/
+public class IdFactoryUtil {
+    private static AtomicInteger orderIdEnd=new AtomicInteger(1);
+    private static AtomicInteger fileIdEnd=new AtomicInteger(1);
+
+    public static String getOrderId(){
+        int newI;
+        int ord;
+        do{
+            ord=orderIdEnd.get();
+            newI=(ord+1)%10000;
+        }
+        while (!orderIdEnd.compareAndSet(ord,newI));
+        return System.currentTimeMillis()+""+(newI+10000);
+    }
+
+    public static String getFileId(){
+        int newI;
+        int ord;
+        do{
+            ord=fileIdEnd.get();
+            newI=(ord+1)%1000;
+        }
+        while (!fileIdEnd.compareAndSet(ord,newI));
+        return System.currentTimeMillis()+""+(newI+1000);
+    }
 }
