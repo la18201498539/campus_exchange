@@ -1,0 +1,17 @@
+/Users/yingtongzhou/seprojects-cs673f24a2team2/code/backend/src/main/java/edu/bu/cs673/secondhand/service/impl/IdleItemService.java
+/Users/yingtongzhou/seprojects-cs673f24a2team2/code/backend/src/main/java/edu/bu/cs673/secondhand/controller/ItemController.java
+/Users/yingtongzhou/seprojects-cs673f24a2team2/code/backend/src/main/java/edu/bu/cs673/secondhand/service/impl/ItemServiceImpl.java
+/Users/yingtongzhou/seprojects-cs673f24a2team2/code/backend/src/main/java/edu/bu/cs673/secondhand/domain/ItemExample.java
+/Users/yingtongzhou/seprojects-cs673f24a2team2/code/backend/src/main/java/edu/bu/cs673/secondhand/mapper/ItemMapper.java
+/Users/yingtongzhou/seprojects-cs673f24a2team2/code/backend/src/main/java/edu/bu/cs673/secondhand/service/ItemService.java
+/Users/yingtongzhou/seprojects-cs673f24a2team2/code/backend/src/main/java/edu/bu/cs673/secondhand/vo/ResultVo.java
+/Users/yingtongzhou/seprojects-cs673f24a2team2/code/backend/src/main/java/edu/bu/cs673/secondhand/Application.java
+/Users/yingtongzhou/seprojects-cs673f24a2team2/code/backend/src/main/java/edu/bu/cs673/secondhand/utils/MybatisGenerator.java
+/Users/yingtongzhou/seprojects-cs673f24a2team2/code/backend/src/main/java/edu/bu/cs673/secondhand/domain/Item.java
+/Users/yingtongzhou/seprojects-cs673f24a2team2/code/backend/src/main/java/edu/bu/cs673/secondhand/config/MyBatisConfig.java
+/Users/yingtongzhou/seprojects-cs673f24a2team2/code/backend/src/main/java/edu/bu/cs673/secondhand/enums/ErrorMsg.java
+/Users/yingtongzhou/seprojects-cs673f24a2team2/code/backend/src/main/java/edu/bu/cs673/secondhand/controller/Index.java
+/Users/yingtongzhou/seprojects-cs673f24a2team2/code/backend/src/main/java/edu/bu/cs673/secondhand/domain/IdleItemExample.java
+/Users/yingtongzhou/seprojects-cs673f24a2team2/code/backend/src/main/java/edu/bu/cs673/secondhand/domain/IdleItem.java
+/Users/yingtongzhou/seprojects-cs673f24a2team2/code/backend/src/main/java/edu/bu/cs673/secondhand/mapper/IdleItemMapper.java
+/Users/yingtongzhou/seprojects-cs673f24a2team2/code/backend/src/main/java/edu/bu/cs673/secondhand/service/IdleItemServiceInterface.java

@@ -90,7 +90,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from sh_idle_item
     where id = #{id,jdbcType=BIGINT}
@@ -106,17 +106,14 @@
     </if>
   </delete>
   <insert id="insert" parameterType="edu.bu.cs673.secondhand.domain.IdleItem">
-    insert into sh_idle_item (id, idle_name, idle_details, 
-      picture_list, idle_price, idle_place, 
-      idle_label, release_time, idle_status, 
-      user_id)
-    values (#{id,jdbcType=BIGINT}, #{idleName,jdbcType=VARCHAR}, #{idleDetails,jdbcType=VARCHAR}, 
-      #{pictureList,jdbcType=VARCHAR}, #{idlePrice,jdbcType=DECIMAL}, #{idlePlace,jdbcType=VARCHAR}, 
-      #{idleLabel,jdbcType=INTEGER}, #{releaseTime,jdbcType=TIMESTAMP}, #{idleStatus,jdbcType=TINYINT}, 
-      #{userId,jdbcType=BIGINT})
-    <selectKey resultType="Long" order="AFTER" keyProperty="id">
-      SELECT LAST_INSERT_ID() as id
-    </selectKey>
+    insert into sh_idle_item (id, idle_name, idle_details,
+    picture_list, idle_price, idle_place,
+    idle_label, release_time, idle_status,
+    user_id)
+    values (#{id,jdbcType=BIGINT}, #{idleName,jdbcType=VARCHAR}, #{idleDetails,jdbcType=VARCHAR},
+    #{pictureList,jdbcType=VARCHAR}, #{idlePrice,jdbcType=DECIMAL}, #{idlePlace,jdbcType=VARCHAR},
+    #{idleLabel,jdbcType=INTEGER}, #{releaseTime,jdbcType=TIMESTAMP}, #{idleStatus,jdbcType=TINYINT},
+    #{userId,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="edu.bu.cs673.secondhand.domain.IdleItem">
     insert into sh_idle_item
@@ -232,15 +229,15 @@
   <update id="updateByExample" parameterType="map">
     update sh_idle_item
     set id = #{record.id,jdbcType=BIGINT},
-      idle_name = #{record.idleName,jdbcType=VARCHAR},
-      idle_details = #{record.idleDetails,jdbcType=VARCHAR},
-      picture_list = #{record.pictureList,jdbcType=VARCHAR},
-      idle_price = #{record.idlePrice,jdbcType=DECIMAL},
-      idle_place = #{record.idlePlace,jdbcType=VARCHAR},
-      idle_label = #{record.idleLabel,jdbcType=INTEGER},
-      release_time = #{record.releaseTime,jdbcType=TIMESTAMP},
-      idle_status = #{record.idleStatus,jdbcType=TINYINT},
-      user_id = #{record.userId,jdbcType=BIGINT}
+    idle_name = #{record.idleName,jdbcType=VARCHAR},
+    idle_details = #{record.idleDetails,jdbcType=VARCHAR},
+    picture_list = #{record.pictureList,jdbcType=VARCHAR},
+    idle_price = #{record.idlePrice,jdbcType=DECIMAL},
+    idle_place = #{record.idlePlace,jdbcType=VARCHAR},
+    idle_label = #{record.idleLabel,jdbcType=INTEGER},
+    release_time = #{record.releaseTime,jdbcType=TIMESTAMP},
+    idle_status = #{record.idleStatus,jdbcType=TINYINT},
+    user_id = #{record.userId,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -281,14 +278,14 @@
   <update id="updateByPrimaryKey" parameterType="edu.bu.cs673.secondhand.domain.IdleItem">
     update sh_idle_item
     set idle_name = #{idleName,jdbcType=VARCHAR},
-      idle_details = #{idleDetails,jdbcType=VARCHAR},
-      picture_list = #{pictureList,jdbcType=VARCHAR},
-      idle_price = #{idlePrice,jdbcType=DECIMAL},
-      idle_place = #{idlePlace,jdbcType=VARCHAR},
-      idle_label = #{idleLabel,jdbcType=INTEGER},
-      release_time = #{releaseTime,jdbcType=TIMESTAMP},
-      idle_status = #{idleStatus,jdbcType=TINYINT},
-      user_id = #{userId,jdbcType=BIGINT}
+    idle_details = #{idleDetails,jdbcType=VARCHAR},
+    picture_list = #{pictureList,jdbcType=VARCHAR},
+    idle_price = #{idlePrice,jdbcType=DECIMAL},
+    idle_place = #{idlePlace,jdbcType=VARCHAR},
+    idle_label = #{idleLabel,jdbcType=INTEGER},
+    release_time = #{releaseTime,jdbcType=TIMESTAMP},
+    idle_status = #{idleStatus,jdbcType=TINYINT},
+    user_id = #{userId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>
