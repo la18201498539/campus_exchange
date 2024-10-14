@@ -110,7 +110,7 @@ const api = {
     },
     findIdleTimeByLabel(query) {
         return request({
-            url: '/item/lable',
+            url: '/item/label',
             method: 'get',
             params: query
         });
