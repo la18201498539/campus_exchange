@@ -15,7 +15,7 @@
         </commentGenerator>
         <!-- Database connection -->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://8.221.104.74:3306/sec_hand?serverTimezone=UTC&amp;characterEncoding=UTF-8&amp;useSSL=false&amp;serverTimezone=GMT"
+                        connectionURL="jdbc:mysql://8.221.104.74:3306/sec_hand"
                         userId="root"
                         password="haBshjbwei23432*&amp;"/>
 

@@ -8,7 +8,7 @@
                     <div class="idle-info-title">
                         {{ orderInfo.userId == userId ? 'Purchased' : 'Sold' }}：{{ orderInfo.idleItem.idleName }}
                     </div>
-                    <div class="idle-info-price">￥{{ orderInfo.orderPrice }}</div>
+                    <div class="idle-info-price">${{ orderInfo.orderPrice }}</div>
                 </div>
                 <div
                     class="address-container"

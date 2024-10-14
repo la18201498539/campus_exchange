@@ -74,7 +74,18 @@ export default {
         },
         signIn() {
             console.log(this.userInfo.nickname);
+
+            // verify user email with @bu.edu
+            const emailRegex = /^[a-zA-Z0-9._-]+@bu\.edu$/;
+
             if (this.userInfo.accountNumber && this.userInfo.userPassword && this.userInfo.nickname) {
+                // verify email
+                if (!emailRegex.test(this.userInfo.accountNumber)) {
+                    this.$message.error('Please enter a valid BU email address ending with "@bu.edu"!');
+                    return;
+                }
+
+                // verify password
                 if (this.userInfo.userPassword !== this.userPassword2) {
                     this.$message.error('The passwords entered do not match!');
                 } else {
