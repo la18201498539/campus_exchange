@@ -20,10 +20,10 @@ public class Main {
 
     private static final Logger logger = LoggerFactory.getLogger(Main.class);  // Logger for the application
 
-    public static void main(String[] args) {
-        SpringApplication.run(Main.class, args);  // Start the Spring Boot application
-        logger.info("Application started successfully!");  // Log application start
-    }
+//    public static void main(String[] args) {
+//        SpringApplication.run(Main.class, args);  // Start the Spring Boot application
+//        logger.info("Application started successfully!");  // Log application start
+//    }
 
     // Remove this method if it's not needed
     // @GetMapping("/")

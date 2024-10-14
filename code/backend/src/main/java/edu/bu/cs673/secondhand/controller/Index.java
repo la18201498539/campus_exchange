@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class Index {
 
-    @GetMapping("/")
+    @GetMapping("/about")
     public String index() {
         return "Welcome to BU Second hand Trading!";
     }
