@@ -54,7 +54,7 @@ public class MessageController {
         return ResultVo.success(messageService.getAllMyMessage(Long.valueOf(shUserId)));
     }
 
-    @GetMapping("/delete")
+    @DeleteMapping("/delete")
     public ResultVo deleteMessage(@CookieValue("shUserId")
                                   @NotNull(message = "Login error. Please log in again.")
                                   @NotEmpty(message = "Login error. Please log in again.") String shUserId,
