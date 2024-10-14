@@ -32,8 +32,8 @@ public class ItemController {
     /**
      * Search item by the label.
      */
-    @RequestMapping("/label")
-    public ResultVo findIdleItem(@RequestParam(value = "idleLabel",required = true) Integer label,
+    @RequestMapping(value="/label", method=RequestMethod.GET)
+    public ResultVo findIdleItemByLabel(@RequestParam(value = "idleLabel",required = true) Integer label,
                                  @RequestParam(value = "page",required = false) Integer page,
                                  @RequestParam(value = "nums",required = false) Integer nums){
         if(page == null || page <= 0) {
@@ -48,7 +48,7 @@ public class ItemController {
     /**
      * Search item by the search value.
      */
-    @RequestMapping("/search")
+    @RequestMapping(value="/search", method=RequestMethod.GET)
     public ResultVo findIdleItem(@RequestParam(value = "findValue",required = false) String searchValue,
                                  @RequestParam(value = "page",required = false) Integer page,
                                  @RequestParam(value = "nums",required = false) Integer nums){
@@ -71,7 +71,7 @@ public class ItemController {
      * @param userId
      * @return
      */
-    @RequestMapping("/list")
+    @RequestMapping(value="/list", method=RequestMethod.GET)
     public ResultVo getItemsByUserId(@CookieValue("shUserId") 
                                         @NotNull(message = "Login fail, try again!")
                                         @NotEmpty(message = "Login fail, try again!")
@@ -86,7 +86,7 @@ public class ItemController {
      * @param id
      * @return
      */
-    @RequestMapping("")
+    @RequestMapping(method=RequestMethod.GET)
     public ResultVo getItem(@RequestParam(value = "id", required = true)Long id) {
         return ResultVo.success(itemService.getItem(id));
     }
