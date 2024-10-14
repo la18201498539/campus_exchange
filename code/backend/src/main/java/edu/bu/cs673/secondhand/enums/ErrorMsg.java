@@ -9,6 +9,9 @@ public enum ErrorMsg {
     PARAM_ERROR("Invalid Parameters"),
     MISSING_PARAMETER("Missing parameters"),
     SYSTEM_ERROR("System Error"),
+
+    FILE_UPLOAD_ERROR("Upload Error"),
+
     COOKIE_ERROR("Invalid Cookie"),
     UNKNOWN_ERROR("Unknown Error");
 
