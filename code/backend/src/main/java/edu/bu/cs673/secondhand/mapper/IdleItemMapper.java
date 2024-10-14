@@ -30,4 +30,6 @@ public interface IdleItemMapper {
     int updateByPrimaryKeySelective(IdleItem row);
 
     int updateByPrimaryKey(IdleItem row);
+
+    List<IdleItem> findIdleByList(List<Long> idList);
 }

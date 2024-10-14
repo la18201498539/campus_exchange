@@ -5,6 +5,8 @@ import edu.bu.cs673.secondhand.enums.ErrorMsg;
 import edu.bu.cs673.secondhand.service.MessageService;
 import edu.bu.cs673.secondhand.vo.ResultVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotEmpty;
@@ -32,8 +34,12 @@ public class MessageController {
     }
 
     @GetMapping("/info")
-    public ResultVo getMessage(@RequestParam Long id){
-        return ResultVo.success(messageService.getMessage(id));
+    public ResponseEntity<ResultVo> getMessage(@RequestParam Long id){
+        Message message = messageService.getMessage(id);
+        if (message == null) {
+            return new ResponseEntity<>(new ResultVo<>(400, "Message not found with ID: " + id, null), HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(new ResultVo<>(200, "Success", message), HttpStatus.OK);
     }
 
     @GetMapping("/idle")
