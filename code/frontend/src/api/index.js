@@ -82,43 +82,43 @@ const api = {
     // idleItemController
     addIdleItem(data) {
         return request({
-            url: '/idle/add',
+            url: '/item',
             method: 'post',
             data: data
         });
     },
     getIdleItem(query) {
         return request({
-            url: '/idle/info',
+            url: '/item',
             method: 'get',
             params: query
         });
     },
     getAllIdleItem(query) {
         return request({
-            url: '/idle/all',
+            url: '/item/list',
             method: 'get',
             params: query
         });
     },
     findIdleTime(query) {
         return request({
-            url: '/idle/find',
+            url: '/item/search',
             method: 'get',
             params: query
         });
     },
     findIdleTimeByLabel(query) {
         return request({
-            url: '/idle/lable',
+            url: '/item/lable',
             method: 'get',
             params: query
         });
     },
     updateIdleItem(data) {
         return request({
-            url: '/idle/update',
-            method: 'post',
+            url: '/item',
+            method: 'put',
             data: data
         });
     },
