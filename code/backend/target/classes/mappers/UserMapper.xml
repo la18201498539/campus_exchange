@@ -92,6 +92,15 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select id="findUserByList" parameterType="list" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM sh_user
+    WHERE id IN
+    <foreach item="id" collection="idList" open="(" separator="," close=")">
+      #{id}
+    </foreach>
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
