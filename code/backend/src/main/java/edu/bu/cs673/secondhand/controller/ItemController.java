@@ -6,6 +6,7 @@ import edu.bu.cs673.secondhand.service.IdleItemService;
 import edu.bu.cs673.secondhand.vo.ResultVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,6 +28,41 @@ public class ItemController {
 
     @Autowired
     IdleItemService itemService;
+
+    /**
+     * Search item by the label.
+     */
+    @RequestMapping("/label")
+    public ResultVo findIdleItem(@RequestParam(value = "label",required = true) Integer label,
+                                 @RequestParam(value = "page",required = false) Integer page,
+                                 @RequestParam(value = "nums",required = false) Integer nums){
+        if(page == null || page <= 0) {
+            page = 1;
+        }
+        if(nums == null || nums <= 0){
+            nums = 8;
+        }
+        return ResultVo.success(itemService.searchItemLabel(label,page,nums));
+    }
+
+    /**
+     * Search item by the search value.
+     */
+    @RequestMapping("/search")
+    public ResultVo findIdleItem(@RequestParam(value = "searchValue",required = false) String searchValue,
+                                 @RequestParam(value = "page",required = false) Integer page,
+                                 @RequestParam(value = "nums",required = false) Integer nums){
+        if(searchValue == null) {
+            searchValue = "";
+        }
+        if(page == null || page <= 0) {
+            page = 1;
+        }
+        if(nums == null || nums <= 0){
+            nums = 8;
+        }
+        return ResultVo.success(itemService.searchItem(searchValue,page,nums));
+    }
 
     /**
      * Get all items that belongs to a user.

@@ -4,11 +4,32 @@ import java.util.List;
 
 import edu.bu.cs673.secondhand.domain.IdleItem;
 import edu.bu.cs673.secondhand.model.ItemModel;
+import edu.bu.cs673.secondhand.vo.PageVo;
 
 /**
  * An interface for service provide by idle item
  */
 public interface IdleItemService {
+
+    /**
+     * Search Item by its label
+     * 
+     * @param label item label
+     * @param page
+     * @param nums
+     * @return page of items with their owner info
+     */
+    PageVo<ItemModel> searchItemLabel(int label, int page, int nums);
+
+    /**
+     * Search Item by its name and detail
+     * 
+     * @param searchValue String of search term
+     * @param page 
+     * @param nums 
+     * @return page of items with their owner info
+     */
+    PageVo<ItemModel> searchItem(String searchValue, int page, int nums);
 
     /**
      * Add new item

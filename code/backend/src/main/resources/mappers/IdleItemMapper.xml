@@ -72,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, idle_name, idle_details, picture_list, idle_price, idle_place, idle_label, release_time,
+    id, idle_name, idle_details, picture_list, idle_price, idle_place, idle_label, release_time, 
     idle_status, user_id
   </sql>
   <select id="selectByExample" parameterType="edu.bu.cs673.secondhand.domain.IdleItemExample" resultMap="BaseResultMap">
@@ -194,54 +194,54 @@
   <update id="updateByExampleSelective" parameterType="map">
     update sh_idle_item
     <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=BIGINT},
+      <if test="row.id != null">
+        id = #{row.id,jdbcType=BIGINT},
       </if>
-      <if test="record.idleName != null">
-        idle_name = #{record.idleName,jdbcType=VARCHAR},
+      <if test="row.idleName != null">
+        idle_name = #{row.idleName,jdbcType=VARCHAR},
       </if>
-      <if test="record.idleDetails != null">
-        idle_details = #{record.idleDetails,jdbcType=VARCHAR},
+      <if test="row.idleDetails != null">
+        idle_details = #{row.idleDetails,jdbcType=VARCHAR},
       </if>
-      <if test="record.pictureList != null">
-        picture_list = #{record.pictureList,jdbcType=VARCHAR},
+      <if test="row.pictureList != null">
+        picture_list = #{row.pictureList,jdbcType=VARCHAR},
       </if>
-      <if test="record.idlePrice != null">
-        idle_price = #{record.idlePrice,jdbcType=DECIMAL},
+      <if test="row.idlePrice != null">
+        idle_price = #{row.idlePrice,jdbcType=DECIMAL},
       </if>
-      <if test="record.idlePlace != null">
-        idle_place = #{record.idlePlace,jdbcType=VARCHAR},
+      <if test="row.idlePlace != null">
+        idle_place = #{row.idlePlace,jdbcType=VARCHAR},
       </if>
-      <if test="record.idleLabel != null">
-        idle_label = #{record.idleLabel,jdbcType=INTEGER},
+      <if test="row.idleLabel != null">
+        idle_label = #{row.idleLabel,jdbcType=INTEGER},
       </if>
-      <if test="record.releaseTime != null">
-        release_time = #{record.releaseTime,jdbcType=TIMESTAMP},
+      <if test="row.releaseTime != null">
+        release_time = #{row.releaseTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.idleStatus != null">
-        idle_status = #{record.idleStatus,jdbcType=TINYINT},
+      <if test="row.idleStatus != null">
+        idle_status = #{row.idleStatus,jdbcType=TINYINT},
       </if>
-      <if test="record.userId != null">
-        user_id = #{record.userId,jdbcType=BIGINT},
+      <if test="row.userId != null">
+        user_id = #{row.userId,jdbcType=BIGINT},
       </if>
     </set>
-    <if test="_parameter != null">
+    <if test="example != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
     update sh_idle_item
-    set id = #{record.id,jdbcType=BIGINT},
-      idle_name = #{record.idleName,jdbcType=VARCHAR},
-      idle_details = #{record.idleDetails,jdbcType=VARCHAR},
-      picture_list = #{record.pictureList,jdbcType=VARCHAR},
-      idle_price = #{record.idlePrice,jdbcType=DECIMAL},
-      idle_place = #{record.idlePlace,jdbcType=VARCHAR},
-      idle_label = #{record.idleLabel,jdbcType=INTEGER},
-      release_time = #{record.releaseTime,jdbcType=TIMESTAMP},
-      idle_status = #{record.idleStatus,jdbcType=TINYINT},
-      user_id = #{record.userId,jdbcType=BIGINT}
-    <if test="_parameter != null">
+    set id = #{row.id,jdbcType=BIGINT},
+      idle_name = #{row.idleName,jdbcType=VARCHAR},
+      idle_details = #{row.idleDetails,jdbcType=VARCHAR},
+      picture_list = #{row.pictureList,jdbcType=VARCHAR},
+      idle_price = #{row.idlePrice,jdbcType=DECIMAL},
+      idle_place = #{row.idlePlace,jdbcType=VARCHAR},
+      idle_label = #{row.idleLabel,jdbcType=INTEGER},
+      release_time = #{row.releaseTime,jdbcType=TIMESTAMP},
+      idle_status = #{row.idleStatus,jdbcType=TINYINT},
+      user_id = #{row.userId,jdbcType=BIGINT}
+    <if test="example != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
@@ -291,4 +291,18 @@
       user_id = #{userId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <select id="selectByExampleWithRowbounds" parameterType="edu.bu.cs673.secondhand.domain.IdleItemExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sh_idle_item
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
 </mapper>
