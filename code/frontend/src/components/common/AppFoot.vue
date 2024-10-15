@@ -1,6 +1,6 @@
 <template>
     <div class="foot-container">
-        <div class="author">Campus Exchange</div>
+        <div class="author">Campus Exchange Copyright &copy; {{ currentYear }} @BU CS673</div>
     </div>
 </template>
 
