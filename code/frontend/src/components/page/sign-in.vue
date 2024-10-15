@@ -14,7 +14,7 @@
                         <div class="el-icon-user-solid"></div>
                     </template>
                 </el-input>
-                <el-input placeholder="Please enter BU email..." v-model="userInfo.accountNumber" class="sign-in-input" clearable>
+                <el-input placeholder="Please enter BU email..." v-model="userInfo.email" class="sign-in-input" clearable>
                     <template slot="prepend">
                         <div class="el-icon-message"></div>
                     </template>
@@ -62,7 +62,7 @@ export default {
         return {
             userPassword2: '',
             userInfo: {
-                accountNumber: '',
+                email: '',
                 userPassword: '',
                 nickname: ''
             }
@@ -78,9 +78,9 @@ export default {
             // verify user email with @bu.edu
             const emailRegex = /^[a-zA-Z0-9._-]+@bu\.edu$/;
 
-            if (this.userInfo.accountNumber && this.userInfo.userPassword && this.userInfo.nickname) {
+            if (this.userInfo.email && this.userInfo.userPassword && this.userInfo.nickname) {
                 // verify email
-                if (!emailRegex.test(this.userInfo.accountNumber)) {
+                if (!emailRegex.test(this.userInfo.email)) {
                     this.$message.error('Please enter a valid BU email address ending with "@bu.edu"!');
                     return;
                 }

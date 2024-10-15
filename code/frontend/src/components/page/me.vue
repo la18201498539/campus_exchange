@@ -218,7 +218,7 @@ export default {
             selectedOptions: [], // Store default values
             options: options, // Store city data
             userInfo: {
-                accountNumber: '',
+                email: '',
                 avatar: '',
                 nickname: '',
                 signInTime: ''

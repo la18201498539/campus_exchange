@@ -4,7 +4,7 @@
             <div class="login-body">
                 <div class="login-title" @click="toIndex">Campus Exchange</div>
                 <el-form ref="form" :model="userForm">
-                    <el-input placeholder="Please enter your BU email..." v-model="userForm.accountNumber" class="login-input">
+                    <el-input placeholder="Please enter your BU email..." v-model="userForm.email" class="login-input">
                         <template slot="prepend">
                             <div class="el-icon-user-solid"></div>
                         </template>
@@ -39,7 +39,7 @@ export default {
     data() {
         return {
             userForm: {
-                accountNumber: '',
+                email: '',
                 userPassword: ''
             }
         };
@@ -47,9 +47,15 @@ export default {
 
     methods: {
         login() {
+            // verify login email
+            if (!this.userForm.email.endsWith('@bu.edu')) {
+                this.$message.error('Please use your BU email');
+                return;
+            }
+
             this.$api
                 .userLogin({
-                    accountNumber: this.userForm.accountNumber,
+                    email: this.userForm.email,
                     userPassword: this.userForm.userPassword
                 })
                 .then((res) => {

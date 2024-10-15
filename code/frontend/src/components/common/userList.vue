@@ -61,8 +61,7 @@
                     <el-avatar shape="square" :size="23" :src="scope.row.avatar"></el-avatar>
                 </template>
             </el-table-column>
-            <el-table-column prop="accountNumber" label="accountNumber" show-overflow-tooltip min-width="150" width="150">
-            </el-table-column>
+            <el-table-column prop="email" label="email" show-overflow-tooltip min-width="150" width="150"> </el-table-column>
             <el-table-column prop="nickname" label="nickname" show-overflow-tooltip min-width="150" width="150"> </el-table-column>
             <el-table-column prop="signInTime" label="signInTime" show-overflow-tooltip width="200"> </el-table-column>
             <el-table-column label="operation">
@@ -77,8 +76,7 @@
                     <el-avatar shape="square" :size="23" :src="scope.row.avatar"></el-avatar>
                 </template>
             </el-table-column>
-            <el-table-column prop="accountNumber" label="accountNumber" show-overflow-tooltip min-width="150" width="150">
-            </el-table-column>
+            <el-table-column prop="email" label="email" show-overflow-tooltip min-width="150" width="150"> </el-table-column>
             <el-table-column prop="nickname" label="nickname" show-overflow-tooltip width="150"> </el-table-column>
             <el-table-column prop="signInTime" label="signInTime" show-overflow-tooltip width="200"> </el-table-column>
             <el-table-column label="operation">
@@ -88,7 +86,7 @@
             </el-table-column>
         </el-table>
         <el-table v-show="this.mode == 3" :data="userManage" stripe style="width: 100%; color: #5a5c61">
-            <el-table-column prop="accountNumber" label="accountNumber" show-overflow-tooltip width="200"> </el-table-column>
+            <el-table-column prop="email" label="email" show-overflow-tooltip width="200"> </el-table-column>
             <el-table-column prop="adminName" label="adminName"> </el-table-column>
         </el-table>
         <div class="block">
@@ -240,7 +238,7 @@ export default {
                 this.$api
                     .regAdministrator({
                         adminName: this.adminName,
-                        accountNumber: this.adminAccount,
+                        email: this.adminAccount,
                         adminPassword: this.adminPassword
                     })
                     .then((res) => {
