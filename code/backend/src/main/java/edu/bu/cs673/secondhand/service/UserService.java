@@ -104,4 +104,8 @@ public interface UserService {
      * @param token The token to be blacklisted.
      */
     void addTokenToBlacklist(String token);
+
+    void registerUser(String username, String email, String password, String activationToken);
+
+    void sendActivationEmail(String email, String activationToken);
 }

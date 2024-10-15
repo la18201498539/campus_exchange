@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Calendar;
 import java.util.UUID;
@@ -17,6 +18,7 @@ import edu.bu.cs673.secondhand.domain.User;
 
 import com.google.common.collect.Sets;
 import java.util.Set;
+import java.util.Random;
 
 /**
  * UserService handles user-related operations such as registration, activation, login, and password management.
@@ -29,12 +31,14 @@ public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;  // Mapper for user database operations
     private final SecurityUtil securityUtil;  // Utility for security-related operations
     private final EmailService emailServiceInterface;  // Service for sending emails
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserServiceImpl(UserMapper userMapper, SecurityUtil securityUtil, EmailService emailServiceInterface) {
+    public UserServiceImpl(UserMapper userMapper, SecurityUtil securityUtil, EmailService emailServiceInterface, PasswordEncoder passwordEncoder) {
         this.userMapper = userMapper;
         this.securityUtil = securityUtil;
         this.emailServiceInterface = emailServiceInterface;
+        this.passwordEncoder = passwordEncoder;
     }
 
     /**
@@ -109,13 +113,19 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserModel login(String email, String password) {
         User user = userMapper.findByEmail(email);
-        if (user != null && securityUtil.matchPassword(password, user.getUserPassword())) {
-            if (!user.isActive()) {
-                throw new RuntimeException("Account is not activated. Please check your email for activation instructions.");
-            }
-            return convertToUserModel(user);  // Convert User to UserModel
+        if (user == null) {
+            throw new RuntimeException("Email does not exist.");
         }
-        return null;  // Login failed
+        
+        if (!user.isActive()) {
+            throw new RuntimeException("Account is not activated. Please check your email for the activation link.");
+        }
+
+        if (!securityUtil.matchPassword(password, user.getUserPassword())) {
+            throw new RuntimeException("Incorrect password.");
+        }
+
+        return convertToUserModel(user);
     }
 
     /**
@@ -311,14 +321,6 @@ public class UserServiceImpl implements UserService {
         return user == null || isTokenExpired(user.getTokenExpiry());  // Check token expiry
     }
 
-    private String generateAccountNumber() {
-        String accountNumber;
-        do {
-            accountNumber = String.format("%08d", (int)(Math.random() * 100000000));  // Generate random account number
-        } while (userMapper.existsByAccountNumber(accountNumber));  // Ensure account number is unique
-        return accountNumber;
-    }
-
     private Date calculateTokenExpiry() {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.HOUR, 1);  // Set token validity to 1 hour
@@ -384,6 +386,43 @@ public class UserServiceImpl implements UserService {
         tokenBlacklist.add(token);  // Add token to blacklist
     }
 
+    @Override
+    public void registerUser(String username, String email, String password, String activationToken) {
+        UserModel userModel = new UserModel();
+        userModel.setNickname(username);
+        userModel.setEmail(email);
+        userModel.setUserPassword(passwordEncoder.encode(password));
+        userModel.setActivationToken(activationToken);
+        userModel.setActive(false);
+        userModel.setCreatedAt(new Date());
+        userModel.setUpdatedAt(new Date());
+        
+        // 生成 accountNumber
+        String accountNumber = generateAccountNumber();
+        userModel.setAccountNumber(accountNumber);
+        
+        userModel.setAvatar("default-avatar.png");
+
+        try {
+            int result = userMapper.insertSelective(convertToUser(userModel));
+            if (result > 0) {
+                logger.info("User registered successfully: {}", userModel.getEmail());
+                emailServiceInterface.sendActivationEmail(email, activationToken);
+            } else {
+                logger.error("Failed to register user: {}", userModel.getEmail());
+                throw new RuntimeException("Failed to register user");
+            }
+        } catch (Exception e) {
+            logger.error("Error inserting user: " + email, e);
+            throw new RuntimeException("Failed to create user account.");
+        }
+    }
+
+    @Override
+    public void sendActivationEmail(String email, String activationToken) {
+
+    }
+
     /**
      * Checks if a token is blacklisted.
      * @param token The token to check.
@@ -391,5 +430,13 @@ public class UserServiceImpl implements UserService {
      */
     public boolean isTokenBlacklisted(String token) {
         return tokenBlacklist.contains(token);  // Check if token is in blacklist
+    }
+
+    // 保留这个方法
+    private String generateAccountNumber() {
+        // 生成 UUID 并去掉横线
+        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+        // 取前 16 位作为账号
+        return uuid.substring(0, 16);
     }
 }

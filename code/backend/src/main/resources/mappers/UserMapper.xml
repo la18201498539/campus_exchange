@@ -137,11 +137,9 @@
         <if test="userPassword != null">user_password,</if>
         <if test="isActive != null">is_active,</if>
         <if test="activationToken != null">activation_token,</if>
-        <if test="tokenExpiry != null">token_expiry,</if>
         <if test="createdAt != null">created_at,</if>
         <if test="updatedAt != null">updated_at,</if>
         <if test="nickname != null">nickname,</if>
-        <if test="avatar != null">avatar,</if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
         <if test="accountNumber != null">#{accountNumber,jdbcType=VARCHAR},</if>
@@ -149,11 +147,9 @@
         <if test="userPassword != null">#{userPassword,jdbcType=VARCHAR},</if>
         <if test="isActive != null">#{isActive,jdbcType=BIT},</if>
         <if test="activationToken != null">#{activationToken,jdbcType=VARCHAR},</if>
-        <if test="tokenExpiry != null">#{tokenExpiry,jdbcType=TIMESTAMP},</if>
         <if test="createdAt != null">#{createdAt,jdbcType=TIMESTAMP},</if>
         <if test="updatedAt != null">#{updatedAt,jdbcType=TIMESTAMP},</if>
         <if test="nickname != null">#{nickname,jdbcType=VARCHAR},</if>
-        <if test="avatar != null">#{avatar,jdbcType=VARCHAR},</if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="edu.bu.cs673.secondhand.domain.UserExample" resultType="java.lang.Long">

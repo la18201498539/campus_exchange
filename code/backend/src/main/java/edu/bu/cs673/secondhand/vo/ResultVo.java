@@ -67,7 +67,10 @@ public class ResultVo<T> {
      * @return A ResultVo representing a failed response.
      */
     public static <T> ResultVo<T> fail(String message) {
-        return new ResultVo<>(0, message, null);  // Default failure message
+        ResultVo<T> resultVo = new ResultVo<>();
+        resultVo.setStatusCode(400);  // or whatever code you use for errors
+        resultVo.setMsg(message);
+        return resultVo;
     }
 
     /**
