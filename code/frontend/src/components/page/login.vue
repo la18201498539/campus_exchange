@@ -24,7 +24,7 @@
                         <el-button type="primary" @click="login">Login</el-button>
                     </div>
                     <div class="other-submit">
-                        <router-link to="/sign-in" class="sign-in-text">Sign Up</router-link>
+                        <router-link to="/register" class="sign-in-text">Sign Up</router-link>
                         <router-link to="/login-admin" class="sign-in-text">Admin Login</router-link>
                     </div>
                 </el-form>

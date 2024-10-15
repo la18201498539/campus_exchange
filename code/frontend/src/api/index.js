@@ -10,7 +10,7 @@ const api = {
     userLogin(query) {
         return request({
             url: '/user/login',
-            method: 'get',
+            method: 'post',
             params: query
         });
     },
@@ -23,7 +23,7 @@ const api = {
     },
     signIn(data) {
         return request({
-            url: '/user/sign-in',
+            url: '/user/register',
             method: 'post',
             data: data
         });
@@ -44,8 +44,8 @@ const api = {
     },
     updatePassword(query) {
         return request({
-            url: '/user/password',
-            method: 'get',
+            url: '/user/request-reset-password',
+            method: 'post',
             params: query
         });
     },
@@ -74,7 +74,7 @@ const api = {
     deleteAddress(data) {
         return request({
             url: '/address/delete',
-            method: 'post',
+            method: 'delete',
             data: data
         });
     },
@@ -201,7 +201,7 @@ const api = {
     deleteFavorite(query) {
         return request({
             url: '/favorite/delete',
-            method: 'get',
+            method: 'delete',
             params: query
         });
     },
@@ -245,7 +245,7 @@ const api = {
     deleteMessage(query) {
         return request({
             url: '/message/delete',
-            method: 'get',
+            method: 'delete',
             params: query
         });
     },
@@ -261,7 +261,7 @@ const api = {
     updateGoods(query) {
         return request({
             url: '/admin/updateIdleStatus',
-            method: 'get',
+            method: 'post',
             params: query
         });
     },
@@ -275,7 +275,7 @@ const api = {
     deleteOrder(query) {
         return request({
             url: '/admin/deleteOrder',
-            method: 'get',
+            method: 'delete',
             params: query
         });
     },

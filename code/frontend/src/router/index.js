@@ -66,7 +66,7 @@ export default new Router({
             meta: { title: 'Login | Campus Exchange' }
         },
         {
-            path: '/sign-in',
+            path: '/register',
             component: () => import('../components/page/sign-in.vue'),
             meta: { title: 'Register | Campus Exchange' }
         },
