@@ -12,9 +12,6 @@ import java.util.concurrent.TimeUnit;
  *****/
 public class OrderTask implements Delayed {
 
-    /**
-     * 延迟时间
-     */
     @JsonFormat(locale = "en", timezone = "UTC-5", pattern = "yyyy-MM-dd HH:mm:ss")
     private long time;
 

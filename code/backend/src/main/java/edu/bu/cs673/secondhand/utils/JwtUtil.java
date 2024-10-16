@@ -13,7 +13,7 @@ import java.util.Date;
  * It provides methods to create tokens and extract user information from them.
  * Author: YQ
  */
-@Component
+//@Component
 public class JwtUtil {
 
     @Value("${jwt.secret}")

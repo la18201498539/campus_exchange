@@ -24,7 +24,7 @@ import java.util.Random;
  * UserService handles user-related operations such as registration, activation, login, and password management.
  * Author: YQ
  */
-@Service
+//@Service
 public class UserServiceImpl implements UserService {
     private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
@@ -56,25 +56,25 @@ public class UserServiceImpl implements UserService {
         if (existingUser != null) {
             throw new RuntimeException("Email already exists");  // Email already registered
         }
-        
+
         String activationToken = UUID.randomUUID().toString();  // Generate activation token
-        
+
         userModel.setActivationToken(activationToken);
         userModel.setUserPassword(securityUtil.encodePassword(userModel.getUserPassword()));  // Encrypt password
         userModel.setCreatedAt(new Date());
         userModel.setUpdatedAt(new Date());
         userModel.setActive(false);
         userModel.setUserStatus((byte) 0);
-        
+
         User user = convertToUser(userModel);  // Convert UserModel to User
-        
+
         int result = userMapper.insertSelective(user);  // Insert user into the database
-        
+
         if (result > 0) {
             emailServiceInterface.sendActivationEmail(userModel.getEmail(), activationToken);  // Send activation email
             return true;
         }
-        
+
         return false;  // Registration failed
     }
 
@@ -116,7 +116,7 @@ public class UserServiceImpl implements UserService {
         if (user == null) {
             throw new RuntimeException("Email does not exist.");
         }
-        
+
         if (!user.isActive()) {
             throw new RuntimeException("Account is not activated. Please check your email for the activation link.");
         }
@@ -193,7 +193,7 @@ public class UserServiceImpl implements UserService {
         newUser.setActive(false);  // Set account as inactive
         newUser.setCreatedAt(new Date());
         newUser.setUpdatedAt(new Date());
-        
+
         // Set a temporary password
         newUser.setUserPassword("tempPassword");  // Use a temporary password, user will change it later
 
@@ -226,7 +226,7 @@ public class UserServiceImpl implements UserService {
             logger.warn("No user found for email: {} and token: {}", email, token);
             throw new RuntimeException("Invalid sign-up link");  // Invalid link
         }
-        
+
         logger.info("User found. User ID: {}, Is active: {}, Token expiry: {}", user.getId(), user.isActive(), user.getTokenExpiry());
 
         Boolean isActive = user.isActive();
@@ -396,11 +396,11 @@ public class UserServiceImpl implements UserService {
         userModel.setActive(false);
         userModel.setCreatedAt(new Date());
         userModel.setUpdatedAt(new Date());
-        
+
         // 生成 accountNumber
         String accountNumber = generateAccountNumber();
         userModel.setAccountNumber(accountNumber);
-        
+
         userModel.setAvatar("default-avatar.png");
 
         try {

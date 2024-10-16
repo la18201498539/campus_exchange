@@ -9,8 +9,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-@Configuration
-@EnableWebSecurity
+//@Configuration
+//@EnableWebSecurity
 public class SecurityConfig {
 
     @Bean
@@ -24,7 +24,7 @@ public class SecurityConfig {
             .csrf().disable()
             .authorizeHttpRequests((requests) -> requests
                 .requestMatchers(HttpMethod.GET, "/user/activate").permitAll()
-                .requestMatchers("/user/**", "/public/**").permitAll()
+                .requestMatchers("/user/**").permitAll()
                 .anyRequest().authenticated()
             );
         return http.build();

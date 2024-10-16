@@ -1,6 +1,7 @@
 package edu.bu.cs673.secondhand.vo;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import edu.bu.cs673.secondhand.enums.ErrorMsg;
 
 /**
@@ -11,6 +12,7 @@ import edu.bu.cs673.secondhand.enums.ErrorMsg;
 @JsonInclude(value = JsonInclude.Include.NON_NULL)  // Exclude null fields from JSON serialization
 public class ResultVo<T> {
 
+    @JsonProperty("status_code")
     private Integer statusCode;  // Status code of the response
     private String msg;  // Message providing additional information
     private T data;  // Data returned in the response

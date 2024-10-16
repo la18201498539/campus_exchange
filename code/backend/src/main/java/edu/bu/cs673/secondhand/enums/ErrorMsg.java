@@ -9,9 +9,11 @@ public enum ErrorMsg {
     PARAM_ERROR("Invalid Parameters"),
     MISSING_PARAMETER("Missing parameters"),
     SYSTEM_ERROR("System Error"),
-
     FILE_UPLOAD_ERROR("Upload Error"),
-
+    REGISTER_ERROR("Register Error"),
+    EMAIL_LOGIN_ERROR("User Not Found"),
+    ACCOUNT_Ban("illegal User"),
+    PASSWORD_RESET_ERROR("Reset password fail"),
     COOKIE_ERROR("Invalid Cookie"),
     UNKNOWN_ERROR("Unknown Error");
 

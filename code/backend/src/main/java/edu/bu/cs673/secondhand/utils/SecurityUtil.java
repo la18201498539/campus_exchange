@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  * It provides methods to encode passwords and verify them against stored hashes.
  * Author: YQ
  */
-@Component
+//@Component
 public class SecurityUtil {
 
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();  // Password encoder instance

@@ -21,8 +21,8 @@ import java.util.UUID;
  * UserController handles user-related operations such as sign-up, login, password reset, and logout.
  * Author: YQ
  */
-@RestController
-@RequestMapping("/user")  // Change the base path for user-related endpoints
+//@RestController
+//@RequestMapping("/user")  // Change the base path for user-related endpoints
 public class UserController {
 
     @Autowired
@@ -98,7 +98,7 @@ public class UserController {
         if (request == null || request.getEmail() == null || request.getPassword() == null) {
             return ResultVo.fail("Email and password are required.");
         }
-        
+
         try {
             UserModel user = userServiceInterface.login(request.getEmail(), request.getPassword());
             logger.info("User logged in successfully: {}", user.getEmail());
@@ -221,7 +221,7 @@ public class UserController {
      * @return ResponseEntity indicating success or failure.
      */
     @GetMapping("/activate")
-    public ResponseEntity<?> activateAccount(@RequestParam(required = false) String email, 
+    public ResponseEntity<?> activateAccount(@RequestParam(required = false) String email,
                                          @RequestParam(required = false) String token) {
         if (email == null || email.isEmpty()) {
             logger.warn("Activation request received with missing email");
