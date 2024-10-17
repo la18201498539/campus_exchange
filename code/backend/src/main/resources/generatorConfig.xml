@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+    <context id="MySQLTables" targetRuntime="MyBatis3">
+        <!-- Add RowBounds pagination plugin here -->
+        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin">
+            <property name="usePageNoAndPageSize" value="true"/>
+        </plugin>
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!-- Database connection -->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://8.221.104.74:3306/sec_hand"
+                        userId="root"
+                        password="haBshjbwei23432*&amp;"/>
+
+        <javaModelGenerator targetPackage="edu.bu.cs673.secondhand.domain" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="mappers" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator targetPackage="edu.bu.cs673.secondhand.mapper" targetProject="src/main/java" type="XMLMAPPER">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!-- Table Configurations: Specify which tables to generate -->
+<!--        <table tableName="sh_user" domainObjectName="User"/>-->
+        <table tableName="sh_order" domainObjectName="Order"/>
+<!--        <table tableName="sh_idle_item" domainObjectName="Item"/>-->
+        <table tableName="sh_message" domainObjectName="Message"/>
+    </context>
+</generatorConfiguration>
