@@ -15,10 +15,12 @@
                     @click.stop="selectAddressDialog"
                     :style="orderInfo.userId == userId && orderInfo.orderStatus === 0 ? 'cursor: pointer;' : ''"
                 >
-                    <div class="address-title">Shipping Address: {{ addressInfo.consigneeName }} {{ addressInfo.consigneePhone }}</div>
+                    <div class="address-title">
+                        Offline Transaction Address: {{ addressInfo.consigneeName }} {{ addressInfo.consigneePhone }}
+                    </div>
                     <div class="address-details">{{ addressInfo.detailAddress }}</div>
                     <el-button v-if="!addressInfo.detailAddress" @click.stop="selectAddressDialog" type="primary" plain>
-                        Select Shipping Address</el-button
+                        Select Transaction Address</el-button
                     >
                 </div>
                 <el-dialog title="Select Address" :visible.sync="addressDialogVisible" width="800px">
@@ -33,7 +35,7 @@
                         <el-table-column prop="detailAddressText" label="Address"> </el-table-column>
                         <el-table-column label=" " width="120">
                             <template slot-scope="scope">
-                                <el-button size="mini" @click="selectAddress(scope.$index, scope.row)">Select </el-button>
+                                <el-button size="mini" @click="selectAddress(scope.$index, scope.row)">Select</el-button>
                             </template>
                         </el-table-column>
                     </el-table>
@@ -41,27 +43,27 @@
                 <div class="order-info-container">
                     <div class="order-info-title">Order Information ({{ orderStatus[orderInfo.orderStatus] }}):</div>
                     <div class="order-info-item">Order Number: {{ orderInfo.orderNumber }}</div>
-                    <div class="order-info-item">Payment Status: {{ orderInfo.paymentStatus === 1 ? 'Paid' : 'On Hold' }}</div>
+                    <div class="order-info-item">Payment Status: {{ orderInfo.paymentStatus === 1 ? 'Paid' : 'Unpaid' }}</div>
                     <div class="order-info-item">Payment Method: {{ orderInfo.paymentWay }}</div>
                     <div class="order-info-item">
                         Creation Time: {{ orderInfo.createTime.substring(0, 10) + ' ' + orderInfo.createTime.substring(11, 19) }}
                     </div>
-                    <div class="order-info-item">
+                    <!-- <div class="order-info-item">
                         Payment Time:
                         {{
                             orderInfo.paymentTime
                                 ? orderInfo.paymentTime.substring(0, 10) + ' ' + orderInfo.paymentTime.substring(11, 19)
                                 : ''
                         }}
-                    </div>
+                    </div> -->
                 </div>
                 <el-dialog title="Prompt" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
                     <span
-                        >Please click 'Pay Now' to put the product on hold. Reminder: the transaction will happen offline. Be careful.</span
+                        >Please click 'Confirm' to put the product on hold. Reminder: the transaction will happen offline. Be careful.</span
                     >
                     <div class="block"></div>
                     <span slot="footer" class="dialog-footer">
-                        <el-button type="primary" @click="putOnHold">Pay Now</el-button>
+                        <el-button type="primary" @click="putOnHold">Confirm</el-button>
                     </span>
                 </el-dialog>
 
@@ -73,26 +75,28 @@
                         @click="changeOrderStatus(4, orderInfo)"
                         >Cancel Order</el-button
                     >
+                    <!--
                     <el-button
                         v-if="userId == orderInfo.userId && orderInfo.orderStatus === 0"
                         type="primary"
                         plain
                         @click="changeOrderStatus(1, orderInfo)"
-                        >Pay Now</el-button
+                        >Confirm</el-button
                     >
+                    -->
                     <el-button
-                        v-if="userId == orderInfo.idleItem.userId && orderInfo.orderStatus === 1"
+                        v-if="userId == orderInfo.idleItem.userId && orderInfo.orderStatus === 0"
                         type="primary"
                         plain
-                        @click="changeOrderStatus(2, orderInfo)"
+                        @click="changeOrderStatus(1, orderInfo)"
                         >On Hold</el-button
                     >
                     <el-button
-                        v-if="userId == orderInfo.userId && orderInfo.orderStatus === 2"
+                        v-if="userId == orderInfo.userId && orderInfo.orderStatus === 1"
                         type="primary"
                         plain
-                        @click="changeOrderStatus(3, orderInfo)"
-                        >Transact Offline</el-button
+                        @click="changeOrderStatus(2, orderInfo)"
+                        >Completed</el-button
                     >
                 </div>
             </div>
@@ -118,7 +122,7 @@ export default {
             dialogVisible: false,
             addressDialogVisible: false,
             addressData: [],
-            orderStatus: ['Pending Payment', 'Pending Shipment', 'Pending Receipt', 'Completed', 'Canceled'],
+            orderStatus: ['Pending', 'On Hold', 'Completed', 'Canceled'],
             orderInfo: {
                 createTime: '',
                 id: 0,
@@ -195,10 +199,10 @@ export default {
     },
     methods: {
         putOnHold() {
-            this.orderInfo.orderStatus = 2;
+            this.orderInfo.orderStatus = 1;
             this.orderInfo.paymentStatus = 1;
             this.dialogVisible = false;
-            this.changeOrderStatus(2, this.orderInfo);
+            this.changeOrderStatus(1, this.orderInfo);
         },
         handleClose() {
             this.dialogVisible = false;
@@ -282,7 +286,7 @@ export default {
             this.dialogVisible = false;
         },
         changeOrderStatus(orderStatus, orderInfo) {
-            if (orderStatus === 2) {
+            if (orderStatus === 1) {
                 console.log('Putting order on hold');
                 if (!this.addressInfo.detailAddress) {
                     this.$message.error('Please select an address!');
@@ -299,8 +303,8 @@ export default {
                                     .updateOrder({
                                         id: orderInfo.id,
                                         orderStatus: orderStatus,
-                                        paymentStatus: 2,
-                                        paymentWay: 'On Hold'
+                                        paymentStatus: 1,
+                                        paymentWay: 'Cash'
                                     })
                                     .then((res) => {
                                         if (res.status_code === 1) {
@@ -309,8 +313,8 @@ export default {
                                                 type: 'success'
                                             });
                                             this.orderInfo.orderStatus = orderStatus;
-                                            this.orderInfo.paymentStatus = 2;
-                                            this.orderInfo.paymentWay = 'On Hold';
+                                            this.orderInfo.paymentStatus = 1;
+                                            this.orderInfo.paymentWay = 'Cash';
                                         }
                                     });
                             }, 2000);

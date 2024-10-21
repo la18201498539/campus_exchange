@@ -2,7 +2,7 @@
     <div>
         <app-head :nickname-value="userInfo.nickname" :avatarValue="userInfo.avatar"></app-head>
         <app-body>
-            <div v-show="!eidtAddress">
+            <div v-show="!editAddress">
                 <div class="user-info-container">
                     <div class="user-info-details">
                         <el-upload
@@ -59,8 +59,8 @@
                             </el-dialog>
                         </div>
                     </div>
-                    <div class="user-info-splace">
-                        <el-button type="primary" plain @click="eidtAddress = true">Edit Delivery Address</el-button>
+                    <div class="user-info-space">
+                        <el-button type="primary" plain @click="editAddress = true">Edit Address</el-button>
                     </div>
                 </div>
                 <div class="idle-container">
@@ -72,7 +72,7 @@
                         <el-tab-pane label="Purchase Record" name="5"></el-tab-pane>
                     </el-tabs>
                     <div class="idle-container-list">
-                        <div v-for="(item, index) in dataList[activeName - 1]" class="idle-container-list-item">
+                        <div v-for="(item, index) in dataList[activeName - 1]" :key="index" class="idle-container-list-item">
                             <div class="idle-container-list-item-detail" @click="toDetails(activeName, item)">
                                 <el-image style="width: 100px; height: 100px" :src="item.imgUrl" fit="cover">
                                     <div slot="error" class="image-slot">
@@ -83,9 +83,7 @@
                                     <div class="idle-container-list-title">
                                         {{ item.idleName }}
                                     </div>
-                                    <div class="idle-container-list-idle-details" v-html="item.idleDetails">
-                                        {{ item.idleDetails }}
-                                    </div>
+                                    <div class="idle-container-list-idle-details" v-html="item.idleDetails"></div>
                                     <div class="idle-container-list-idle-time">{{ item.timeStr }}</div>
                                     <div class="idle-item-foot">
                                         <div class="idle-price">
@@ -108,10 +106,10 @@
                     </div>
                 </div>
             </div>
-            <div v-show="eidtAddress" class="address-container">
-                <el-page-header class="address-container-back" @back="eidtAddress = false" content="Delivery Address"></el-page-header>
+            <div v-show="editAddress" class="address-container">
+                <el-page-header class="address-container-back" @back="editAddress = false" content="Delivery Address"></el-page-header>
                 <div class="address-container-add">
-                    <div class="address-container-add-title">Add New Delivery Address</div>
+                    <div class="address-container-add-title">Add New Address</div>
                     <div class="address-container-add-item">
                         <el-input
                             placeholder="Please enter recipient name"
@@ -134,7 +132,7 @@
                         </el-input>
                     </div>
                     <div class="address-container-add-item">
-                        <span class="demonstration">Dorm Type/Building Number/Floor</span>
+                        <span class="demonstration">Building Number/Floor</span>
                         <el-cascader :options="options" v-model="selectedOptions" @change="handleAddressChange" :separator="' '">
                         </el-cascader>
                     </div>
@@ -152,7 +150,7 @@
                     <el-button style="margin-left: 20px" @click="saveAddress">Save</el-button>
                 </div>
                 <div class="address-container-list">
-                    <div style="color: #409eff; font-size: 15px; padding-left: 10px">Existing Delivery Addresses</div>
+                    <div style="color: #409eff; font-size: 15px; padding-left: 10px">Existing Addresses</div>
                     <el-table stripe :data="addressData" style="width: 100%">
                         <el-table-column prop="consigneeName" label="Recipient Name" width="100"> </el-table-column>
                         <el-table-column prop="consigneePhone" label="Phone Number" width="120"> </el-table-column>
@@ -207,14 +205,14 @@ export default {
             activeName: '1',
             handleName: ['Unlist', 'Delete', 'Remove from Cart', '', ''],
             dataList: [[], [], [], [], []],
-            orderStatus: ['Pending Payment', 'Pending Shipment', 'Pending Receipt', 'Completed', 'Canceled'],
+            orderStatus: ['Pending', 'On Hold', 'Completed', 'Canceled'],
             userInfoDialogVisible: false,
             notUserNicknameEdit: true,
             userPasswordEdit: false,
             userPassword1: '',
             userPassword2: '',
             userPassword3: '',
-            eidtAddress: false,
+            editAddress: false,
             selectedOptions: [], // Store default values
             options: options, // Store city data
             userInfo: {
@@ -596,7 +594,7 @@ export default {
     margin-bottom: 10px;
 }
 
-.user-info-splace {
+.user-info-space {
     margin-right: 90px;
 }
 

@@ -30,7 +30,7 @@
                     </div>
                     <div style="display: flex; justify-content: space-between">
                         <div>
-                            <div class="release-tip">Idle Category</div>
+                            <div class="release-tip">Item Category</div>
                             <el-select v-model="idleItemInfo.idleLabel" placeholder="Please Select Item Category">
                                 <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value"> </el-option>
                             </el-select>
@@ -63,6 +63,7 @@
                                 style="width: 600px; margin-bottom: 2px"
                                 fit="contain"
                                 v-for="(img, index) in imgList"
+                                :key="index"
                                 :src="img"
                                 :preview-src-list="imgList"
                             ></el-image>
@@ -72,7 +73,7 @@
                         </el-dialog>
                     </div>
                     <div style="display: flex; justify-content: center; margin-top: 30px; margin-bottom: 30px">
-                        <el-button type="primary" plain @click="releaseButton">Confirmation of release</el-button>
+                        <el-button type="primary" plain @click="releaseButton">Confirm</el-button>
                     </div>
                 </div>
             </div>

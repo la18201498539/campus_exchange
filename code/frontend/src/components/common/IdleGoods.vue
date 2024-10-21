@@ -16,7 +16,7 @@
             <el-table-column prop="idlePrice" label="itemPrice" show-overflow-tooltip min-width="100" width="100"> </el-table-column>
             <el-table-column label="operation">
                 <template slot-scope="scope">
-                    <el-button size="mini" type="danger" @click="makeOfflineGoods(scope.$index)">Illegal Listings </el-button>
+                    <el-button size="mini" type="danger" @click="makeOfflineGoods(scope.$index)">Deactivate Listing</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -28,7 +28,7 @@
             <el-table-column prop="idlePrice" label="itemPrice" show-overflow-tooltip min-width="100" width="100"> </el-table-column>
             <el-table-column label="operation">
                 <template slot-scope="scope">
-                    <el-button size="mini" type="danger" @click="deleteGoods(scope.$index)">Delete Permanently </el-button>
+                    <el-button size="mini" type="danger" @click="deleteGoods(scope.$index)">Delete Permanently</el-button>
                 </template>
             </el-table-column>
         </el-table>

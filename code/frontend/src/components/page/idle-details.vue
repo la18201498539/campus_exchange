@@ -59,12 +59,11 @@
 
                 <div class="details-info">
                     <div class="details-info-title">{{ idleItemInfo.idleName }}</div>
-                    <div class="details-info-main" v-html="idleItemInfo.idleDetails">
-                        {{ idleItemInfo.idleDetails }}
-                    </div>
+                    <div class="details-info-main" v-html="idleItemInfo.idleDetails"></div>
                     <div class="details-picture">
                         <el-image
                             v-for="(imgUrl, i) in idleItemInfo.pictureList"
+                            :key="i"
                             style="width: 90%; margin-bottom: 2px"
                             :src="imgUrl"
                             fit="contain"
@@ -95,7 +94,7 @@
                         </div>
                     </div>
                     <div>
-                        <div v-for="(mes, index) in messageList" class="message-container-list">
+                        <div v-for="(mes, index) in messageList" :key="index" class="message-container-list">
                             <div class="message-container-list-left">
                                 <el-image
                                     style="width: 55px; height: 55px; border-radius: 5px"
@@ -115,7 +114,7 @@
                                                 : ''
                                         }}
                                     </div>
-                                    <div class="message-content" v-html="mes.content">{{ mes.content }}</div>
+                                    <div class="message-content" v-html="mes.content"></div>
                                     <div class="message-time">{{ mes.createTime }}</div>
                                 </div>
                             </div>
@@ -345,14 +344,14 @@ export default {
             }
             if (content) {
                 let contentList = content.split(/\r?\n/);
-                let contenHtml = contentList[0];
+                let contentHtml = contentList[0];
                 for (let i = 1; i < contentList.length; i++) {
-                    contenHtml += '<br>' + contentList[i];
+                    contentHtml += '<br>' + contentList[i];
                 }
                 this.$api
                     .sendMessage({
                         idleId: this.idleItemInfo.id,
-                        content: contenHtml,
+                        content: contentHtml,
                         toUser: this.toUser,
                         toMessage: this.toMessage
                     })
