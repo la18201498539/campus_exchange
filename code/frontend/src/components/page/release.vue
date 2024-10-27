@@ -86,7 +86,7 @@
 import AppHead from '../common/AppHeader.vue';
 import AppBody from '../common/AppPageBody.vue';
 import AppFoot from '../common/AppFoot.vue';
-// import options from '../common/country-data.js'
+import options from '../common/country-data.js';
 
 export default {
     name: 'release',
