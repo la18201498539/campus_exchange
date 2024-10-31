@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
  * It also defines the main entry point and a simple welcome endpoint.
  * Author: YQ
  */
-@SpringBootApplication
+//@SpringBootApplication
 @MapperScan("edu.bu.cs673.secondhand.mapper")  // Scan for MyBatis mappers
 @RestController
 public class Main {
