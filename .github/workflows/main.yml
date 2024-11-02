@@ -7,7 +7,7 @@
 # documentation.
 
 # Action name
-name: Java CI with Maven
+name: Test, Build, and Deploy
 
 # When will the action run
 on:
