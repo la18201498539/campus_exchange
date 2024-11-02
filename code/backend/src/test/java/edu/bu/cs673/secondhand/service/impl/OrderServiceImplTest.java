@@ -28,6 +28,7 @@ class OrderServiceImplTest {
 
     @BeforeEach
     void setUp() {
+        System.out.println("Setup Order Service By Spring Boot Annotation [Resource]!");
     }
 
     @Test
@@ -39,7 +40,7 @@ class OrderServiceImplTest {
         order.setIdleId(198L);
         order.setOrderPrice(BigDecimal.valueOf(200.0));
         order.setPaymentWay("Cash");
-        order.setOrderNumber("YBIN_TEST_001");
+        order.setOrderNumber("YBIN_TEST_200");
         order.setPaymentStatus((byte) 1);
         order.setCreateTime(new Date());
         order.setOrderStatus((byte) 1);
@@ -47,6 +48,7 @@ class OrderServiceImplTest {
 
         boolean success = orderService.addOrder(order);
         assertNotNull(order.getIdleId());
+        assertNotNull(order.getOrderNumber());
         assertTrue(success);
     }
 
@@ -55,7 +57,7 @@ class OrderServiceImplTest {
     void getOrder() {
 
         Long orderId = orderService.findOrderByNumber(
-                        "YBIN_TEST_001", 1, 1)
+                        "YBIN_TEST_200", 1, 1)
                                     .getList()
                                     .get(0)
                                     .getId();
@@ -79,12 +81,12 @@ class OrderServiceImplTest {
     void findOrderByNumber() {
 
         //orderNumber is unique
-        String orderNumber = "YBIN_TEST_001";
+        String orderNumber = "YBIN_TEST_200";
         PageVo<Order> result = orderService.findOrderByNumber(orderNumber, 1, 10);
 
         assertNotNull(result);
         assertTrue(result.getList().size() > 0);
-        assertEquals("YBIN_TEST_001", result.getList().get(0).getOrderNumber());
+        assertEquals("YBIN_TEST_200", result.getList().get(0).getOrderNumber());
     }
 
     @Test
@@ -92,23 +94,26 @@ class OrderServiceImplTest {
     void updateOrder() {
 
         Order order = orderService.findOrderByNumber(
-                "YBIN_TEST_001", 1, 1)
+                "YBIN_TEST_200", 1, 1)
                 .getList()
                 .get(0);
 
         BigDecimal oldPrice = order.getOrderPrice();
         Byte oldPaymentStatus = order.getPaymentStatus();
 
-        order.setOrderPrice(BigDecimal.valueOf(999.0));
+        double newPrice = 999.0;
+        order.setOrderPrice(BigDecimal.valueOf(newPrice));
         order.setPaymentStatus((byte) 2);
         boolean updateSuccess = orderService.updateOrder(order);
 
         assertTrue(updateSuccess);
+        assertNotNull(order);
         Order newOrder = orderService.getOrder(order.getId());
         assertNotNull(newOrder);
         assertEquals(order.getId(), newOrder.getId());
-        assertEquals(oldPrice, newOrder.getOrderPrice());
-        assertEquals(oldPaymentStatus, newOrder.getPaymentStatus());
+        assertNotEquals(oldPrice, newOrder.getOrderPrice());
+        assertTrue(newOrder.getOrderPrice().compareTo(BigDecimal.valueOf(newPrice)) == 0);
+        assertEquals(Byte.valueOf("2"), newOrder.getPaymentStatus());
     }
 
     @Test
@@ -128,7 +133,7 @@ class OrderServiceImplTest {
     void deleteOrder() {
 
         Long orderId = orderService.findOrderByNumber(
-                "YBIN_TEST_001", 1, 1)
+                "YBIN_TEST_200", 1, 1)
                 .getList()
                 .get(0)
                 .getId();
