@@ -12,9 +12,9 @@ name: Java CI with Maven
 # When will the action run
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "iteration-2" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "iteration-2" ]
 
 jobs:
   # build the project
