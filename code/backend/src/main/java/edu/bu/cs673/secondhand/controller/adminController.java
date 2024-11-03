@@ -18,6 +18,11 @@ import javax.servlet.http.HttpSession;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+/***
+ Email: qyyh@bu.edu,la1993@bu.edu
+ DateTime: 11/3/24-14:03
+ *****/
+
 @RestController
 @RequestMapping("/admin")
 public class adminController {
@@ -212,7 +217,7 @@ public class adminController {
     }
 
 
-    // 按订单闲置物品名称查询
+    // Select inactive IdelItem
     @GetMapping("queryIdle")
     public ResultVo queryIdle(@RequestParam(value = "findValue",required = false) String findValue,
                               @RequestParam(value = "page",required = false) Integer page,
@@ -238,7 +243,7 @@ public class adminController {
 
     }
 
-    // 按订单号查询订单
+    // Select Oreder by Id
     @GetMapping("queryOrder")
     public ResultVo queryOrder(@CookieValue("adminId")
                                @NotNull(message = "Login fail, try again.")
@@ -268,7 +273,7 @@ public class adminController {
 
 
 
-    // 根据用户账号来查找信息
+    // select idemInfo by account
     @GetMapping("queryUser")
     public ResultVo queryUser(@CookieValue("adminId")
                               @NotNull(message = "Login fail, try again.")
