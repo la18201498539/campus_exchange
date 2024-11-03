@@ -10,6 +10,12 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+
+/***
+ Email: qyyh@bu.edu,la1993@bu.edu
+ DateTime: 11/3/24-14:03
+ *****/
+
 public interface UserMapper {
     long countByExample(UserExample example);
 
