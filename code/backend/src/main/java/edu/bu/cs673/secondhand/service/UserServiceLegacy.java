@@ -5,8 +5,8 @@ import edu.bu.cs673.secondhand.vo.PageVo;
 import org.apache.ibatis.annotations.Param;
 
 /***
- Email: ybinman@bu.edu
- DateTime: 10/15/24-15:44
+ Email: qyyh@bu.edu,la1993@bu.edu
+ DateTime: 11/3/24-14:03
  *****/
 public interface UserServiceLegacy {
 
