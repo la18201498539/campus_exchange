@@ -2,11 +2,10 @@ package edu.bu.cs673.secondhand.service;
 
 import edu.bu.cs673.secondhand.model.UserModel;
 
-/**
- * UserServiceInterface defines the methods for user-related operations
- * such as registration, activation, login, and password management.
- * Author: YQ
- */
+/***
+ Email: qyyh@bu.edu,la1993@bu.edu
+ DateTime: 11/3/24-14:03
+ *****/
 public interface UserService {
     /**
      * Register a new user.
