@@ -52,7 +52,7 @@ Here, we recommend **IntelliJ IDEA**
 ```
 cd backend
 
-mvn clean install
+mvn clean install -DskipTests
 ```
 
 #### 3.2 Start Spring Boot Application (For Dev.)
@@ -64,7 +64,7 @@ edu.bu.cs673.secondhand.Application
 
 #### 3.3 Compile (For Prod.)
 ```
-mvn clean package
+mvn clean package -DskipTests
 ```
 > Note: The compiled Jar be under: src/main/resource/bu-secondhand-1.0.0.jar
 > **Download Our snapshot**: [Download](https://drive.google.com/file/d/1MGHmqFn9JVJDV9i4CGHPK_WyYMrfZ3wQ/view?usp=sharing)
