@@ -164,7 +164,6 @@ public class UserController {
         if (request == null || request.getEmail() == null || request.getResetToken() == null || request.getNewPassword() == null) {
             return ResultVo.fail("Email, reset token, and new password are required.");
         }
-
         try {
             boolean result = userServiceInterface.resetPassword(request.getEmail(), request.getResetToken(), request.getNewPassword());
             if (result) {

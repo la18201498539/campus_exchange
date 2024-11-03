@@ -70,4 +70,6 @@ public interface IdleItemService {
      * @return true if success
      */
     boolean removeItem(Long id);
+
+    PageVo<IdleItem> adminGetIdleList(int status, int page, int nums) ;
 }

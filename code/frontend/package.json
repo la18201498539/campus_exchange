@@ -8,7 +8,7 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^1.7.7",
     "babel-polyfill": "^6.26.0",
     "element-ui": "^2.11.0",
     "jquery": "^3.4.1",
@@ -17,8 +17,10 @@
     "vue-router": "^3.0.3"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.9.0",
+    "@vue/cli-plugin-babel": "^5.0.8",
     "@vue/cli-service": "^3.9.0",
-    "vue-template-compiler": "^2.6.10"
+    "babel-loader": "^9.2.1",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^5.95.0"
   }
 }

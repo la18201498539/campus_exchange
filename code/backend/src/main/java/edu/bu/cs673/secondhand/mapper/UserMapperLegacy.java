@@ -1,8 +1,7 @@
 package edu.bu.cs673.secondhand.mapper;
 
 import edu.bu.cs673.secondhand.domain.User;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -45,4 +44,16 @@ public interface UserMapperLegacy {
 
     int updatePassword(@Param("newPassword") String newPassword,
                        @Param("oldPassword") String oldPassword,@Param("id") Long id);
+
+    @Update("UPDATE sh_user SET is_active = 1, updated_at = NOW() WHERE activation_token = #{token}")
+    int activateUser(@Param("token") String token);
+
+    @Select("SELECT active_code FROM sh_user WHERE email = #{email}")
+    String findActiveCodeByEmail(String email);
+
+    @Delete("DELETE FROM sh_user WHERE email = #{email}")
+    void deleteUserByEmail(String email);
+
+    @Update("UPDATE sh_user SET active_code = #{activeCode} WHERE email = #{email}")
+    int insertActiveCodeByEmail(@Param("activeCode") String activeCode, @Param("email") String email);
 }

@@ -35,16 +35,32 @@ public class UserControllerLegacy {
     @PostMapping("register")
     public ResultVo signIn(@RequestBody User userModel) {
         logger.info(userModel.toString());
+
         userModel.setSignInTime(new Timestamp(System.currentTimeMillis()));
         if (userModel.getAvatar() == null || "".equals(userModel.getAvatar())) {
             userModel.setAvatar("https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png");
         }
         if (userService.userSignIn(userModel)) {
+            userService.insertActiveCode(userModel.getEmail());
+            userService.sendVerificationEmail(userModel);
+            System.out.println(userModel.getEmail()+"Email has been sent");
             return ResultVo.success(userModel);
         }
         return ResultVo.fail(ErrorMsg.REGISTER_ERROR);
     }
 
+    @PostMapping("/verifyCode")
+    public ResultVo verifyCode(@RequestBody User userModel) {
+        System.out.println("Email is "+userModel.getEmail() +"code is" + userModel.getActiveCode());
+        boolean isVerified = userService.verifyCode(userModel);
+        System.out.println(isVerified);
+        if (isVerified) {
+            return ResultVo.success("true");
+        } else {
+            return ResultVo.fail("Invalid verification code.");
+        }
+    }
+    
     /**
      *
      * @param email
@@ -69,11 +85,6 @@ public class UserControllerLegacy {
         if(email.equals("") || userPassword.equals("")){
             return ResultVo.fail(ErrorMsg.EMAIL_LOGIN_ERROR);
         }
-
-//        if(userModel.getAccountNumber().length() != 11){
-//            return ResultVo.fail(ErrorMsg.EMAIL_LOGIN_ERROR);
-//        }
-
         if(userModel.getUserStatus()!=null&&userModel.getUserStatus().equals((byte) 1)){
             return ResultVo.fail(ErrorMsg.ACCOUNT_Ban);
         }
@@ -149,4 +160,15 @@ public class UserControllerLegacy {
         }
         return ResultVo.fail(ErrorMsg.PASSWORD_RESET_ERROR);
     }
+
+//    @GetMapping("/activate")
+//    public ResponseEntity<String> activateUser(@RequestParam("token") String token) {
+//        boolean activated = userService.activateUserByToken(token);
+//        if (activated) {
+//            return ResponseEntity.ok("账号激活成功！");
+//        } else {
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("激活失败或链接已失效");
+//        }
+//    }
+
 }

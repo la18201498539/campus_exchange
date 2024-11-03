@@ -3,6 +3,7 @@ package edu.bu.cs673.secondhand.service.impl;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import edu.bu.cs673.secondhand.domain.IdleItem;
 import edu.bu.cs673.secondhand.domain.IdleItemExample;
@@ -20,6 +21,7 @@ import org.springframework.stereotype.Service;
 /**
  * A class for service provide by idle item
  */
+
 @Service
 public class IdleItemServiceImpl implements IdleItemService {
 
@@ -57,6 +59,8 @@ public class IdleItemServiceImpl implements IdleItemService {
     public boolean removeItem(Long id) {
         return itemMapper.deleteByPrimaryKey(id) == 1;
     }
+
+
 
     @Override
     public PageVo<ItemModel> searchItemLabel(int label, int page, int nums) {
@@ -103,5 +107,30 @@ public class IdleItemServiceImpl implements IdleItemService {
         }
 
         return new PageVo<ItemModel>(result,1);
+    }
+
+    public PageVo<IdleItem> adminGetIdleList(int status, int page, int nums) {
+        RowBounds rowBounds = new RowBounds((page - 1) * nums, nums);
+        IdleItemExample itemExample = new IdleItemExample();
+        IdleItemExample.Criteria criteria = itemExample.createCriteria();
+        criteria.andIdleStatusEqualTo(Byte.valueOf(String.valueOf(status)));
+        List<IdleItem> list = itemMapper.selectByExampleWithRowbounds(itemExample, rowBounds);
+
+        if(list.size()>0){
+            List<Long> idList=new ArrayList<>();
+            for(IdleItem i:list){
+                idList.add(i.getUserId());
+            }
+            List<User> userList=userMapper.findUserByList(idList);
+            Map<Long,User> map=new HashMap<>();
+            for(User user:userList){
+                map.put(user.getId(),user);
+            }
+            for(IdleItem i:list){
+                i.setUser(map.get(i.getUserId()));
+            }
+        }
+        int count= itemMapper.countIdleItemByStatus(status);
+        return new PageVo<>(list,count);
     }
 }

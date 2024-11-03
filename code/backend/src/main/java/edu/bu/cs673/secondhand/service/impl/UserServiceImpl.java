@@ -386,6 +386,12 @@ public class UserServiceImpl implements UserService {
         tokenBlacklist.add(token);  // Add token to blacklist
     }
 
+    private String generateAccountNumber() {
+        // 生成 UUID 并去掉横线
+        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+        // 取前 16 位作为账号
+        return uuid.substring(0, 16);
+    }
     @Override
     public void registerUser(String username, String email, String password, String activationToken) {
         UserModel userModel = new UserModel();
@@ -400,7 +406,6 @@ public class UserServiceImpl implements UserService {
         // 生成 accountNumber
         String accountNumber = generateAccountNumber();
         userModel.setAccountNumber(accountNumber);
-
         userModel.setAvatar("default-avatar.png");
 
         try {
@@ -418,6 +423,8 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+
+
     @Override
     public void sendActivationEmail(String email, String activationToken) {
 
@@ -432,11 +439,6 @@ public class UserServiceImpl implements UserService {
         return tokenBlacklist.contains(token);  // Check if token is in blacklist
     }
 
-    // 保留这个方法
-    private String generateAccountNumber() {
-        // 生成 UUID 并去掉横线
-        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
-        // 取前 16 位作为账号
-        return uuid.substring(0, 16);
-    }
+
+
 }

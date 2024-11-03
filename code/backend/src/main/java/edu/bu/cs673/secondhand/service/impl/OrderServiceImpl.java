@@ -1,6 +1,5 @@
 package edu.bu.cs673.secondhand.service.impl;
 
-import com.mysql.cj.result.Row;
 import edu.bu.cs673.secondhand.domain.IdleItem;
 import edu.bu.cs673.secondhand.domain.IdleItemExample;
 import edu.bu.cs673.secondhand.domain.Order;

@@ -108,4 +108,6 @@ public interface UserService {
     void registerUser(String username, String email, String password, String activationToken);
 
     void sendActivationEmail(String email, String activationToken);
+
+
 }

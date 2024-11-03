@@ -5,8 +5,10 @@ import edu.bu.cs673.secondhand.domain.UserExample;
 import java.util.List;
 
 import edu.bu.cs673.secondhand.model.UserModel;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 public interface UserMapper {
     long countByExample(UserExample example);
@@ -38,5 +40,14 @@ public interface UserMapper {
     boolean existsByAccountNumber(String accountNumber);
 
     List<User> findUserByList(List<Long> idList);
+
+    @Select("SELECT active_code FROM sh_user WHERE email = #{email}")
+    String findActiveCodeByEmail(String email);
+
+    @Update("UPDATE sh_user SET active = 1 WHERE email = #{email}")
+    void activateUser(String email);
+
+    @Delete("DELETE FROM sh_user WHERE email = #{email}")
+    void deleteUserByEmail(String email);
 
 }

@@ -73,4 +73,12 @@ public interface UserServiceLegacy {
      * @return
      */
     PageVo<User> getUserByNumber(String searchValue, int mode);
+
+    void sendVerificationEmail(User user);
+
+    boolean activateUserByToken(String token);
+
+    public boolean verifyCode(User user);
+
+    public boolean insertActiveCode(String email);
 }

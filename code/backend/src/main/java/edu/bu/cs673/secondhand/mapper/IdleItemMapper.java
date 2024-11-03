@@ -3,8 +3,11 @@ package edu.bu.cs673.secondhand.mapper;
 import edu.bu.cs673.secondhand.domain.IdleItem;
 import edu.bu.cs673.secondhand.domain.IdleItemExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
+@Mapper
 
 public interface IdleItemMapper {
     long countByExample(IdleItemExample example);
@@ -32,4 +35,6 @@ public interface IdleItemMapper {
     int updateByPrimaryKey(IdleItem row);
 
     List<IdleItem> findIdleByList(List<Long> idList);
+
+    int countIdleItemByStatus(int status);
 }
