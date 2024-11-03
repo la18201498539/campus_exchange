@@ -17,10 +17,10 @@ import edu.bu.cs673.secondhand.utils.JwtUtil;
 import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
-/**
- * UserController handles user-related operations such as sign-up, login, password reset, and logout.
- * Author: YQ
- */
+/***
+ Email: qyyh@bu.edu,la1993@bu.edu
+ DateTime: 11/3/24-14:03
+ *****/
 //@RestController
 //@RequestMapping("/user")  // Change the base path for user-related endpoints
 public class UserController {
