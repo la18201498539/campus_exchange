@@ -30,6 +30,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+
+/***
+ Email: qyyh@bu.edu,la1993@bu.edu
+ DateTime: 11/3/24-14:03
+ *****/
 /* Class to demonstrate the use of Gmail Create Email API  */
 public class EmailUtils {
 
