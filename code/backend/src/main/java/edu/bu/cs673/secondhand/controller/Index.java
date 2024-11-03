@@ -4,8 +4,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /***
- Email: ybinman@bu.edu
- DateTime: 10/6/24-14:03
+ Email: qyyh@bu.edu,la1993@bu.edu
+ DateTime: 11/3/24-14:03
  *****/
 @RestController
 public class Index {
