@@ -6,8 +6,8 @@ import org.apache.ibatis.annotations.*;
 import java.util.List;
 
 /***
- Email: ybinman@bu.edu
- DateTime: 10/15/24-15:42
+ Email: qyyh@bu.edu,la1993@bu.edu
+ DateTime: 11/3/24-14:03
  *****/
 @Mapper
 public interface UserMapperLegacy {
