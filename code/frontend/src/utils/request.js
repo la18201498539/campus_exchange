@@ -9,7 +9,7 @@ import axios from 'axios';
 
 const service = axios.create({
     timeout: 5000,
-    baseURL: 'http://47.252.50.70:8080',
+    baseURL: 'http://8.221.118.240:8080',
     withCredentials: true
 });
 
