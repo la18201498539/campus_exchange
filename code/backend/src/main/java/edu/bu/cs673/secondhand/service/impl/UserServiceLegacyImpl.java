@@ -13,8 +13,8 @@ import java.util.List;
 import java.util.Random;
 
 /***
- Email: ybinman@bu.edu
- DateTime: 10/15/24-15:45
+ Email: qyyh@bu.edu,la1993@bu.edu
+ DateTime: 11/3/24-14:03
  *****/
 @Service
 public class UserServiceLegacyImpl implements UserServiceLegacy {
