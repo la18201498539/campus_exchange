@@ -15,8 +15,8 @@ import java.sql.Timestamp;
 import java.util.logging.Logger;
 
 /***
- Email: ybinman@bu.edu
- DateTime: 10/15/24-15:38
+ Email: qyyh@bu.edu,la1993@bu.edu
+ DateTime: 11/3/24-14:03
  *****/
 @RestController
 @RequestMapping("/user")
