@@ -1,13 +1,5 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
-
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
 # Action name
-name: Java CI with Maven
+name: Npm, Java CI and deploy to docker
 
 # When will the action run
 on:
@@ -18,7 +10,30 @@ on:
 
 jobs:
   # build the project
-  build:
+  build-frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./code/frontend
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up npm
+        uses: actions/setup-node@v4
+
+      - run: npm install
+      - run: npm run build
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend
+          path: ./code/frontend/dist/
+
+  # build the project
+  build-backend:
+    needs: [build-frontend]
 
     runs-on: ubuntu-latest
     defaults:
@@ -33,6 +48,12 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+
+    - name: download frontend
+      uses: actions/download-artifact@v4
+      with:
+        name: frontend
+        path: ./code/backend/src/main/resources/static/
         
     - name: Build with Maven
       run: mvn clean package --file pom.xml
@@ -45,7 +66,7 @@ jobs:
 
   # build a docker image and push it to Docker Hub
   deploy:
-    needs: [build]
+    needs: [build-backend]
     runs-on: ubuntu-latest
     
     steps:
