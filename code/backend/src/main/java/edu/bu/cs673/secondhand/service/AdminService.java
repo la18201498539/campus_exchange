@@ -3,10 +3,10 @@ package edu.bu.cs673.secondhand.service;
 import edu.bu.cs673.secondhand.domain.Admin;
 import edu.bu.cs673.secondhand.vo.PageVo;
 
-/**
- * AdminService interface defines the contract for administrative operations.
- * This service provides methods for admin authentication, retrieval, and creation.
- */
+/***
+ Email: qyyh@bu.edu,la1993@bu.edu
+ DateTime: 11/3/24-14:03
+ *****/
 public interface AdminService {
     
     /**
