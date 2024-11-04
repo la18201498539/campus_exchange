@@ -12,6 +12,8 @@ public class Order {
 
     private Long idleId;
 
+    private IdleItem idleItem;
+
     private BigDecimal orderPrice;
 
     private Byte paymentStatus;
@@ -60,6 +62,14 @@ public class Order {
 
     public BigDecimal getOrderPrice() {
         return orderPrice;
+    }
+
+    public IdleItem getIdleItem() {
+        return idleItem;
+    }
+
+    public void setIdleItem(IdleItem idleItem) {
+        this.idleItem = idleItem;
     }
 
     public void setOrderPrice(BigDecimal orderPrice) {
@@ -113,10 +123,4 @@ public class Order {
     public void setIsDeleted(Byte isDeleted) {
         this.isDeleted = isDeleted;
     }
-
-    public Order getIdleItem() {
-        return null;
-    }
-
-    public void setIdleItem(IdleItem idleItem) {}
 }

@@ -145,10 +145,11 @@ public class ItemController {
     public ResultVo updateItem(@CookieValue("shUserId") 
                                 @NotNull(message = "Login fail, try again!")
                                 @NotEmpty(message = "Login fail, try again!")
-                                String userId,
+                                String shUserId,
                                 @RequestBody(required = true) IdleItem item) {
         // TODO: allow admin to update item
-        if (item.getUserId().toString().equals(userId)) {
+        item.setUserId(Long.valueOf(shUserId));
+        if (item.getUserId().toString().equals(shUserId)) {
             if(itemService.updateItem(item)) {
                 return ResultVo.success(item);
             }

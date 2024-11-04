@@ -36,7 +36,7 @@ public class FavoriteController {
         return ResultVo.fail(ErrorMsg.FAVORITE_EXIT);
     }
 
-    @GetMapping("/delete")
+    @DeleteMapping("/delete")
     public ResultVo deleteFavorite(@CookieValue("shUserId")
                                    @NotNull(message = "Login Fail, try again")
                                    @NotEmpty(message = "Login Fail, try again") String shUserId,
