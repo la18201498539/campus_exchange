@@ -45,14 +45,15 @@
                             type="danger"
                             @click="changeStatus(idleItemInfo, 2)"
                             plain
-                            >Withdraw this listing</el-button
+                            style="width: auto; padding: 5px 10px"
+                            >Withdraw</el-button
                         >
                         <el-button
                             v-if="isMaster && idleItemInfo.idleStatus === 2"
                             type="primary"
                             @click="changeStatus(idleItemInfo, 1)"
                             plain
-                            >Activate this listing</el-button
+                            >Activate</el-button
                         >
                     </div>
                 </div>
@@ -67,6 +68,7 @@
                             style="width: 90%; margin-bottom: 2px"
                             :src="imgUrl"
                             fit="contain"
+                            error="No image"
                         ></el-image>
                     </div>
                 </div>
@@ -100,6 +102,7 @@
                                     style="width: 55px; height: 55px; border-radius: 5px"
                                     :src="mes.fromU.avatar"
                                     fit="contain"
+                                    error="No image"
                                 ></el-image>
                                 <div class="message-container-list-text">
                                     <div class="message-nickname">

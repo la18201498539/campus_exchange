@@ -111,7 +111,7 @@
                     class="address-container-back"
                     @back="eidtAddress = false"
                     content="Manage Address"
-                    backText="Back"
+                    title="Back"
                 ></el-page-header>
                 <div class="address-container-add">
                     <div class="address-container-add-title">Add New Address</div>
@@ -137,7 +137,7 @@
                         </el-input>
                     </div>
                     <div class="address-container-add-item">
-                        <span class="demonstration">Building Number/Floor</span>
+                        <!-- <span class="demonstration">Building Number/Floor</span>
                         <el-cascader
                             :options="options"
                             placeholder="Please select"
@@ -145,7 +145,18 @@
                             @change="handleAddressChange"
                             :separator="' '"
                         >
-                        </el-cascader>
+                        </el-cascader> -->
+                        <el-input-group>
+                            <el-input placeholder="Building Number/Floor" disabled slot="prepend"></el-input>
+                            <el-cascader
+                                :options="options"
+                                placeholder="Please select"
+                                v-model="selectedOptions"
+                                @change="handleAddressChange"
+                                :separator="' '"
+                                style="flex: 1"
+                            />
+                        </el-input-group>
                     </div>
                     <div class="address-container-add-item">
                         <el-input

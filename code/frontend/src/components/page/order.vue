@@ -4,7 +4,7 @@
         <app-body>
             <div class="order-page-container">
                 <div class="idle-info-container" @click="toDetails(orderInfo.idleItem.id)">
-                    <el-image style="width: 150px; height: 150px" :src="orderInfo.idleItem.imgUrl" fit="cover"> </el-image>
+                    <el-image style="width: 150px; height: 150px" :src="orderInfo.idleItem.imgUrl" fit="cover" error="No image"> </el-image>
                     <div class="idle-info-title">
                         {{ orderInfo.userId == userId ? 'Purchased' : 'Sold' }}：{{ orderInfo.idleItem.idleName }}
                     </div>
