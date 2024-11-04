@@ -20,10 +20,10 @@ import com.google.common.collect.Sets;
 import java.util.Set;
 import java.util.Random;
 
-//***
- Email: qyyh@bu.edu,la1993@bu.edu
- DateTime: 11/3/24-14:03
- *****/
+//
+// Email: qyyh@bu.edu,la1993@bu.edu
+// DateTime: 11/3/24-14:03
+//
 //@Service
 public class UserServiceImpl implements UserService {
     private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
