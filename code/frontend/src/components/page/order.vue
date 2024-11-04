@@ -20,7 +20,7 @@
                     </div>
                     <div class="address-details">{{ addressInfo.detailAddress }}</div>
                     <el-button v-if="!addressInfo.detailAddress" @click.stop="selectAddressDialog" type="primary" plain>
-                        Select Transaction Address</el-button
+                        Select Address</el-button
                     >
                 </div>
                 <el-dialog title="Select Address" :visible.sync="addressDialogVisible" width="800px">

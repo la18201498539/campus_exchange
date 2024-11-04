@@ -21,6 +21,7 @@
                         <div class="release-tip">Your Location</div>
                         <el-cascader
                             :options="options"
+                            placeholder="Please select"
                             v-model="selectedOptions"
                             @change="handleChange"
                             :separator="' '"
@@ -56,7 +57,7 @@
                             multiple
                         >
                             <i class="el-icon-upload"></i>
-                            <div class="el-upload__text">Drag images here, or<em>click to upload</em></div>
+                            <div class="el-upload__text">Drag images here, or <em>click to upload</em></div>
                         </el-upload>
                         <div class="picture-list">
                             <el-image

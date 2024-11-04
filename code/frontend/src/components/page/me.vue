@@ -107,7 +107,12 @@
                 </div>
             </div>
             <div v-show="eidtAddress" class="address-container">
-                <el-page-header class="address-container-back" @back="eidtAddress = false" content="Delivery Address"></el-page-header>
+                <el-page-header
+                    class="address-container-back"
+                    @back="eidtAddress = false"
+                    content="Manage Address"
+                    backText="Back"
+                ></el-page-header>
                 <div class="address-container-add">
                     <div class="address-container-add-title">Add New Address</div>
                     <div class="address-container-add-item">
@@ -117,28 +122,34 @@
                             maxlength="10"
                             show-word-limit
                         >
-                            <div slot="prepend">Recipient Name</div>
+                            <div slot="prepend">Your Name</div>
                         </el-input>
                     </div>
                     <div class="address-container-add-item">
                         <el-input
-                            placeholder="Please enter recipient's phone number"
+                            placeholder="Please enter your phone number"
                             v-model="addressInfo.consigneePhone"
                             onkeyup="this.value=this.value.replace(/[^\d.]/g,'');"
                             maxlength="11"
                             show-word-limit
                         >
-                            <div slot="prepend">Your Phone Number</div>
+                            <div slot="prepend">Phone Number</div>
                         </el-input>
                     </div>
                     <div class="address-container-add-item">
                         <span class="demonstration">Building Number/Floor</span>
-                        <el-cascader :options="options" v-model="selectedOptions" @change="handleAddressChange" :separator="' '">
+                        <el-cascader
+                            :options="options"
+                            placeholder="Please select"
+                            v-model="selectedOptions"
+                            @change="handleAddressChange"
+                            :separator="' '"
+                        >
                         </el-cascader>
                     </div>
                     <div class="address-container-add-item">
                         <el-input
-                            placeholder="Dorm Number + East/West/Central Location in Hallway"
+                            placeholder="Please enter detailed address"
                             v-model="addressInfo.detailAddress"
                             maxlength="50"
                             show-word-limit
@@ -146,14 +157,14 @@
                             <div slot="prepend">Detailed Address</div>
                         </el-input>
                     </div>
-                    <el-checkbox v-model="addressInfo.defaultFlag">Set as Default Address</el-checkbox>
+                    <el-checkbox v-model="addressInfo.defaultFlag">Default Address</el-checkbox>
                     <el-button style="margin-left: 20px" @click="saveAddress">Save</el-button>
                 </div>
                 <div class="address-container-list">
-                    <div style="color: #409eff; font-size: 15px; padding-left: 10px">Existing Addresses</div>
+                    <div style="color: #409eff; font-size: 15px; padding-left: 10px">Addresses</div>
                     <el-table stripe :data="addressData" style="width: 100%">
-                        <el-table-column prop="consigneeName" label="Recipient Name" width="100"> </el-table-column>
-                        <el-table-column prop="consigneePhone" label="Phone Number" width="120"> </el-table-column>
+                        <el-table-column prop="consigneeName" label="Name" width="100"> </el-table-column>
+                        <el-table-column prop="consigneePhone" label="Phone" width="120"> </el-table-column>
                         <el-table-column prop="detailAddressText" label="Address" width="270"> </el-table-column>
                         <el-table-column label="Action">
                             <template slot-scope="scope">
@@ -161,10 +172,10 @@
                                 <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">Delete </el-button>
                             </template>
                         </el-table-column>
-                        <el-table-column label="Is Default Address" width="110">
+                        <el-table-column label="Is Default" width="110">
                             <template slot-scope="scope">
                                 <el-button v-if="!scope.row.defaultFlag" size="mini" @click="handleSetDefault(scope.$index, scope.row)"
-                                    >Set as Default
+                                    >Set Default
                                 </el-button>
                                 <div v-else style="padding-left: 10px; color: #409eff">{{ scope.row.defaultAddress }}</div>
                             </template>
@@ -319,7 +330,7 @@ export default {
                     let data = res.data;
                     for (let i = 0; i < data.length; i++) {
                         data[i].detailAddressText = data[i].provinceName + data[i].cityName + data[i].regionName + data[i].detailAddress;
-                        data[i].defaultAddress = data[i].defaultFlag ? 'Default Address' : 'Set as Default';
+                        data[i].defaultAddress = data[i].defaultFlag ? 'Default' : 'Set as Default';
                     }
                     this.addressData = data;
                 }
@@ -400,7 +411,7 @@ export default {
                                 this.addressData.splice(index, 1);
                                 if (row.defaultFlag && this.addressData.length > 0) {
                                     this.addressData[0].defaultFlag = true;
-                                    this.addressData[0].defaultAddress = 'Default Address';
+                                    this.addressData[0].defaultAddress = 'Default';
                                     this.update({
                                         id: this.addressData[0].id,
                                         defaultFlag: true
