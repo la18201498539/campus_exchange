@@ -1,4 +1,4 @@
-const webpack = require('webpack')
+const webpack = require('webpack');
 
 module.exports = {
     publicPath: './',
@@ -7,15 +7,15 @@ module.exports = {
     configureWebpack: {
         plugins: [
             new webpack.ProvidePlugin({
-                $: "jquery",
-                jQuery: "jquery",
-                "windows.jQuery": "jquery"
+                $: 'jquery',
+                jQuery: 'jquery',
+                'windows.jQuery': 'jquery'
             })
         ]
     },
     devServer: {
-        port: 8080,
-    },
+        port: 8080
+    }
     // devServer: {
     //     proxy: {
     //         '/api':{

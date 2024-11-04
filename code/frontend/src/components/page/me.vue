@@ -2,7 +2,7 @@
     <div>
         <app-head :nickname-value="userInfo.nickname" :avatarValue="userInfo.avatar"></app-head>
         <app-body>
-            <div v-show="!editAddress">
+            <div v-show="!eidtAddress">
                 <div class="user-info-container">
                     <div class="user-info-details">
                         <el-upload
@@ -60,7 +60,7 @@
                         </div>
                     </div>
                     <div class="user-info-space">
-                        <el-button type="primary" plain @click="editAddress = true">Edit Address</el-button>
+                        <el-button type="primary" plain @click="eidtAddress = true">Edit Address</el-button>
                     </div>
                 </div>
                 <div class="idle-container">
@@ -106,8 +106,8 @@
                     </div>
                 </div>
             </div>
-            <div v-show="editAddress" class="address-container">
-                <el-page-header class="address-container-back" @back="editAddress = false" content="Delivery Address"></el-page-header>
+            <div v-show="eidtAddress" class="address-container">
+                <el-page-header class="address-container-back" @back="eidtAddress = false" content="Delivery Address"></el-page-header>
                 <div class="address-container-add">
                     <div class="address-container-add-title">Add New Address</div>
                     <div class="address-container-add-item">
@@ -181,7 +181,7 @@
 import AppHead from '../common/AppHeader.vue';
 import AppBody from '../common/AppPageBody.vue';
 import AppFoot from '../common/AppFoot.vue';
-// import options from '../common/country-data.js';
+import options from '../common/country-data.js';
 
 export default {
     name: 'me',
@@ -212,7 +212,7 @@ export default {
             userPassword1: '',
             userPassword2: '',
             userPassword3: '',
-            editAddress: false,
+            eidtAddress: false,
             selectedOptions: [], // Store default values
             options: options, // Store city data
             userInfo: {
