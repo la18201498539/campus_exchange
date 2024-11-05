@@ -4,7 +4,7 @@
             <div class="login-body">
                 <div class="login-title">Admin Management</div>
                 <el-form ref="form" :model="userForm">
-                    <el-input placeholder="Please enter admin account" v-model="userForm.email" class="login-input">
+                    <el-input placeholder="Please enter admin account" v-model="userForm.accountNumber" class="login-input">
                         <template slot="prepend">
                             <div class="el-icon-user-solid"></div>
                         </template>
@@ -38,7 +38,7 @@ export default {
     data() {
         return {
             userForm: {
-                email: '',
+                accountNumber: '',
                 adminPassword: ''
             }
         };
@@ -46,13 +46,13 @@ export default {
     methods: {
         login() {
             // verify login email
-            if (!this.userForm.email.endsWith('@bu.edu')) {
+            if (!this.userForm.accountNumber.endsWith('@bu.edu')) {
                 this.$message.error('Please use your BU email');
                 return;
             }
             this.$api
                 .adminLogin({
-                    email: this.userForm.email,
+                    accountNumber: this.userForm.accountNumber,
                     adminPassword: this.userForm.adminPassword
                 })
                 .then((res) => {

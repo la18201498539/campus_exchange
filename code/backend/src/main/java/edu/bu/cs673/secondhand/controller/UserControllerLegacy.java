@@ -42,7 +42,7 @@ public class UserControllerLegacy {
         }
         if (userService.userSignIn(userModel)) {
             userService.insertActiveCode(userModel.getEmail());
-            userService.sendVerificationEmail(userModel);
+            userService.sendSignUpEmail(userModel);
             System.out.println(userModel.getEmail()+"Email has been sent");
             return ResultVo.success(userModel);
         }

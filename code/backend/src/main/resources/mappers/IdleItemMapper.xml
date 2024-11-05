@@ -71,6 +71,13 @@
       </foreach>
     </where>
   </sql>
+
+  <select id="countIdleItemByStatus"  resultType="int">
+    select COUNT(*) from sh_idle_item
+    where idle_status = #{status}
+  </select>
+
+
   <sql id="Base_Column_List">
     id, idle_name, idle_details, picture_list, idle_price, idle_place, idle_label, release_time, 
     idle_status, user_id

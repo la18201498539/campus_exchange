@@ -13,8 +13,6 @@ import jakarta.annotation.Resource;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpSession;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -124,7 +122,7 @@ public class adminController {
         return ResultVo.success(idleItemService.adminGetIdleList(status,p,n));
     }
 
-    @GetMapping("updateIdleStatus")
+    @PostMapping("updateIdleStatus")
     public ResultVo updateIdleStatus(@CookieValue("adminId")
                                      @NotNull(message = "Login fail, try again.")
                                      @NotEmpty(message = "Login fail, try again.")
@@ -164,7 +162,7 @@ public class adminController {
         return ResultVo.success(orderService.getAllOrder(p,n));
     }
 
-    @GetMapping("deleteOrder")
+    @DeleteMapping("deleteOrder")
     public ResultVo deleteOrder(@CookieValue("adminId")
                                 @NotNull(message = "Login fail, try again.")
                                 @NotEmpty(message = "Login fail, try again.")
@@ -199,7 +197,7 @@ public class adminController {
         return ResultVo.success(userService.getUserByStatus(status,p,n));
     }
 
-    @GetMapping("updateUserStatus")
+    @PostMapping("updateUserStatus")
     public ResultVo updateUserStatus(@CookieValue("adminId")
                                      @NotNull(message = "Login fail, try again.")
                                      @NotEmpty(message = "Login fail, try again.")

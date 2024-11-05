@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
  Email: qyyh@bu.edu,la1993@bu.edu
  DateTime: 11/3/24-14:03
  *****/
+
 public interface UserServiceLegacy {
 
     /**
@@ -81,4 +82,32 @@ public interface UserServiceLegacy {
     public boolean verifyCode(User user);
 
     public boolean insertActiveCode(String email);
+
+    /**
+     * Sends a simple email message.
+     * @param to The recipient's email address.
+     * @param subject The subject of the email.
+     * @param text The body of the email.
+     */
+    void sendSimpleMessage(String to, String subject, String text);
+
+    /**
+     * Sends a sign-up email to the user with a link to complete the sign-up process.
+     * @param user The activation token for the sign-up process.
+     */
+    void sendSignUpEmail(User user);
+
+    /**
+     * Sends an activation email to the user.
+     * @param email The recipient's email address.
+     * @param activationToken The activation token for the user.
+     */
+    void sendActivationEmail(String email, String activationToken);
+
+    /**
+     * Sends a password reset email to the user with a link to reset their password.
+     * @param email The recipient's email address.
+     * @param resetToken The token for resetting the password.
+     */
+    void sendPasswordResetEmail(String email, String resetToken);
 }
