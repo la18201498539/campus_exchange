@@ -30,6 +30,8 @@ public class IdleItemServiceImpl implements IdleItemService {
 
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private IdleItemMapper idleItemMapper;
 
     @Override
     public boolean addNewItem(IdleItem item) {
@@ -106,7 +108,8 @@ public class IdleItemServiceImpl implements IdleItemService {
             result.add(model);
         }
 
-        return new PageVo<ItemModel>(result,1);
+        long count = idleItemMapper.countByExample(itemExample);
+        return new PageVo<ItemModel>(result,count);
     }
 
     public PageVo<IdleItem> adminGetIdleList(int status, int page, int nums) {
