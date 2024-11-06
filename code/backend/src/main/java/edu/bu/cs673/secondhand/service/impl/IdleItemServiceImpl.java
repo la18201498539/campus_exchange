@@ -93,6 +93,7 @@ public class IdleItemServiceImpl implements IdleItemService {
         IdleItemExample itemExample = new IdleItemExample();
         itemExample.or().andIdleNameLike('%' + searchValue + '%');
         itemExample.or().andIdleDetailsLike('%' + searchValue + '%');
+        itemExample.setOrderByClause("id desc");
         List<IdleItem> list = itemMapper.selectByExampleWithRowbounds(itemExample, rowBounds);
         HashMap<Long, User> userCache = new HashMap<>();
         List<ItemModel> result = new ArrayList<>();
