@@ -138,7 +138,7 @@ export default {
 
       //然后请求后端验证
       verifyCode() {
-        axios.post('http://localhost:8080/user/verifyCode', {
+        axios.post('http://47.252.36.46:8080/user/verifyCode', {
           email: this.userInfo.email,
           activeCode: this.activeCode
         }).then(res => {
