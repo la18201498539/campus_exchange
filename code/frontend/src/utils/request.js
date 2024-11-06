@@ -10,7 +10,7 @@ import axios from 'axios';
 
 const service = axios.create({
     timeout: 5000,
-    baseURL: 'http://localhost:8080',
+    baseURL: 'http://http://47.252.36.46/:8080',
     withCredentials: true,
     timeoutErrorMessage: 'The request took too long, please try again later.'
 });
