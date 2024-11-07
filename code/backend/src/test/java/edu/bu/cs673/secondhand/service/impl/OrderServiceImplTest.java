@@ -37,7 +37,7 @@ class OrderServiceImplTest {
 
         Order order = new Order();
         order.setUserId(45L);
-        order.setIdleId(198L);
+        order.setIdleId(196L);
         order.setOrderPrice(BigDecimal.valueOf(200.0));
         order.setPaymentWay("Cash");
         order.setOrderNumber("YBIN_TEST_200");
