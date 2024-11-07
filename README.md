@@ -43,7 +43,11 @@ The application's front end interacts with the data through the API and presents
  - Optional Features (additional cool features that you want to have if there is time):
 
 ## Compile and Docker Image
+The docker image will be upload to the following address. \
+https://hub.docker.com/r/chhchen/campus_exchange/tags
 
+The docker image can be pulled by 
+``` docker pull chhchen/campus_exchange:latest ```
 
 ## Testing
 
