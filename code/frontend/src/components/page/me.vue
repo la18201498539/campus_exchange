@@ -6,7 +6,7 @@
                 <div class="user-info-container">
                     <div class="user-info-details">
                         <el-upload
-                            action="http://localhost:8080/file/"
+                            action="http://47.252.36.46:8080/file"
                             :on-success="fileHandleSuccess"
                             :file-list="imgFileList"
                             accept="image/*"
