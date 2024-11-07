@@ -1,8 +1,9 @@
 package edu.bu.cs673.secondhand.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Message {
+public class Message implements Serializable {
     private Long id;
 
     private Long userId;
@@ -16,6 +17,14 @@ public class Message {
     private Long toUser;
 
     private Long toMessage;
+
+    private IdleItem idle;
+
+    private User fromU;
+
+    private User toU;
+
+    private Message toM;
 
     public Long getId() {
         return id;
@@ -73,15 +82,35 @@ public class Message {
         this.toMessage = toMessage;
     }
 
-    public void setFromU(User user) {
+    public User getFromU() {
+        return fromU;
     }
 
-    public void setIdle(IdleItem idleItem) {
+    public void setFromU(User fromU) {
+        this.fromU = fromU;
     }
 
-    public void setToM(Message toM) {
+    public IdleItem getIdle() {
+        return idle;
+    }
+
+    public void setIdle(IdleItem idle) {
+        this.idle = idle;
+    }
+
+    public User getToU() {
+        return toU;
     }
 
     public void setToU(User toU) {
+        this.toU = toU;
+    }
+
+    public Message getToM() {
+        return toM;
+    }
+
+    public void setToM(Message toM) {
+        this.toM = toM;
     }
 }
