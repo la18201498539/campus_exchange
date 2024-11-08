@@ -1,7 +1,7 @@
 # Second-Hand Market
 
 ## Demo
-  http://47.252.3.33:8080/
+  http://47.253.44.235:8080/
 
   > Dummy Link: For application demonstration only.
 ## Project Description
@@ -42,20 +42,35 @@ The application's front end interacts with the data through the API and presents
     - **Second-hand Assistance:** Utilizing the latest LLM technology, such as LLaMA, to offer an interactive chat feature that helps users quickly find items they are most interested in.
  - Optional Features (additional cool features that you want to have if there is time):
 
-## Compile and Docker Image
-The docker image will be upload to the following address. \
-https://hub.docker.com/r/chhchen/campus_exchange/tags
+## CI/CD
+![alt text](demo/cicd.png)
 
-The docker image can be pulled by 
-``` docker pull chhchen/campus_exchange:latest ```
+Auto CI is now implemented (via **Github Actions**), automating the process for every code commit. CI config file location: [Click](.github/workflows/main.yml).
+
+See GitHub Actions workflow: [Click](https://github.com/BUMETCS673/seprojects-cs673f24a2team2/actions). 
+
+**Note**: Our CI workflow consists of 3 stages:
+- Build Frontend: Compiling and packaging the frontend code.
+- Build Backend: Compiling and packaging the backend code.
+- Build, Dockerize, and Deploy: Building the Docker image and pushing it to Docker Hub [Click](https://hub.docker.com/r/chhchen/campus_exchange/).
+
+You can download/pull our pre-built Docker image from Docker Hub to avoid manual compilation.
+
+
+
 
 ## Testing
 
 Testing services with JUnit test. Then, the controller is tested with actual API calls by using postman and swagger ui. Front end is tested by using the developer tools on browser.
 
+**Note**: Specific unit test refer to our STD file.
+
 ## Deployment
 
-Hosting a node on alibaba cloud, the project is hosting on the node, running with JDK.
+- From Source Code: refer to [Readme.md](./code/Readme.md) 
+
+- From Docker:
+  > docker pull chhchen/campus_exchange 
 
 ## Team Members
 | Name   | Email | Role |
