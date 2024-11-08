@@ -70,7 +70,8 @@ Testing services with JUnit test. Then, the controller is tested with actual API
 - From Source Code: refer to [Readme.md](./code/Readme.md) 
 
 - From Docker:
-  > docker pull chhchen/campus_exchange 
+  - docker pull chhchen/campus_exchange:latest
+  - docker run -itd --net host  chhchen/campus_exchange:latest
 
 ## Team Members
 | Name   | Email | Role |
