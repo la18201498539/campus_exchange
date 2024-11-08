@@ -15,7 +15,7 @@
         </commentGenerator>
         <!-- Database connection -->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://8.221.104.74:3306/sec_hand"
+                        connectionURL="jdbc:mysql://47.253.210.186:3306/sec_hand"
                         userId="root"
                         password="haBshjbwei23432*&amp;"/>
 
@@ -34,8 +34,11 @@
 
         <!-- Table Configurations: Specify which tables to generate -->
 <!--        <table tableName="sh_user" domainObjectName="User"/>-->
-        <table tableName="sh_order" domainObjectName="Order"/>
+<!--        <table tableName="sh_order" domainObjectName="Order"/>-->
 <!--        <table tableName="sh_idle_item" domainObjectName="Item"/>-->
-        <table tableName="sh_message" domainObjectName="Message"/>
+<!--        <table tableName="sh_message" domainObjectName="Message"/>-->
+<!--        <table tableName="sh_favorite" domainObjectName="Favorite"/>-->
+        <table tableName="sh_address" domainObjectName="Address"/>
+
     </context>
 </generatorConfiguration>

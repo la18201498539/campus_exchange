@@ -13,6 +13,8 @@ public enum ErrorMsg {
     REGISTER_ERROR("Register Error"),
     EMAIL_LOGIN_ERROR("User Not Found"),
     ACCOUNT_Ban("illegal User"),
+
+    FAVORITE_EXIT("Duplicate Favorites"),
     PASSWORD_RESET_ERROR("Reset password fail"),
     COOKIE_ERROR("Invalid Cookie"),
     UNKNOWN_ERROR("Unknown Error");

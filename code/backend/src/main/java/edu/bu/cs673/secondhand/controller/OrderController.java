@@ -73,7 +73,9 @@ public class OrderController {
     }
 
     @GetMapping("/my")
-    public ResultVo getMyOrder(@RequestParam(value = "user_id", required = true) String shUserId){
+    public ResultVo getMyOrder(@CookieValue("shUserId")
+                                   @NotNull(message = "Login Fail, try again")
+                                   @NotEmpty(message = "Login Fail, try again") String shUserId){
         return ResultVo.success(orderService.getMyOrder(Long.valueOf(shUserId)));
     }
 

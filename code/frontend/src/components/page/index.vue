@@ -13,7 +13,7 @@
                 </el-tabs>
                 <div style="margin: 0 20px">
                     <el-row :gutter="30">
-                        <el-col :span="6" v-for="(idle, index) in idleList">
+                        <el-col :span="6" v-for="(idle, index) in idleList" :key="index">
                             <div class="idle-card" @click="toDetails(idle)">
                                 <el-image style="width: 100%; height: 160px" :src="idle.imgUrl" fit="contain">
                                     <div slot="error" class="image-slot">

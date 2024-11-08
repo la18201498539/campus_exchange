@@ -1,6 +1,5 @@
 package edu.bu.cs673.secondhand.service.impl;
 
-import com.mysql.cj.result.Row;
 import edu.bu.cs673.secondhand.domain.IdleItem;
 import edu.bu.cs673.secondhand.domain.IdleItemExample;
 import edu.bu.cs673.secondhand.domain.Order;
@@ -90,7 +89,10 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order getOrder(Long id) {
-        Order orderModel=orderMapper.selectByPrimaryKey(id);
+        Order orderModel = orderMapper.selectByPrimaryKey(id);
+        if(orderModel==null){
+            return null;
+        }
         orderModel.setIdleItem(idleItemMapper.selectByPrimaryKey(orderModel.getIdleId()));
         return orderModel;
     }
@@ -101,7 +103,7 @@ public class OrderServiceImpl implements OrderService {
         OrderExample orderExample = new OrderExample();
         OrderExample.Criteria criteria = orderExample.createCriteria();
         criteria.andOrderNumberEqualTo(searchValue);
-        List<Order> list=orderMapper.selectByExampleWithRowbounds(orderExample, rowBounds);
+        List<Order> list = orderMapper.selectByExampleWithRowbounds(orderExample, rowBounds);
 
         if(list.size()>0){
             List<Long> idleIdList=new ArrayList<>();
@@ -113,7 +115,7 @@ public class OrderServiceImpl implements OrderService {
             IdleItemExample.Criteria criteria1 = idleItemExample.createCriteria();
             criteria1.andIdIn(idleIdList);
             List<IdleItem> idleItemModelList=idleItemMapper.selectByExample(idleItemExample);
-            Map<Long,IdleItem> map=new HashMap<>();
+            Map<Long,IdleItem> map = new HashMap<>();
             for(IdleItem idle:idleItemModelList){
                 map.put(idle.getId(),idle);
             }
@@ -139,7 +141,7 @@ public class OrderServiceImpl implements OrderService {
                 return false;
             }
             IdleItem idleItemModel=idleItemMapper.selectByPrimaryKey(o.getIdleId());
-            if(idleItemModel.getIdleStatus()==2){
+            if(idleItemModel.getIdleStatus() == 2){
                 IdleItem idleItem=new IdleItem();
                 idleItem.setId(o.getIdleId());
                 idleItem.setUserId(idleItemModel.getUserId());

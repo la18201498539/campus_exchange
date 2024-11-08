@@ -64,13 +64,13 @@
             <el-table-column prop="email" label="email" show-overflow-tooltip min-width="150" width="150"> </el-table-column>
             <el-table-column prop="nickname" label="nickname" show-overflow-tooltip min-width="150" width="150"> </el-table-column>
             <el-table-column prop="signInTime" label="signInTime" show-overflow-tooltip width="200"> </el-table-column>
-            <el-table-column label="operation">
+            <!-- <el-table-column label="operation">
                 <template slot-scope="scope">
                     <el-button size="mini" type="danger" @click="sealUser(scope.$index)">Suspend</el-button>
                 </template>
-            </el-table-column>
+            </el-table-column> -->
         </el-table>
-        <el-table v-show="this.mode == 2" :data="badUserData" stripe style="width: 100%; color: #5a5c61">
+        <!-- <el-table v-show="this.mode == 2" :data="badUserData" stripe style="width: 100%; color: #5a5c61">
             <el-table-column label="avatar" width="50">
                 <template slot-scope="scope">
                     <el-avatar shape="square" :size="23" :src="scope.row.avatar"></el-avatar>
@@ -84,7 +84,7 @@
                     <el-button size="mini" type="success" @click="unsealUser(scope.$index)">Unsuspend</el-button>
                 </template>
             </el-table-column>
-        </el-table>
+        </el-table> -->
         <el-table v-show="this.mode == 3" :data="userManage" stripe style="width: 100%; color: #5a5c61">
             <el-table-column prop="email" label="email" show-overflow-tooltip width="200"> </el-table-column>
             <el-table-column prop="adminName" label="adminName"> </el-table-column>

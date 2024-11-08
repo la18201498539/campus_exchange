@@ -6,7 +6,7 @@
                 <div class="user-info-container">
                     <div class="user-info-details">
                         <el-upload
-                            action="http://localhost:8080/file/"
+                            action="http://47.252.36.46:8080/file"
                             :on-success="fileHandleSuccess"
                             :file-list="imgFileList"
                             accept="image/*"
@@ -59,8 +59,8 @@
                             </el-dialog>
                         </div>
                     </div>
-                    <div class="user-info-splace">
-                        <el-button type="primary" plain @click="eidtAddress = true">Edit Delivery Address</el-button>
+                    <div class="user-info-space">
+                        <el-button type="primary" plain @click="eidtAddress = true">Edit Address</el-button>
                     </div>
                 </div>
                 <div class="idle-container">
@@ -72,7 +72,7 @@
                         <el-tab-pane label="Purchase Record" name="5"></el-tab-pane>
                     </el-tabs>
                     <div class="idle-container-list">
-                        <div v-for="(item, index) in dataList[activeName - 1]" class="idle-container-list-item">
+                        <div v-for="(item, index) in dataList[activeName - 1]" :key="index" class="idle-container-list-item">
                             <div class="idle-container-list-item-detail" @click="toDetails(activeName, item)">
                                 <el-image style="width: 100px; height: 100px" :src="item.imgUrl" fit="cover">
                                     <div slot="error" class="image-slot">
@@ -83,9 +83,7 @@
                                     <div class="idle-container-list-title">
                                         {{ item.idleName }}
                                     </div>
-                                    <div class="idle-container-list-idle-details" v-html="item.idleDetails">
-                                        {{ item.idleDetails }}
-                                    </div>
+                                    <div class="idle-container-list-idle-details" v-html="item.idleDetails"></div>
                                     <div class="idle-container-list-idle-time">{{ item.timeStr }}</div>
                                     <div class="idle-item-foot">
                                         <div class="idle-price">
@@ -109,9 +107,14 @@
                 </div>
             </div>
             <div v-show="eidtAddress" class="address-container">
-                <el-page-header class="address-container-back" @back="eidtAddress = false" content="Delivery Address"></el-page-header>
+                <el-page-header
+                    class="address-container-back"
+                    @back="eidtAddress = false"
+                    content="Manage Address"
+                    title="Back"
+                ></el-page-header>
                 <div class="address-container-add">
-                    <div class="address-container-add-title">Add New Delivery Address</div>
+                    <div class="address-container-add-title">Add New Address</div>
                     <div class="address-container-add-item">
                         <el-input
                             placeholder="Please enter recipient name"
@@ -119,28 +122,45 @@
                             maxlength="10"
                             show-word-limit
                         >
-                            <div slot="prepend">Recipient Name</div>
+                            <div slot="prepend">Your Name</div>
                         </el-input>
                     </div>
                     <div class="address-container-add-item">
                         <el-input
-                            placeholder="Please enter recipient's phone number"
+                            placeholder="Please enter your phone number"
                             v-model="addressInfo.consigneePhone"
                             onkeyup="this.value=this.value.replace(/[^\d.]/g,'');"
                             maxlength="11"
                             show-word-limit
                         >
-                            <div slot="prepend">Your Phone Number</div>
+                            <div slot="prepend">Phone Number</div>
                         </el-input>
                     </div>
                     <div class="address-container-add-item">
-                        <span class="demonstration">Dorm Type/Building Number/Floor</span>
-                        <el-cascader :options="options" v-model="selectedOptions" @change="handleAddressChange" :separator="' '">
-                        </el-cascader>
+                        <!-- <span class="demonstration">Building Number/Floor</span>
+                        <el-cascader
+                            :options="options"
+                            placeholder="Please select"
+                            v-model="selectedOptions"
+                            @change="handleAddressChange"
+                            :separator="' '"
+                        >
+                        </el-cascader> -->
+                        <el-input-group>
+                            <el-input placeholder="Building Number/Floor" disabled slot="prepend"></el-input>
+                            <el-cascader
+                                :options="options"
+                                placeholder="Please select"
+                                v-model="selectedOptions"
+                                @change="handleAddressChange"
+                                :separator="' '"
+                                style="flex: 1"
+                            />
+                        </el-input-group>
                     </div>
                     <div class="address-container-add-item">
                         <el-input
-                            placeholder="Dorm Number + East/West/Central Location in Hallway"
+                            placeholder="Please enter detailed address"
                             v-model="addressInfo.detailAddress"
                             maxlength="50"
                             show-word-limit
@@ -148,14 +168,14 @@
                             <div slot="prepend">Detailed Address</div>
                         </el-input>
                     </div>
-                    <el-checkbox v-model="addressInfo.defaultFlag">Set as Default Address</el-checkbox>
+                    <el-checkbox v-model="addressInfo.defaultFlag">Default Address</el-checkbox>
                     <el-button style="margin-left: 20px" @click="saveAddress">Save</el-button>
                 </div>
                 <div class="address-container-list">
-                    <div style="color: #409eff; font-size: 15px; padding-left: 10px">Existing Delivery Addresses</div>
+                    <div style="color: #409eff; font-size: 15px; padding-left: 10px">Addresses</div>
                     <el-table stripe :data="addressData" style="width: 100%">
-                        <el-table-column prop="consigneeName" label="Recipient Name" width="100"> </el-table-column>
-                        <el-table-column prop="consigneePhone" label="Phone Number" width="120"> </el-table-column>
+                        <el-table-column prop="consigneeName" label="Name" width="100"> </el-table-column>
+                        <el-table-column prop="consigneePhone" label="Phone" width="120"> </el-table-column>
                         <el-table-column prop="detailAddressText" label="Address" width="270"> </el-table-column>
                         <el-table-column label="Action">
                             <template slot-scope="scope">
@@ -163,10 +183,10 @@
                                 <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">Delete </el-button>
                             </template>
                         </el-table-column>
-                        <el-table-column label="Is Default Address" width="110">
+                        <el-table-column label="Is Default" width="110">
                             <template slot-scope="scope">
                                 <el-button v-if="!scope.row.defaultFlag" size="mini" @click="handleSetDefault(scope.$index, scope.row)"
-                                    >Set as Default
+                                    >Set Default
                                 </el-button>
                                 <div v-else style="padding-left: 10px; color: #409eff">{{ scope.row.defaultAddress }}</div>
                             </template>
@@ -183,7 +203,7 @@
 import AppHead from '../common/AppHeader.vue';
 import AppBody from '../common/AppPageBody.vue';
 import AppFoot from '../common/AppFoot.vue';
-// import options from '../common/country-data.js';
+import options from '../common/country-data.js';
 
 export default {
     name: 'me',
@@ -207,7 +227,7 @@ export default {
             activeName: '1',
             handleName: ['Unlist', 'Delete', 'Remove from Cart', '', ''],
             dataList: [[], [], [], [], []],
-            orderStatus: ['Pending Payment', 'Pending Shipment', 'Pending Receipt', 'Completed', 'Canceled'],
+            orderStatus: ['Pending', 'On Hold', 'Completed', 'Canceled'],
             userInfoDialogVisible: false,
             notUserNicknameEdit: true,
             userPasswordEdit: false,
@@ -321,7 +341,7 @@ export default {
                     let data = res.data;
                     for (let i = 0; i < data.length; i++) {
                         data[i].detailAddressText = data[i].provinceName + data[i].cityName + data[i].regionName + data[i].detailAddress;
-                        data[i].defaultAddress = data[i].defaultFlag ? 'Default Address' : 'Set as Default';
+                        data[i].defaultAddress = data[i].defaultFlag ? 'Default' : 'Set as Default';
                     }
                     this.addressData = data;
                 }
@@ -402,7 +422,7 @@ export default {
                                 this.addressData.splice(index, 1);
                                 if (row.defaultFlag && this.addressData.length > 0) {
                                     this.addressData[0].defaultFlag = true;
-                                    this.addressData[0].defaultAddress = 'Default Address';
+                                    this.addressData[0].defaultAddress = 'Default';
                                     this.update({
                                         id: this.addressData[0].id,
                                         defaultFlag: true
@@ -596,7 +616,7 @@ export default {
     margin-bottom: 10px;
 }
 
-.user-info-splace {
+.user-info-space {
     margin-right: 90px;
 }
 

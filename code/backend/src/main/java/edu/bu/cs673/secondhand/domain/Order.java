@@ -60,16 +60,16 @@ public class Order {
         this.idleId = idleId;
     }
 
+    public BigDecimal getOrderPrice() {
+        return orderPrice;
+    }
+
     public IdleItem getIdleItem() {
         return idleItem;
     }
 
     public void setIdleItem(IdleItem idleItem) {
         this.idleItem = idleItem;
-    }
-
-    public BigDecimal getOrderPrice() {
-        return orderPrice;
     }
 
     public void setOrderPrice(BigDecimal orderPrice) {

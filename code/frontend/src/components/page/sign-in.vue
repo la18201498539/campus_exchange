@@ -1,4 +1,4 @@
-<template>
+ <template>
     <div class="sign-in-container">
         <el-card class="box-card">
             <div class="sign-in-body">
@@ -44,6 +44,7 @@
                         <div class="el-icon-lock"></div>
                     </template>
                 </el-input>
+
                 <div class="sign-in-submit">
                     <el-button type="primary" @click="signIn">Submit</el-button>
                 </div>
@@ -51,11 +52,22 @@
                     <span @click="toLogin" class="login-text">Login</span>
                 </div>
             </div>
+
+          <!-- Verification Code Dialog -->
+          <el-dialog title="Verify Email" :visible.sync="showVerifyDialog" width="30%">
+            <span>Enter the 6-digit code sent to your email:</span>
+            <el-input v-model="activeCode" placeholder="6-digit code" maxlength="6" class="sign-in-input"/>
+            <div slot="footer" class="dialog-footer">
+              <el-button @click="verifyCode">Verify</el-button>
+            </div>
+          </el-dialog>
         </el-card>
     </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
     name: 'sign-in',
     data() {
@@ -65,7 +77,9 @@ export default {
                 email: '',
                 userPassword: '',
                 nickname: ''
-            }
+            },
+          showVerifyDialog: false,
+          activeCode: '',
         };
     },
     methods: {
@@ -93,11 +107,21 @@ export default {
                         .signIn(this.userInfo)
                         .then((res) => {
                             if (res.status_code === 1) {
-                                this.$message({
-                                    message: 'Registration successful!',
-                                    type: 'success'
-                                });
-                                this.$router.replace({ path: '/login' });
+                              this.$confirm(
+                                  `A verification email has been sent to ${this.userInfo.email}. Please check your inbox for the 6-digit verification code to activate your email.`,
+                                  'Email Sent',
+                                  {
+                                    confirmButtonText: 'OK',
+                                    type: 'info',
+                                    // callback: () => {
+                                    //   // Redirect to login page after confirmation
+                                    //   this.$router.replace({ path: '/login' });
+                                    // }
+                                  }
+                              );
+
+                              //显示输入验证码框
+                              this.showVerifyDialog = true;
                             } else {
                                 this.$message.error('Registration failed, user already exists!');
                             }
@@ -110,7 +134,25 @@ export default {
             } else {
                 this.$message.error('Registration information is incomplete!');
             }
-        }
+        },
+
+      //然后请求后端验证
+      verifyCode() {
+        axios.post('http://47.252.36.46:8080/user/verifyCode', {
+          email: this.userInfo.email,
+          activeCode: this.activeCode
+        }).then(res => {
+          if (res.data.status_code === 1) { // 验证成功
+            this.$message.success("Registration successful! Account activated.");
+            this.$router.push('/login');
+          } else { // 验证失败
+            this.$message.error("Invalid verification code. Please try again.");
+            this.showVerifyDialog = true; // 保持弹窗显示状态
+          }
+        }).catch(error => {
+          this.$message.error("An error occurred. Please try again later.");
+        });
+      }
     }
 };
 </script>

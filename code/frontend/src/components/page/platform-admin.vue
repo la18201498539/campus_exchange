@@ -1,193 +1,198 @@
 <template>
-	<div style="background-color: #f6f6f6;min-height:100vh;">
-		<el-container>
-			<el-header>
-				<div class="header">
-					<div class="app-name">
-						<router-link to="/platform-admin">Admin Management</router-link>
-					</div>
-						<span class="app-title">Admin：{{admin.nickname}}</span>
-					<div class="app-logOut">
-						<el-button style="margin-right: 100px" type="primary" @click="logout">Log Out</el-button>
-					</div>
-				</div>
-			</el-header>
-			<el-container>
-				<div class="mainBody">
-					<el-aside>
-						<el-col :span="24">
-							<el-menu
-								default-active="1"
-								class="el-menu-vertical-demo"
-								@select="handleSelect"
-								background-color="#ffffff"
-								text-color="#303133"
-								active-text-color="#409EFF">
-								<el-menu-item index="1">
-									<i class="el-icon-goods"></i>
-									<span>Idle Management</span>
-								</el-menu-item>
-								<el-menu-item index="2">
-									<i class="el-icon-s-goods"></i>
-									<span slot="title">Order Management</span>
-								</el-menu-item>
-								<el-menu-item index="3">
-									<i class="el-icon-s-custom"></i>
-									<span slot="title">User Management</span>
-								</el-menu-item>
-							</el-menu>
-						</el-col>
-					</el-aside>
-					<el-main>
-						<IdleGoods v-if="mode == 1"></IdleGoods>
-						<orderList v-if="mode == 2"></orderList>
-						<userList v-if="mode == 3"></userList>
-					</el-main>
-				</div>
-			</el-container>
-		</el-container>
-		<div class="foot">
-			<app-foot></app-foot>
-		</div>
-	</div>
+    <div style="background-color: #f6f6f6; min-height: 100vh">
+        <el-container>
+            <el-header>
+                <div class="header">
+                    <div class="app-name">
+                        <router-link to="/platform-admin">Admin Management</router-link>
+                    </div>
+                    <span class="app-title">Admin：{{ admin.nickname }}</span>
+                    <div class="app-logOut">
+                        <el-button style="margin-right: 100px" type="primary" @click="logout">Log Out</el-button>
+                    </div>
+                </div>
+            </el-header>
+            <el-container>
+                <div class="mainBody">
+                    <el-aside>
+                        <el-col :span="24">
+                            <el-menu
+                                default-active="1"
+                                class="el-menu-vertical-demo"
+                                @select="handleSelect"
+                                background-color="#ffffff"
+                                text-color="#303133"
+                                active-text-color="#409EFF"
+                            >
+                                <el-menu-item index="1">
+                                    <i class="el-icon-goods"></i>
+                                    <span>Item Management</span>
+                                </el-menu-item>
+                                <el-menu-item index="2">
+                                    <i class="el-icon-s-goods"></i>
+                                    <span slot="title">Order Management</span>
+                                </el-menu-item>
+                                <el-menu-item index="3">
+                                    <i class="el-icon-s-custom"></i>
+                                    <span slot="title">User Management</span>
+                                </el-menu-item>
+                            </el-menu>
+                        </el-col>
+                    </el-aside>
+                    <el-main>
+                        <IdleGoods v-if="mode == 1"></IdleGoods>
+                        <orderList v-if="mode == 2"></orderList>
+                        <userList v-if="mode == 3"></userList>
+                    </el-main>
+                </div>
+            </el-container>
+        </el-container>
+        <div class="foot">
+            <app-foot></app-foot>
+        </div>
+    </div>
 </template>
 
 <script>
-    import AppFoot from '../common/AppFoot.vue'
-    import IdleGoods from '../common/IdleGoods.vue'
-    import orderList from '../common/orderList.vue'
-    import userList from '../common/userList.vue'
+import AppFoot from '../common/AppFoot.vue';
+import IdleGoods from '../common/IdleGoods.vue';
+import orderList from '../common/orderList.vue';
+import userList from '../common/userList.vue';
 
-    export default {
-        name: "platform-admin",
-        components: {
-            AppFoot,
-            IdleGoods,
-            orderList,
-            userList,
-        },
-        data() {
-            return {
-                mode: 1,
-                admin: {
-                    nickname: 'Admin',
-                },
+export default {
+    name: 'platform-admin',
+    components: {
+        AppFoot,
+        IdleGoods,
+        orderList,
+        userList
+    },
+    data() {
+        return {
+            mode: 1,
+            admin: {
+                nickname: 'Admin'
             }
-        },
-        created() {
-            this.admin.nickname = this.$sta.adminName;
-        },
-        methods: {
-            logout() {
-                this.$api.loginOut({}).then(res => {
+        };
+    },
+    created() {
+        this.admin.nickname = this.$sta.adminName;
+    },
+    methods: {
+        logout() {
+            this.$api
+                .loginOut({})
+                .then((res) => {
                     if (res.status_code === 1) {
                         this.$sta.isLogin = false;
                         this.$sta.adminName = '';
-                        this.$router.push({path: '/login-admin'});
+                        this.$router.push({ path: '/login-admin' });
                     }
-                }).catch(e => {
-                    console.log(e)
                 })
-            },
-            handleSelect(val) {
-                if (this.mode !== val) {
-                    this.mode = val
-                }
-            },
-            searchIdle(){
-                if (this.mode === 1) {
-                    this.$api.adminQueryOrder({
+                .catch((e) => {
+                    console.log(e);
+                });
+        },
+        handleSelect(val) {
+            if (this.mode !== val) {
+                this.mode = val;
+            }
+        },
+        searchIdle() {
+            if (this.mode === 1) {
+                this.$api
+                    .adminQueryOrder({
                         page: page,
                         nums: 8,
-												searchValue: this.searchValue
-                    }).then(res => {
-                        console.log(res);
-                    }).catch(e => {
-                        console.log(e)
+                        searchValue: this.searchValue
                     })
-                } else if(this.mode === 2){
-
-                } else {
-
-								}
-						}
-        },
+                    .then((res) => {
+                        console.log(res);
+                    })
+                    .catch((e) => {
+                        console.log(e);
+                    });
+            } else if (this.mode === 2) {
+            } else {
+            }
+        }
     }
+};
 </script>
 
 <style scoped>
-	.header {
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		min-width: 100vw;
-		height: 58px;
-		background: #ffffff;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		border-bottom: #eeeeee solid 2px;
-		z-index: 1000;
-	}
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    min-width: 100vw;
+    height: 58px;
+    background: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: #eeeeee solid 2px;
+    z-index: 1000;
+}
 
-	.app-name {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		min-width: 10vw;
-		flex: 1;
-		height: 100%;
-		border-right: 1px solid #e5e5e5;
-	}
+.app-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 10vw;
+    flex: 1;
+    height: 100%;
+    border-right: 1px solid #e5e5e5;
+}
 
-	.app-name a {
-		color: #409EFF;
-		font-size: 18px;
-		font-weight: 800;
-		text-decoration: none;
-		padding: 0 20px;
-	}
+.app-name a {
+    color: #409eff;
+    font-size: 18px;
+    font-weight: 800;
+    text-decoration: none;
+    padding: 0 20px;
+}
 
-	.app-title {
-		display: flex;
-		justify-content: center;
-		flex: 8;
-		width: 100px;
-	}
+.app-title {
+    display: flex;
+    justify-content: center;
+    flex: 8;
+    width: 100px;
+}
 
-	.app-logOut {
-		display: flex;
-		flex: 1;
-		justify-content: flex-end;
-		align-items: center;
-	}
+.app-logOut {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    align-items: center;
+}
 
-	.mainBody {
-		display: flex;
-		width: 100%;
-	}
+.mainBody {
+    display: flex;
+    width: 100%;
+}
 
-	aside {
-		flex: 1;
-		box-sizing: content-box;
-		min-width: 10vw;
-		min-height: calc(100vh - 120px);
-		background-color: rgb(255, 255, 255);
-		border-bottom: 1px solid #e5e5e5;
-		border-right: 1px solid #e5e5e5;
-	}
+aside {
+    flex: 1;
+    box-sizing: content-box;
+    min-width: 10vw;
+    min-height: calc(100vh - 120px);
+    background-color: rgb(255, 255, 255);
+    border-bottom: 1px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
+}
 
-	main {
-		flex: 9;
-	}
+main {
+    flex: 9;
+}
 
-	.foot {
-		position: absolute;
-		left: 0;
-		bottom: 0;
-		width: 100%;
-		height: 58px;
-		background-color: #ffffff;
-	}
+.foot {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 58px;
+    background-color: #ffffff;
+}
 </style>

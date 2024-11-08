@@ -42,12 +42,12 @@
     <select id="getUserByNumber" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from sh_user where account_number = #{searchValue} and user_status = #{mode}
+        from sh_user where account_number = #{searchValue} or user_status = #{mode}
     </select>
     <select id="getNormalUser" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from sh_user where user_status is null or user_status = 0 order by id desc limit #{begin}, #{nums}
+        from sh_user where user_status is null order by id desc limit #{begin}, #{nums}
     </select>
     <select id="getBanUser" resultMap="BaseResultMap">
         select

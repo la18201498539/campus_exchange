@@ -1,12 +1,14 @@
 package edu.bu.cs673.secondhand.domain;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * User class represents a user in the system with various attributes.
  * Author: YQ
  */
 public class User {
+
     private Long id;  // Unique identifier for the user
 
     private String accountNumber;  // User's account number
@@ -33,6 +35,8 @@ public class User {
 
     private String activationToken;  // Activation token for the user
 
+    private String activeCode;
+
     // Getters and Setters
 
     public Long getId() {
@@ -49,6 +53,14 @@ public class User {
 
     public void setAccountNumber(String accountNumber) {
         this.accountNumber = accountNumber == null ? null : accountNumber.trim();
+    }
+
+    public String getActiveCode() {
+        return activeCode;
+    }
+
+    public void setActiveCode(String activeCode) {
+        this.activeCode = activeCode;
     }
 
     public String getUserPassword() {
@@ -137,5 +149,9 @@ public class User {
 
     public void setActivationToken(String activationToken) {
         this.activationToken = activationToken;
+    }
+
+    public List<User> findUserByList(List<Long> idList) {
+        return List.of();
     }
 }
