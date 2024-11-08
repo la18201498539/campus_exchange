@@ -1,20 +1,14 @@
-This folder contains all source code and test code.
-
 ## How to Run?
 
 ### 1. Frontend
-
 ```
 cd code/frontend
 ```
-
 #### 1.1 Make sure you have npm or node installed.
-
 ```
-npm -v
+npm -v 
 node -v
 ```
-
 #### 1.2 Install all the dependencies
 
 ```
@@ -45,6 +39,14 @@ npm run build
 ### 2. Copy Front-end App to Backend (CORS)
 
 ```
+npm run build
+```
+> The Compiled files under: ./dist
+
+
+### 2. Copy Fron-end App to Backend (CORS)
+
+```
 cp -r ./dist/* ../backend/src/main/resource/static/
 ```
 
@@ -66,6 +68,7 @@ Here, we recommend **IntelliJ IDEA**
 cd backend
 
 mvn clean install -DskipTests
+
 ```
 
 #### 3.2 Start Spring Boot Application (For Dev.)
