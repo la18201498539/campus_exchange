@@ -71,7 +71,7 @@ Testing services with JUnit test. Then, the controller is tested with actual API
 
 - From Docker:
   - docker pull chhchen/campus_exchange:latest
-  - docker run -itd --net host  chhchen/campus_exchange:latest
+  - docker run -itd -p 8080:8080  chhchen/campus_exchange:latest
 
 ## Team Members
 | Name   | Email | Role |
