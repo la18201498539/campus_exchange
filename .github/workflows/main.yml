@@ -4,9 +4,9 @@ name: Npm, Java CI and deploy to docker
 # When will the action run
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "iteration-3" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "iteration-3" ]
 
 jobs:
   # build the project
