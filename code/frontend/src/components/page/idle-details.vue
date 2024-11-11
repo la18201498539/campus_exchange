@@ -9,6 +9,7 @@
                             style="width: 80px; height: 80px; border-radius: 5px"
                             :src="idleItemInfo.user.avatar"
                             fit="contain"
+                            error="No image"
                         ></el-image>
                         <div style="margin-left: 10px">
                             <div class="details-header-user-info-nickname">{{ idleItemInfo.user.nickname }}</div>
@@ -22,7 +23,7 @@
                             ${{ idleItemInfo.idlePrice }}
                         </div>
                         <div v-if="!isMaster && idleItemInfo.idleStatus !== 1" style="color: red; font-size: 16px">
-                            Item has been removed or deleted.
+                            Item has been deleted.
                         </div>
                         <el-button
                             v-show="idleItemInfo.idlePrice > 0"
@@ -82,15 +83,7 @@
                                 <i class="el-icon-close el-icon--right"></i
                             ></el-button>
                         </div>
-                        <el-input
-                            type="textarea"
-                            autosize
-                            placeholder="Comment..."
-                            v-model="messageContent"
-                            maxlength="200"
-                            show-word-limit
-                        >
-                        </el-input>
+                        <el-input autosize placeholder="Comment..." v-model="messageContent" maxlength="200" show-word-limit> </el-input>
                         <div class="message-send-button">
                             <el-button plain @click="sendMessage">Send message</el-button>
                         </div>

@@ -66,8 +66,8 @@
                 <div class="idle-container">
                     <el-tabs v-model="activeName" @tab-click="handleClick">
                         <el-tab-pane label="Recently Published" name="1"></el-tab-pane>
-                        <el-tab-pane label="Unlisted" name="2"></el-tab-pane>
-                        <el-tab-pane label="My Shopping Cart" name="3"></el-tab-pane>
+                        <el-tab-pane label="Withdrawal" name="2"></el-tab-pane>
+                        <el-tab-pane label="My Collection" name="3"></el-tab-pane>
                         <el-tab-pane label="Sales Record" name="4"></el-tab-pane>
                         <el-tab-pane label="Purchase Record" name="5"></el-tab-pane>
                     </el-tabs>
@@ -225,9 +225,9 @@ export default {
                 defaultFlag: false
             },
             activeName: '1',
-            handleName: ['Unlist', 'Delete', 'Remove from Cart', '', ''],
+            handleName: ['Withdraw', 'Delete', 'Remove', '', ''],
             dataList: [[], [], [], [], []],
-            orderStatus: ['Pending', 'On Hold', 'Completed', 'Canceled'],
+            orderStatus: ['Pending', 'Complete', 'Canceled'],
             userInfoDialogVisible: false,
             notUserNicknameEdit: true,
             userPasswordEdit: false,
