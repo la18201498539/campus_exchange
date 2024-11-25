@@ -98,7 +98,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="edu.bu.cs673.secondhand.domain.Favorite">
+  <insert id="insert" parameterType="edu.bu.cs673.secondhand.domain.Favorite" useGeneratedKeys="true" keyProperty="id">
     insert into sh_favorite (id, create_time, user_id, 
       idle_id)
     values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{userId,jdbcType=BIGINT}, 
