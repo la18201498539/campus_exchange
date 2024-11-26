@@ -8,7 +8,7 @@
                     <el-row :gutter="30">
                         <el-col :span="6" v-for="(idle, index) in idleList" :key="index">
                             <div class="idle-card" @click="toDetails(idle)">
-                                <el-image style="width: 100%; height: 160px" :src="idle.imgUrl" fit="contain">
+                                <el-image style="width: 100%; height: 160px" :src="idle.imgUrl" fit="contain" error="No image">
                                     <div slot="error" class="image-slot">
                                         <i class="el-icon-picture-outline">No image</i>
                                     </div>
@@ -26,7 +26,7 @@
                                 </el-row>
                                 <div class="idle-time">{{ idle.timeStr }}</div>
                                 <div class="user-info">
-                                    <el-image style="width: 30px; height: 30px" :src="idle.user.avatar" fit="contain">
+                                    <el-image style="width: 30px; height: 30px" :src="idle.user.avatar" fit="contain" error="No image">
                                         <div slot="error" class="image-slot">
                                             <i class="el-icon-picture-outline">No image</i>
                                         </div>

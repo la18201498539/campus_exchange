@@ -15,6 +15,7 @@
                                 style="width: 120px; height: 120px; border-radius: 10px"
                                 :src="userInfo.avatar"
                                 fit="contain"
+                                error="No image"
                             ></el-image>
                         </el-upload>
                         <div class="user-info-details-text">
@@ -74,7 +75,7 @@
                     <div class="idle-container-list">
                         <div v-for="(item, index) in dataList[activeName - 1]" :key="index" class="idle-container-list-item">
                             <div class="idle-container-list-item-detail" @click="toDetails(activeName, item)">
-                                <el-image style="width: 100px; height: 100px" :src="item.imgUrl" fit="cover">
+                                <el-image style="width: 100px; height: 100px" :src="item.imgUrl" fit="cover" error="No image">
                                     <div slot="error" class="image-slot">
                                         <i class="el-icon-picture-outline">No Image</i>
                                     </div>

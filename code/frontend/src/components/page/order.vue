@@ -122,7 +122,7 @@ export default {
             dialogVisible: false,
             addressDialogVisible: false,
             addressData: [],
-            orderStatus: ['Pending', 'On Hold', 'Completed', 'Canceled'],
+            orderStatus: ['Pending', 'Completed', 'Canceled', ''],
             orderInfo: {
                 createTime: '',
                 id: 0,

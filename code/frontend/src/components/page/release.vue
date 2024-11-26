@@ -61,6 +61,7 @@
                             <el-image
                                 style="width: 600px; margin-bottom: 2px"
                                 fit="contain"
+                                error="No image"
                                 v-for="(img, index) in imgList"
                                 :key="index"
                                 :src="img"
