@@ -4,8 +4,8 @@ const options = [
         label: 'BU Central',
         children: [
             {
-                value: 'FitRec Center',
-                label: 'FitRec Center',
+                value: 'FitRec',
+                label: 'FitRec',
                 children: [
                     { value: '1st Floor', label: '1st Floor' },
                     { value: '2nd Floor', label: '2nd Floor' },
@@ -16,8 +16,8 @@ const options = [
                 ]
             },
             {
-                value: 'College of Fine Arts',
-                label: 'College of Fine Arts',
+                value: 'CFA',
+                label: 'CFA',
                 children: [
                     { value: '1st Floor', label: '1st Floor' },
                     { value: '2nd Floor', label: '2nd Floor' },
@@ -28,8 +28,8 @@ const options = [
                 ]
             },
             {
-                value: 'George Sherman Union',
-                label: 'George Sherman Union',
+                value: 'GSU',
+                label: 'GSU',
                 children: [
                     { value: '1st Floor', label: '1st Floor' },
                     { value: '2nd Floor', label: '2nd Floor' },
@@ -40,26 +40,8 @@ const options = [
                 ]
             },
             {
-                value: 'Mugar Memorial Library',
-                label: 'Mugar Memorial Library',
-                children: [
-                    { value: '1st Floor', label: '1st Floor' },
-                    { value: '2nd Floor', label: '2nd Floor' },
-                    {
-                        value: '3rd Floor',
-                        label: '3rd Floor'
-                    },
-                    { value: '4th Floor', label: '4th Floor' },
-                    { value: '5th Floor', label: '5th Floor' },
-                    {
-                        value: '6th Floor',
-                        label: '6th Floor'
-                    }
-                ]
-            },
-            {
-                value: 'Tsai Performance Center',
-                label: 'Tsai Performance Center',
+                value: 'Mugar',
+                label: 'Mugar',
                 children: [
                     { value: '1st Floor', label: '1st Floor' },
                     { value: '2nd Floor', label: '2nd Floor' },
@@ -76,8 +58,8 @@ const options = [
                 ]
             },
             {
-                value: 'School of Theology',
-                label: 'School of Theology',
+                value: 'STH',
+                label: 'STH',
                 children: [
                     { value: '1st Floor', label: '1st Floor' },
                     { value: '2nd Floor', label: '2nd Floor' },
@@ -94,8 +76,8 @@ const options = [
                 ]
             },
             {
-                value: 'College of General Studies',
-                label: 'College of General Studies',
+                value: 'CAS',
+                label: 'CAS',
                 children: [
                     { value: '1st Floor', label: '1st Floor' },
                     { value: '2nd Floor', label: '2nd Floor' },
@@ -112,40 +94,8 @@ const options = [
         label: 'BU East',
         children: [
             {
-                value: 'School of Management',
-                label: 'School of Management',
-                children: [
-                    { value: '1st Floor', label: '1st Floor' },
-                    { value: '2nd Floor', label: '2nd Floor' },
-                    {
-                        value: '3rd Floor',
-                        label: '3rd Floor'
-                    },
-                    { value: '4th Floor', label: '4th Floor' },
-                    { value: '5th Floor', label: '5th Floor' },
-                    {
-                        value: '6th Floor',
-                        label: '6th Floor'
-                    }
-                ]
-            },
-            {
-                value: 'Barnes & Noble',
-                label: 'Barnes & Noble',
-                children: [
-                    { value: '1st Floor', label: '1st Floor' },
-                    { value: '2nd Floor', label: '2nd Floor' },
-                    {
-                        value: '3rd Floor',
-                        label: '3rd Floor'
-                    },
-                    { value: '4th Floor', label: '4th Floor' },
-                    { value: '5th Floor', label: '5th Floor' }
-                ]
-            },
-            {
-                value: 'Warren Towers',
-                label: 'Warren Towers',
+                value: 'Questrom',
+                label: 'Questrom',
                 children: [
                     { value: '1st Floor', label: '1st Floor' },
                     { value: '2nd Floor', label: '2nd Floor' },
@@ -180,8 +130,8 @@ const options = [
                 ]
             },
             {
-                value: 'Metcalf Science Center',
-                label: 'Metcalf Science Center',
+                value: 'BU Police',
+                label: 'BU Police',
                 children: [
                     { value: '1st Floor', label: '1st Floor' },
                     { value: '2nd Floor', label: '2nd Floor' },
@@ -198,62 +148,8 @@ const options = [
                 ]
             },
             {
-                value: 'Shelton Hall',
-                label: 'Shelton Hall',
-                children: [
-                    { value: '1st Floor', label: '1st Floor' },
-                    { value: '2nd Floor', label: '2nd Floor' },
-                    {
-                        value: '3rd Floor',
-                        label: '3rd Floor'
-                    },
-                    { value: '4th Floor', label: '4th Floor' },
-                    { value: '5th Floor', label: '5th Floor' },
-                    {
-                        value: '6th Floor',
-                        label: '6th Floor'
-                    }
-                ]
-            },
-            {
-                value: 'School of Education',
-                label: 'School of Education',
-                children: [
-                    { value: '1st Floor', label: '1st Floor' },
-                    { value: '2nd Floor', label: '2nd Floor' },
-                    {
-                        value: '3rd Floor',
-                        label: '3rd Floor'
-                    },
-                    { value: '4th Floor', label: '4th Floor' },
-                    { value: '5th Floor', label: '5th Floor' },
-                    {
-                        value: '6th Floor',
-                        label: '6th Floor'
-                    }
-                ]
-            },
-            {
-                value: 'Boston University Police',
-                label: 'Boston University Police',
-                children: [
-                    { value: '1st Floor', label: '1st Floor' },
-                    { value: '2nd Floor', label: '2nd Floor' },
-                    {
-                        value: '3rd Floor',
-                        label: '3rd Floor'
-                    },
-                    { value: '4th Floor', label: '4th Floor' },
-                    { value: '5th Floor', label: '5th Floor' },
-                    {
-                        value: '6th Floor',
-                        label: '6th Floor'
-                    }
-                ]
-            },
-            {
-                value: 'Boston University Theatre',
-                label: 'Boston University Theatre',
+                value: 'Theatre',
+                label: 'Theatre',
                 children: [
                     { value: '1st Floor', label: '1st Floor' },
                     { value: '2nd Floor', label: '2nd Floor' },
