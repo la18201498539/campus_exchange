@@ -57,7 +57,7 @@
                         }}
                     </div> -->
                 </div>
-                <el-dialog title="Prompt" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
+                <!-- <el-dialog title="Prompt" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
                     <span
                         >Please click 'Confirm' to mark order as complete. Reminder: the transaction will happen offline. Be careful.</span
                     >
@@ -65,14 +65,14 @@
                     <span slot="footer" class="dialog-footer">
                         <el-button type="primary" @click="putOnHold">Confirm</el-button>
                     </span>
-                </el-dialog>
+                </el-dialog> -->
 
                 <div class="menu">
                     <el-button
                         v-if="userId == orderInfo.userId && orderInfo.orderStatus === 0"
                         type="danger"
                         plain
-                        @click="changeOrderStatus(4, orderInfo)"
+                        @click="changeOrderStatus(2, orderInfo)"
                         >Cancel Order</el-button
                     >
                     <!--
