@@ -1,7 +1,7 @@
 # Second-Hand Market
 
 ## Demo
-  http://8.221.118.13:8080/
+  http://47.90.156.233:8080/
   
   > Dummy Link: For application demonstration only.
 ## Project Description
