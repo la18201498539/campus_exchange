@@ -39,7 +39,7 @@
                             type="primary"
                             plain
                             @click="favoriteButton(idleItemInfo)"
-                            >{{ isFavorite ? 'Cancel cart' : 'Add to cart' }}</el-button
+                            >{{ isFavorite ? 'Cancel' : 'Favorite' }}</el-button
                         >
                         <el-button
                             v-if="isMaster && idleItemInfo.idleStatus === 1"
@@ -314,7 +314,7 @@ export default {
                         console.log(res);
                         if (res.status_code === 1) {
                             this.$message({
-                                message: 'Item added to cart!',
+                                message: 'Item added to favorite!',
                                 type: 'success'
                             });
                             this.isFavorite = true;
