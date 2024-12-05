@@ -19,7 +19,7 @@ import java.time.Duration;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class AdminServiceSeleniumTest {
+ class AdminServiceSeleniumTest {
     private WebDriver driver;
 
     @LocalServerPort
@@ -42,7 +42,7 @@ public class AdminServiceSeleniumTest {
     }
 
     @Test
-    public void testAdminLogin() throws InterruptedException {
+     void testAdminLogin() throws InterruptedException {
         // Navigate to the admin login URL
         driver.get("http://47.90.156.233:8080/admin/login?accountNumber=admin%40bu.edu&adminPassword=123456");
 
@@ -64,9 +64,6 @@ public class AdminServiceSeleniumTest {
         // Check if the response contains the expected fields
         assertTrue(jsonText.contains("admin@bu.edu"), "Expected 'accountNumber' field not found or incorrect.");
         assertTrue(jsonText.contains("super_admin"), "Expected 'adminName' field not found or incorrect.");
-
-        // Add a delay for observation (optional)
-        Thread.sleep(5000); // Wait for 5 seconds
     }
 
 

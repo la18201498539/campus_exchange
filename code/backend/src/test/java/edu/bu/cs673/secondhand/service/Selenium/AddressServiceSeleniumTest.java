@@ -19,7 +19,7 @@ import java.time.Duration;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class AddressServiceSeleniumTest {
+ class AddressServiceSeleniumTest {
     private WebDriver driver;
 
     @LocalServerPort
@@ -42,7 +42,7 @@ public class AddressServiceSeleniumTest {
     }
 
     @Test
-    public void testGetAddressByUser() throws InterruptedException {
+     void testGetAddressByUser() throws InterruptedException {
         // Access the address info page
         String url = "http://47.90.156.233:8080/address/info";
         driver.get(url);
@@ -73,9 +73,6 @@ public class AddressServiceSeleniumTest {
         // Validate the JSON response structure
         assertTrue(jsonResponse.contains("70"), "Expected userId '70' not found in JSON response.");
         assertTrue(jsonResponse.contains("Srujana N"), "Expected consigneeName 'Srujana N' not found.");
-
-        // Add a delay for observation
-        Thread.sleep(5000); // Wait for 5 seconds
     }
 
 }

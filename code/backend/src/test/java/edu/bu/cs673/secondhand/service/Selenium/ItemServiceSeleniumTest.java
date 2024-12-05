@@ -19,7 +19,7 @@ import java.time.Duration;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class ItemServiceSeleniumTest {
+ class ItemServiceSeleniumTest {
     private WebDriver driver;
 
     @LocalServerPort
@@ -42,7 +42,7 @@ public class ItemServiceSeleniumTest {
     }
 
     @Test
-    public void testGetAllIdleItems() throws InterruptedException {
+     void testGetAllIdleItems() throws InterruptedException {
         // Navigate to the endpoint that displays the item list
         driver.get("http://localhost:" + port + "/item/list");
 
@@ -79,8 +79,5 @@ public class ItemServiceSeleniumTest {
         for (String expectedItem : expectedItems) {
             assertTrue(jsonText.contains(expectedItem), "Expected item not found in JSON response: " + expectedItem);
         }
-
-        // Add a delay for observation (optional)
-        Thread.sleep(5000); // Wait for 5 seconds
     }
 }

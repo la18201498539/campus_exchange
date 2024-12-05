@@ -19,7 +19,7 @@ import java.time.Duration;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class OrderServiceSeleniumTest {
+ class OrderServiceSeleniumTest {
     private WebDriver driver;
 
     @LocalServerPort
@@ -42,7 +42,7 @@ public class OrderServiceSeleniumTest {
     }
 
     @Test
-    public void testGetOrdersByUser() throws InterruptedException {
+     void testGetOrdersByUser() throws InterruptedException {
         // Access the orders endpoint
         String url = "http://47.90.156.233:8080/order/my";
         driver.get(url);
@@ -80,8 +80,6 @@ public class OrderServiceSeleniumTest {
         assertTrue(jsonResponse.contains("paymentStatus"), "Expected 'paymentStatus' field not found.");
         assertTrue(jsonResponse.contains("orderPrice"), "Expected 'orderPrice' field not found.");
 
-        // Add a delay for observation
-        Thread.sleep(5000); // Wait for 5 seconds
     }
 
 }

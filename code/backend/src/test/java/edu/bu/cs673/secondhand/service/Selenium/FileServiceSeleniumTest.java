@@ -19,7 +19,7 @@ import java.time.Duration;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class FileServiceSeleniumTest {
+ class FileServiceSeleniumTest {
     private WebDriver driver;
 
     @LocalServerPort
@@ -42,7 +42,7 @@ public class FileServiceSeleniumTest {
     }
 
     @Test
-    public void testGetImageByName() throws InterruptedException {
+     void testGetImageByName() throws InterruptedException {
         // Access the image endpoint with the query parameter
         String url = "http://47.90.156.233:8080/image?imageName=file16952194621441015alabaster-co-UtRyYXcbK6A-unsplash.jpg";
         driver.get(url);
@@ -74,8 +74,6 @@ public class FileServiceSeleniumTest {
         assertTrue(imageUrl.contains("file16952194621441015alabaster-co-UtRyYXcbK6A-unsplash.jpg"),
                 "Image URL does not contain the expected file name.");
 
-        // Add a delay for observation
-        Thread.sleep(5000); // Wait for 5 seconds
     }
 
 }

@@ -19,7 +19,7 @@ import java.time.Duration;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class FavoriteServiceSeleniumTest {
+ class FavoriteServiceSeleniumTest {
     private WebDriver driver;
 
     @LocalServerPort
@@ -42,7 +42,7 @@ public class FavoriteServiceSeleniumTest {
     }
 
     @Test
-    public void testGetFavoriteItemsByUser() throws InterruptedException {
+     void testGetFavoriteItemsByUser() throws InterruptedException {
         // Access the favorite items page
         String url = "http://47.90.156.233:8080/favorite/my";
         driver.get(url);
@@ -74,9 +74,6 @@ public class FavoriteServiceSeleniumTest {
         assertTrue(jsonResponse.contains("70"), "Expected userId '70' not found in JSON response.");
         assertTrue(jsonResponse.contains("chips"), "Expected idleName 'chips' not found in JSON response.");
         assertTrue(jsonResponse.contains("chips for Texas Holdem 99% new"), "Expected idleDetails not found.");
-
-        // Add a delay for observation
-        Thread.sleep(5000); // Wait for 5 seconds
     }
 
 }
