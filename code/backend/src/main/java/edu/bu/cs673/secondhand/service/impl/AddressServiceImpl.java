@@ -45,7 +45,7 @@ public class AddressServiceImpl implements AddressService {
             addressMapper.updateByUserIdSelective(a);
         }else {
             List<Address> list=addressMapper.getDefaultAddress(addressModel.getUserId());
-            if(null==list||0==list.size()){
+            if(null==list||list.isEmpty()){
                 addressModel.setDefaultFlag(true);
             }
         }

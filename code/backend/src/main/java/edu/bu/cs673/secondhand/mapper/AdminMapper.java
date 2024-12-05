@@ -10,9 +10,6 @@ import java.util.List;
 
 @Mapper
 public interface AdminMapper {
-//    long countByExample(AdminExample example);
-//
-//    int deleteByExample(AdminExample example);
 
     int deleteByPrimaryKey(Long id);
 
@@ -20,15 +17,9 @@ public interface AdminMapper {
 
     int insertSelective(Admin row);
 
-//    List<Admin> selectByExampleWithRowbounds(AdminExample example, RowBounds rowBounds);
-
     List<Admin> selectByExample(AdminExample example);
 
     Admin selectByPrimaryKey(Long id);
-
-//    int updateByExampleSelective(@Param("row") Admin row, @Param("example") AdminExample example);
-
-//    int updateByExample(@Param("row") Admin row, @Param("example") AdminExample example);
 
     int updateByPrimaryKeySelective(Admin row);
 

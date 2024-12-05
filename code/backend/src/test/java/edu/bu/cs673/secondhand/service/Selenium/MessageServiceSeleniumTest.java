@@ -19,7 +19,7 @@ import java.time.Duration;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class MessageServiceSeleniumTest {
+ class MessageServiceSeleniumTest {
     private WebDriver driver;
 
     @LocalServerPort
@@ -42,7 +42,7 @@ public class MessageServiceSeleniumTest {
     }
 
     @Test
-    public void testGetMessageInfo() throws InterruptedException {
+     void testGetMessageInfo() throws InterruptedException {
         // Access the message info page (e.g., ID 66)
         driver.get("http://localhost:" + port + "/message/info?id=66");
 
@@ -64,13 +64,10 @@ public class MessageServiceSeleniumTest {
         // Assuming you can parse the JSON to get the content
         String expectedContent = "I like the gray writing desk, how much is it?";
         assertTrue(jsonText.contains(expectedContent), "Expected content not found in JSON response.");
-
-        // Add a delay for observation
-        Thread.sleep(5000); // Wait for 5 seconds
     }
 
     @Test
-    public void testGetAllIdleMessage() throws InterruptedException {
+     void testGetAllIdleMessage() throws InterruptedException {
         // Access the idle message endpoint with a specific idleId (e.g., 189)
         long idleId = 189; // The idleId you want to test
         driver.get("http://localhost:" + port + "/message/idle?idleId=" + idleId);
@@ -100,13 +97,10 @@ public class MessageServiceSeleniumTest {
         for (String expectedMessage : expectedMessages) {
             assertTrue(jsonText.contains(expectedMessage), "Expected message not found in JSON response: " + expectedMessage);
         }
-
-        // Add a delay for observation
-        Thread.sleep(5000); // Wait for 5 seconds
     }
 
     @Test
-    public void testGetAllMyMessage() throws InterruptedException {
+     void testGetAllMyMessage() throws InterruptedException {
         // Access my message endpoint
         driver.get("http://localhost:" + port + "/message/my");
 
@@ -141,8 +135,6 @@ public class MessageServiceSeleniumTest {
             assertTrue(jsonText.contains(expectedMessage), "Expected message not found in JSON response: " + expectedMessage);
         }
 
-        // Add a delay for observation
-        Thread.sleep(5000); // Wait for 5 seconds
     }
 
 }

@@ -63,7 +63,7 @@ public class MessageServiceImpl implements MessageService {
      */
     public List<Message> getAllMyMessage(Long userId){
         List<Message> list=messageDao.getMyMessage(userId);
-        if(list.size()>0){
+        if(!list.isEmpty()){
             List<Long> idList=new ArrayList<>();
             for(Message i:list){
                 idList.add(i.getUserId());
@@ -102,7 +102,7 @@ public class MessageServiceImpl implements MessageService {
      */
     public List<Message> getAllIdleMessage(Long idleId){
         List<Message> list=messageDao.getIdleMessage(idleId);
-        if(list.size()>0){
+        if(!list.isEmpty()){
             List<Long> idList=new ArrayList<>();
             for(Message i:list){
                 idList.add(i.getUserId());

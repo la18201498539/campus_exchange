@@ -6,7 +6,6 @@ import edu.bu.cs673.secondhand.service.EmailService;
 import edu.bu.cs673.secondhand.service.UserService;
 import edu.bu.cs673.secondhand.utils.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,7 +17,6 @@ import edu.bu.cs673.secondhand.domain.User;
 
 import com.google.common.collect.Sets;
 import java.util.Set;
-import java.util.Random;
 
 //
 // Email: qyyh@bu.edu,la1993@bu.edu
@@ -387,9 +385,9 @@ public class UserServiceImpl implements UserService {
     }
 
     private String generateAccountNumber() {
-        // 生成 UUID 并去掉横线
-        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
-        // 取前 16 位作为账号
+        // Generate UUID and remove dashes
+        String uuid = UUID.randomUUID().toString().replace("-", "");
+        // Take the first 16 digits as the account number
         return uuid.substring(0, 16);
     }
     @Override
@@ -427,7 +425,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void sendActivationEmail(String email, String activationToken) {
-
+        // this feature is already handled in a different place
     }
 
     /**
