@@ -84,7 +84,7 @@ public class IdleItemServiceImpl implements IdleItemService {
             result.add(model);
         }
 
-        return new PageVo<ItemModel>(result,1);
+        return new PageVo<>(result,1);
     }
 
     @Override
@@ -110,7 +110,7 @@ public class IdleItemServiceImpl implements IdleItemService {
         }
 
         long count = idleItemMapper.countByExample(itemExample);
-        return new PageVo<ItemModel>(result,count);
+        return new PageVo<>(result,count);
     }
 
     public PageVo<IdleItem> adminGetIdleList(int status, int page, int nums) {
@@ -120,7 +120,7 @@ public class IdleItemServiceImpl implements IdleItemService {
         criteria.andIdleStatusEqualTo(Byte.valueOf(String.valueOf(status)));
         List<IdleItem> list = itemMapper.selectByExampleWithRowbounds(itemExample, rowBounds);
 
-        if(list.size()>0){
+        if(!list.isEmpty()){
             List<Long> idList=new ArrayList<>();
             for(IdleItem i:list){
                 idList.add(i.getUserId());

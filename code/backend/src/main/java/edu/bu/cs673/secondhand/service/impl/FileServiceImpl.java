@@ -23,10 +23,8 @@ public class FileServiceImpl implements FileService {
 
     public boolean uploadFile(MultipartFile multipartFile,String fileName)throws IOException {
         File fileDir = new File(userFilePath);
-        if (!fileDir.exists()) {
-            if (!fileDir.mkdirs()) {
+        if (!fileDir.exists() && !fileDir.mkdirs()) {
                 return false;
-            }
         }
 
         logger.info(fileDir.getAbsolutePath() +"/"+fileName);
