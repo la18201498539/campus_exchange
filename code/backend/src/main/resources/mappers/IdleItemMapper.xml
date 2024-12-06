@@ -98,7 +98,7 @@
   </select>
   <select id="findIdleByList" parameterType="list" resultMap="BaseResultMap">
     SELECT
-    id, user_id, idle_name, idle_details, idle_price, release_time
+    id, user_id, idle_name, idle_details, picture_list, idle_price, release_time
     <!-- Add other necessary columns -->
     FROM sh_idle_item
     WHERE id IN
