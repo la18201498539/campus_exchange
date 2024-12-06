@@ -341,7 +341,8 @@ export default {
                 if (res.status_code === 1) {
                     let data = res.data;
                     for (let i = 0; i < data.length; i++) {
-                        data[i].detailAddressText = data[i].provinceName + data[i].cityName + data[i].regionName + data[i].detailAddress;
+                        data[i].detailAddressText =
+                            data[i].provinceName + ' ' + data[i].cityName + ' ' + data[i].regionName + ' ' + data[i].detailAddress;
                         data[i].defaultAddress = data[i].defaultFlag ? 'Default' : 'Set as Default';
                     }
                     this.addressData = data;
@@ -493,7 +494,7 @@ export default {
                             .then((res) => {
                                 if (res.status_code === 1) {
                                     this.$message({
-                                        message: 'Removed from cart!',
+                                        message: 'Removed from favorite!',
                                         type: 'success'
                                     });
                                     this.dataList[2].splice(index, 1);
