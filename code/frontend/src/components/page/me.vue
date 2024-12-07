@@ -6,7 +6,7 @@
                 <div class="user-info-container">
                     <div class="user-info-details">
                         <el-upload
-                            action="http://47.252.36.46:8080/file"
+                            action="http://47.90.156.233:8080/file"
                             :on-success="fileHandleSuccess"
                             :file-list="imgFileList"
                             accept="image/*"
@@ -15,6 +15,7 @@
                                 style="width: 120px; height: 120px; border-radius: 10px"
                                 :src="userInfo.avatar"
                                 fit="contain"
+                                error="No image"
                             ></el-image>
                         </el-upload>
                         <div class="user-info-details-text">
@@ -66,15 +67,15 @@
                 <div class="idle-container">
                     <el-tabs v-model="activeName" @tab-click="handleClick">
                         <el-tab-pane label="Recently Published" name="1"></el-tab-pane>
-                        <el-tab-pane label="Unlisted" name="2"></el-tab-pane>
-                        <el-tab-pane label="My Shopping Cart" name="3"></el-tab-pane>
+                        <el-tab-pane label="Withdrawal" name="2"></el-tab-pane>
+                        <el-tab-pane label="My Collection" name="3"></el-tab-pane>
                         <el-tab-pane label="Sales Record" name="4"></el-tab-pane>
                         <el-tab-pane label="Purchase Record" name="5"></el-tab-pane>
                     </el-tabs>
                     <div class="idle-container-list">
                         <div v-for="(item, index) in dataList[activeName - 1]" :key="index" class="idle-container-list-item">
                             <div class="idle-container-list-item-detail" @click="toDetails(activeName, item)">
-                                <el-image style="width: 100px; height: 100px" :src="item.imgUrl" fit="cover">
+                                <el-image style="width: 100px; height: 100px" :src="item.imgUrl" fit="cover" error="No image">
                                     <div slot="error" class="image-slot">
                                         <i class="el-icon-picture-outline">No Image</i>
                                     </div>
@@ -225,9 +226,9 @@ export default {
                 defaultFlag: false
             },
             activeName: '1',
-            handleName: ['Unlist', 'Delete', 'Remove from Cart', '', ''],
+            handleName: ['Withdraw', 'Delete', 'Remove', '', ''],
             dataList: [[], [], [], [], []],
-            orderStatus: ['Pending', 'On Hold', 'Completed', 'Canceled'],
+            orderStatus: ['Pending', 'Complete', 'Canceled'],
             userInfoDialogVisible: false,
             notUserNicknameEdit: true,
             userPasswordEdit: false,
@@ -340,7 +341,8 @@ export default {
                 if (res.status_code === 1) {
                     let data = res.data;
                     for (let i = 0; i < data.length; i++) {
-                        data[i].detailAddressText = data[i].provinceName + data[i].cityName + data[i].regionName + data[i].detailAddress;
+                        data[i].detailAddressText =
+                            data[i].provinceName + ' ' + data[i].cityName + ' ' + data[i].regionName + ' ' + data[i].detailAddress;
                         data[i].defaultAddress = data[i].defaultFlag ? 'Default' : 'Set as Default';
                     }
                     this.addressData = data;
@@ -492,7 +494,7 @@ export default {
                             .then((res) => {
                                 if (res.status_code === 1) {
                                     this.$message({
-                                        message: 'Removed from cart!',
+                                        message: 'Removed from favorite!',
                                         type: 'success'
                                     });
                                     this.dataList[2].splice(index, 1);

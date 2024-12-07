@@ -30,7 +30,7 @@
                         :data="addressData"
                         style="width: 100%"
                     >
-                        <el-table-column prop="consigneeName" label="Recipient Name" width="120"> </el-table-column>
+                        <el-table-column prop="consigneeName" label="Name" width="120"> </el-table-column>
                         <el-table-column prop="consigneePhone" label="Phone Number" width="140"> </el-table-column>
                         <el-table-column prop="detailAddressText" label="Address"> </el-table-column>
                         <el-table-column label=" " width="120">
@@ -57,22 +57,22 @@
                         }}
                     </div> -->
                 </div>
-                <el-dialog title="Prompt" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
+                <!-- <el-dialog title="Prompt" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
                     <span
-                        >Please click 'Confirm' to put the product on hold. Reminder: the transaction will happen offline. Be careful.</span
+                        >Please click 'Confirm' to mark order as complete. Reminder: the transaction will happen offline. Be careful.</span
                     >
                     <div class="block"></div>
                     <span slot="footer" class="dialog-footer">
                         <el-button type="primary" @click="putOnHold">Confirm</el-button>
                     </span>
-                </el-dialog>
+                </el-dialog> -->
 
                 <div class="menu">
                     <el-button
                         v-if="userId == orderInfo.userId && orderInfo.orderStatus === 0"
                         type="danger"
                         plain
-                        @click="changeOrderStatus(4, orderInfo)"
+                        @click="changeOrderStatus(2, orderInfo)"
                         >Cancel Order</el-button
                     >
                     <!--
@@ -89,15 +89,15 @@
                         type="primary"
                         plain
                         @click="changeOrderStatus(1, orderInfo)"
-                        >On Hold</el-button
+                        >Complete</el-button
                     >
-                    <el-button
+                    <!-- <el-button
                         v-if="userId == orderInfo.userId && orderInfo.orderStatus === 1"
                         type="primary"
                         plain
                         @click="changeOrderStatus(2, orderInfo)"
                         >Completed</el-button
-                    >
+                    > -->
                 </div>
             </div>
             <app-foot></app-foot>
@@ -122,7 +122,7 @@ export default {
             dialogVisible: false,
             addressDialogVisible: false,
             addressData: [],
-            orderStatus: ['Pending', 'On Hold', 'Completed', 'Canceled'],
+            orderStatus: ['Pending', 'Completed', 'Canceled', ''],
             orderInfo: {
                 createTime: '',
                 id: 0,
@@ -143,7 +143,7 @@ export default {
                 orderStatus: 0,
                 paymentStatus: 0,
                 paymentTime: '',
-                paymentWay: '',
+                paymentWay: 'Cash',
                 userId: 0
             },
             addressInfo: {
@@ -237,7 +237,8 @@ export default {
                 if (res.status_code === 1) {
                     let data = res.data;
                     for (let i = 0; i < data.length; i++) {
-                        data[i].detailAddressText = data[i].provinceName + data[i].cityName + data[i].regionName + data[i].detailAddress;
+                        data[i].detailAddressText =
+                            data[i].provinceName + ' ' + data[i].cityName + ' ' + data[i].regionName + ' ' + data[i].detailAddress;
                     }
                     console.log(data);
                     this.addressData = data;
@@ -287,11 +288,11 @@ export default {
         },
         changeOrderStatus(orderStatus, orderInfo) {
             if (orderStatus === 1) {
-                console.log('Putting order on hold');
+                console.log('Mark order as complete');
                 if (!this.addressInfo.detailAddress) {
                     this.$message.error('Please select an address!');
                 } else {
-                    this.$confirm('Confirm putting the order on hold', 'Order Status', {
+                    this.$confirm('Confirm order is complete', 'Order Status', {
                         confirmButtonText: 'Confirm',
                         cancelButtonText: 'Cancel',
                         type: 'warning'
@@ -309,7 +310,7 @@ export default {
                                     .then((res) => {
                                         if (res.status_code === 1) {
                                             this.$message({
-                                                message: 'Order is now on hold!',
+                                                message: 'Order is now complete!',
                                                 type: 'success'
                                             });
                                             this.orderInfo.orderStatus = orderStatus;

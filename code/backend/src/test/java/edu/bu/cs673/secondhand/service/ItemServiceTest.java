@@ -59,7 +59,7 @@ public class ItemServiceTest {
         User user = new User();
         IdleItem item = new IdleItem();
         item.setUserId(userId);
-        
+
         when(userMapper.selectByPrimaryKey(userId)).thenReturn(user);
         when(idleItemMapper.selectByPrimaryKey(id)).thenReturn(item);
 
@@ -85,9 +85,9 @@ public class ItemServiceTest {
     @Test
     public void testUpdateItem() {
         IdleItem item = new IdleItem();
-        
+
         when(idleItemMapper.updateByPrimaryKey(item)).thenReturn(1);
-        
+
         assertEquals(true, itemService.updateItem(item));
 
         verify(idleItemMapper, times(1)).updateByPrimaryKey(item);
@@ -96,9 +96,9 @@ public class ItemServiceTest {
     @Test
     public void testRemoveItem() {
         Long id = 1L;
-        
+
         when(idleItemMapper.deleteByPrimaryKey(id)).thenReturn(1);
-        
+
         assertEquals(true, itemService.removeItem(id));
 
         verify(idleItemMapper, times(1)).deleteByPrimaryKey(id);

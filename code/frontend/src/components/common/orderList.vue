@@ -114,7 +114,7 @@ export default {
             nowPage: 1,
             total: 0,
             paymentStatus: ['Unpaid', 'Paid'],
-            orderStatus: ['Pending', 'On hold', 'Complete', 'Cancelled'],
+            orderStatus: ['Pending', 'Complete', 'Cancelled', ''],
             Order: [],
             searchValue: ''
         };

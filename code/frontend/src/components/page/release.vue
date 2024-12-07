@@ -9,7 +9,6 @@
                     </el-input>
                     <el-input
                         class="release-idle-details-text"
-                        type="textarea"
                         autosize
                         placeholder="Please enter a detailed description of the item..."
                         v-model="idleItemInfo.idleDetails"
@@ -32,20 +31,19 @@
                     <div style="display: flex; justify-content: space-between">
                         <div>
                             <div class="release-tip">Item Category</div>
-                            <el-select v-model="idleItemInfo.idleLabel" placeholder="Please Select Item Category">
+                            <el-select v-model="idleItemInfo.idleLabel" placeholder="Please select">
                                 <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value"> </el-option>
                             </el-select>
                         </div>
                         <div v-show="idleItemInfo.idleLabel !== 5" style="width: 300px">
-                            <el-input-number v-model="idleItemInfo.idlePrice" :precision="2" :step="10" :max="10000000">
-                                <div slot="prepend">Price</div>
-                            </el-input-number>
+                            <div class="release-tip">Price</div>
+                            <el-input-number v-model="idleItemInfo.idlePrice" :precision="2" :step="10" :max="10000000"> </el-input-number>
                         </div>
                     </div>
                     <div class="release-idle-container-picture">
                         <div class="release-idle-container-picture-title">Upload Item Photos</div>
                         <el-upload
-                            action="http://47.252.36.46:8080/file"
+                            action="http://47.90.156.233:8080/file"
                             :on-preview="fileHandlePreview"
                             :on-remove="fileHandleRemove"
                             :on-success="fileHandleSuccess"
@@ -63,6 +61,7 @@
                             <el-image
                                 style="width: 600px; margin-bottom: 2px"
                                 fit="contain"
+                                error="No image"
                                 v-for="(img, index) in imgList"
                                 :key="index"
                                 :src="img"
@@ -214,6 +213,12 @@ export default {
 
 .release-idle-container-form {
     padding: 0 180px;
+}
+
+.custom-font {
+    font-family: Open Sans, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
 }
 
 .release-idle-details-text {

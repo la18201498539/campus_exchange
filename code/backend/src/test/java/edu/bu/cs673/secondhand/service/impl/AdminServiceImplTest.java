@@ -38,7 +38,7 @@ class AdminServiceImplTest {
         admin.setAdminName("Test Admin");
 
         boolean success = adminService.addAdmin(admin);
-        
+
         assertTrue(success);
         assertNotNull(admin.getAccountNumber());
         assertNotNull(admin.getAdminPassword());
@@ -49,7 +49,7 @@ class AdminServiceImplTest {
     @Order(2)
     void login() {
         Admin admin = adminService.login("ADMIN_TEST_001", "test123");
-        
+
         assertNotNull(admin);
         assertNotNull(admin.getId());
         assertEquals("ADMIN_TEST_001", admin.getAccountNumber());
@@ -65,7 +65,7 @@ class AdminServiceImplTest {
         assertNotNull(result.getList());
         assertTrue(result.getList().size() > 0);
         assertTrue(result.getList().size() <= 10);
-        
+
         // Verify the test admin exists in the list
         boolean found = result.getList().stream()
                 .anyMatch(admin -> "ADMIN_TEST_001".equals(admin.getAccountNumber()));

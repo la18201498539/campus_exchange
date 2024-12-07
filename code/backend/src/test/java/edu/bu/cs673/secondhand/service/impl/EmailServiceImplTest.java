@@ -33,9 +33,9 @@ class EmailServiceImplTest {
     void testSendSimpleMessage() {
         try {
             emailService.sendSimpleMessage(
-                TEST_EMAIL,
-                "Test Simple Message",
-                "This is a test message content"
+                    TEST_EMAIL,
+                    "Test Simple Message",
+                    "This is a test message content"
             );
         } catch (MailException e) {
             fail("Failed to send simple email: " + e.getMessage());

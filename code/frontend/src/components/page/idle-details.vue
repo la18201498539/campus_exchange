@@ -9,6 +9,7 @@
                             style="width: 80px; height: 80px; border-radius: 5px"
                             :src="idleItemInfo.user.avatar"
                             fit="contain"
+                            error="No image"
                         ></el-image>
                         <div style="margin-left: 10px">
                             <div class="details-header-user-info-nickname">{{ idleItemInfo.user.nickname }}</div>
@@ -22,7 +23,7 @@
                             ${{ idleItemInfo.idlePrice }}
                         </div>
                         <div v-if="!isMaster && idleItemInfo.idleStatus !== 1" style="color: red; font-size: 16px">
-                            Item has been removed or deleted.
+                            Item has been deleted.
                         </div>
                         <el-button
                             v-show="idleItemInfo.idlePrice > 0"
@@ -38,7 +39,7 @@
                             type="primary"
                             plain
                             @click="favoriteButton(idleItemInfo)"
-                            >{{ isFavorite ? 'Cancel cart' : 'Add to cart' }}</el-button
+                            >{{ isFavorite ? 'Cancel' : 'Favorite' }}</el-button
                         >
                         <el-button
                             v-if="isMaster && idleItemInfo.idleStatus === 1"
@@ -82,15 +83,7 @@
                                 <i class="el-icon-close el-icon--right"></i
                             ></el-button>
                         </div>
-                        <el-input
-                            type="textarea"
-                            autosize
-                            placeholder="Comment..."
-                            v-model="messageContent"
-                            maxlength="200"
-                            show-word-limit
-                        >
-                        </el-input>
+                        <el-input autosize placeholder="Comment..." v-model="messageContent" maxlength="200" show-word-limit> </el-input>
                         <div class="message-send-button">
                             <el-button plain @click="sendMessage">Send message</el-button>
                         </div>
@@ -321,7 +314,7 @@ export default {
                         console.log(res);
                         if (res.status_code === 1) {
                             this.$message({
-                                message: 'Item added to cart!',
+                                message: 'Item added to favorite!',
                                 type: 'success'
                             });
                             this.isFavorite = true;

@@ -106,7 +106,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="edu.bu.cs673.secondhand.domain.Order">
+  <insert id="insert" parameterType="edu.bu.cs673.secondhand.domain.Order" useGeneratedKeys="true" keyProperty="id">
     insert into sh_order (id, order_number, user_id, 
       idle_id, order_price, payment_status, 
       payment_way, create_time, payment_time, 

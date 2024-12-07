@@ -58,9 +58,9 @@ class OrderServiceImplTest {
 
         Long orderId = orderService.findOrderByNumber(
                         "YBIN_TEST_200", 1, 1)
-                                    .getList()
-                                    .get(0)
-                                    .getId();
+                .getList()
+                .get(0)
+                .getId();
         Order order = orderService.getOrder(orderId);
 
         assertNotNull(order);
@@ -94,7 +94,7 @@ class OrderServiceImplTest {
     void updateOrder() {
 
         Order order = orderService.findOrderByNumber(
-                "YBIN_TEST_200", 1, 1)
+                        "YBIN_TEST_200", 1, 1)
                 .getList()
                 .get(0);
 
@@ -133,7 +133,7 @@ class OrderServiceImplTest {
     void deleteOrder() {
 
         Long orderId = orderService.findOrderByNumber(
-                "YBIN_TEST_200", 1, 1)
+                        "YBIN_TEST_200", 1, 1)
                 .getList()
                 .get(0)
                 .getId();
