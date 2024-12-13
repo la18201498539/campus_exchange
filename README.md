@@ -2,7 +2,7 @@
 
 ## Demo
 
-http://8.221.114.134/
+http://8.221.114.134:8080/
 
 > Dummy Link: For application demonstration only.
 
