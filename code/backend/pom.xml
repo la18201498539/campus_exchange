@@ -24,10 +24,14 @@
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
             <version>2.2.0</version>
         </dependency>
+
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
@@ -90,6 +94,7 @@
             <artifactId>byte-buddy</artifactId>
             <version>1.14.5</version>
         </dependency>
+
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
@@ -100,13 +105,13 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.0.0</version>
+            <version>4.25.0</version>
         </dependency>
         <!-- WebDriver Manager to automatically download browser drivers -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>5.0.3</version>
+            <version>5.4.1</version>
         </dependency>
         <!-- Spring Boot Test -->
         <dependency>
@@ -180,12 +185,7 @@
             <version>5.0.0</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>4.0.1</version>
-            <scope>provided</scope>
-        </dependency>
+
         <dependency>
             <groupId>com.google.apis</groupId>
             <artifactId>google-api-services-gmail</artifactId>
